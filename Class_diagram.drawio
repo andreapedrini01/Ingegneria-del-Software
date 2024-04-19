@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-19T15:44:21.368Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="rCiScpbOrof_NQC3Cg3i" version="24.2.5" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-19T15:49:27.887Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="jM0y7kLdB-B1ijLQpcc5" version="24.2.5" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="2140" dy="708" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -142,7 +142,7 @@
           <mxGeometry y="52" width="150" as="geometry" />
         </mxCell>
         <mxCell id="8A4pzz5ywx9XOqRu4iLU-20" value="Supporto tecnico" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="-160" y="570" width="160" height="180" as="geometry">
+          <mxGeometry x="-160" y="570" width="160" height="170" as="geometry">
             <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
