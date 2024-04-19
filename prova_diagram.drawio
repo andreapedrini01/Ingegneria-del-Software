@@ -1,10 +1,123 @@
-<mxfile host="app.diagrams.net" modified="2024-04-19T14:10:27.147Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" version="24.2.5" etag="QlCnaUGr3H4IoZS0sn_S" type="github">
-  <diagram name="Pagina-1" id="BTT9d2IUX7OKFlE0blVZ">
-    <mxGraphModel>
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
+<components>
+    <!-- Componente Principale -->
+    <component name="GestioneRifiutiApp">
+        <description>
+            Applicazione principale per la gestione dei rifiuti.
+        </description>
+        <subcomponents>
+            <!-- Componente Applicazione Web -->
+            <component name="AppWeb">
+                <description>
+                    Interfaccia web per l'applicazione.
+                </description>
+                <interfaces>
+                    <interface name="CalendarioRaccolta">
+                        <description>
+                            Fornisce accesso ai calendari di raccolta.
+                        </description>
+                    </interface>
+                    <interface name="FunzioniUtente">
+                        <description>
+                            Gestisce le funzioni disponibili agli utenti registrati.
+                        </description>
+                    </interface>
+                    <interface name="MappaInterattiva">
+                        <description>
+                            Visualizza i centri di smaltimento sulla mappa.
+                        </description>
+                    </interface>
+                    <interface name="ServiziEsterni">
+                        <description>
+                            Integra servizi esterni come Dolomiti Ambiente.
+                        </description>
+                    </interface>
+                </interfaces>
+            </component>
+            <!-- Componente Mobile -->
+            <component name="AppMobile">
+                <description>
+                    Versione mobile dell'applicazione.
+                </description>
+                <interfaces>
+                    <interface name="CalendarioRaccolta">
+                        <description>
+                            Fornisce accesso ai calendari di raccolta.
+                        </description>
+                    </interface>
+                    <interface name="FunzioniUtente">
+                        <description>
+                            Gestisce le funzioni disponibili agli utenti registrati.
+                        </description>
+                    </interface>
+                    <interface name="MappaInterattiva">
+                        <description>
+                            Visualizza i centri di smaltimento sulla mappa.
+                        </description>
+                    </interface>
+                    <interface name="ServiziEsterni">
+                        <description>
+                            Integra servizi esterni come Dolomiti Ambiente.
+                        </description>
+                    </interface>
+                </interfaces>
+            </component>
+            <!-- Componente Desktop -->
+            <component name="AppDesktop">
+                <description>
+                    Versione desktop dell'applicazione.
+                </description>
+                <interfaces>
+                    <interface name="CalendarioRaccolta">
+                        <description>
+                            Fornisce accesso ai calendari di raccolta.
+                        </description>
+                    </interface>
+                    <interface name="FunzioniUtente">
+                        <description>
+                            Gestisce le funzioni disponibili agli utenti registrati.
+                        </description>
+                    </interface>
+                    <interface name="MappaInterattiva">
+                        <description>
+                            Visualizza i centri di smaltimento sulla mappa.
+                        </description>
+                    </interface>
+                    <interface name="ServiziEsterni">
+                        <description>
+                            Integra servizi esterni come Dolomiti Ambiente.
+                        </description>
+                    </interface>
+                </interfaces>
+            </component>
+            <!-- Componente Backend -->
+            <component name="Backend">
+                <description>
+                    Gestisce la logica di business e l'interazione con il database.
+                </description>
+                <interfaces>
+                    <interface name="GestioneRifiuti">
+                        <description>
+                            Gestisce il comportamento di smaltimento dei rifiuti.
+                        </description>
+                    </interface>
+                    <interface name="GestioneUtenti">
+                        <description>
+                            Gestisce l'autenticazione e le informazioni degli utenti.
+                        </description>
+                    </interface>
+                    <interface name="IntegrazioneServizi">
+                        <description>
+                            Integra servizi esterni come Dolomiti Ambiente.
+                        </description>
+                    </interface>
+                </interfaces>
+            </component>
+            <!-- Componente Database -->
+            <component name="Database">
+                <description>
+                    Archivia i dati dell'applicazione.
+                </description>
+            </component>
+        </subcomponents>
+    </component>
+</components>
