@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-19T16:04:27.824Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="JB7zJV5mnKQI87ig7Drv" version="24.2.5" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-19T16:17:28.142Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="Dtrw82z2RxPFaQoOD02b" version="24.2.5" type="github">
   <diagram name="Pagina-1" id="PUrYo3mo1FTPI0XB6R7E">
     <mxGraphModel dx="1050" dy="1349" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -106,17 +106,17 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="nwxM2-n29xhYYMJKdfmu-31" value="Gestore database" style="html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;appType=comp;archiType=square;" vertex="1" parent="1">
-          <mxGeometry x="160" y="600" width="160" height="80" as="geometry" />
+          <mxGeometry x="1160" y="200" width="160" height="80" as="geometry" />
         </mxCell>
         <mxCell id="nwxM2-n29xhYYMJKdfmu-32" value="" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=halfCircle;endFill=0;endSize=2;rounded=0;" edge="1" parent="1">
           <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="160" y="639.5" as="sourcePoint" />
-            <mxPoint x="70" y="640" as="targetPoint" />
+            <mxPoint x="1320" y="239.5" as="sourcePoint" />
+            <mxPoint x="1410" y="239.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="nwxM2-n29xhYYMJKdfmu-33" value="Accesso&lt;div&gt;dati&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="nwxM2-n29xhYYMJKdfmu-32">
           <mxGeometry x="0.4133" y="-3" relative="1" as="geometry">
-            <mxPoint x="24" y="3" as="offset" />
+            <mxPoint x="-24" y="-2" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="nwxM2-n29xhYYMJKdfmu-34" value="Gestione gruppi" style="html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;appType=comp;archiType=square;" vertex="1" parent="1">
@@ -131,6 +131,31 @@
         <mxCell id="nwxM2-n29xhYYMJKdfmu-36" value="Visualizzazione&lt;div&gt;gruppi&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="nwxM2-n29xhYYMJKdfmu-35">
           <mxGeometry x="0.4133" y="-3" relative="1" as="geometry">
             <mxPoint x="-3" y="16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-51" value="Gestore notifiche" style="html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;appType=comp;archiType=square;" vertex="1" parent="1">
+          <mxGeometry x="840" y="40" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-52" value="" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=halfCircle;endFill=0;endSize=2;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="840" y="40" as="sourcePoint" />
+            <mxPoint x="840" y="-39.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-53" value="Invio&lt;div&gt;notifiche&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="nwxM2-n29xhYYMJKdfmu-52">
+          <mxGeometry x="0.4133" y="-3" relative="1" as="geometry">
+            <mxPoint x="-3" y="16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-54" value="" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="599.5" y="40" as="sourcePoint" />
+            <mxPoint x="599.5" y="-40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-55" value="Cambio&lt;div&gt;stato&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="nwxM2-n29xhYYMJKdfmu-54">
+          <mxGeometry x="0.105" y="-3" relative="1" as="geometry">
+            <mxPoint x="-2" y="4" as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
