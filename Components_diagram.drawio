@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-19T15:04:54.961Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="OlosPohwTZylfEZ-RWgH" version="24.2.5" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-19T15:12:18.532Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="KQuCjNkZunFWpqr93sqU" version="24.2.5" type="github">
   <diagram name="Pagina-1" id="PUrYo3mo1FTPI0XB6R7E">
     <mxGraphModel dx="1050" dy="522" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -6,25 +6,60 @@
         <mxCell id="1" parent="0" />
         <mxCell id="nwxM2-n29xhYYMJKdfmu-1" value="Registrazione" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;" edge="1" parent="1">
           <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="80" y="140" as="sourcePoint" />
-            <mxPoint x="80" y="80" as="targetPoint" />
+            <mxPoint x="160" y="120" as="sourcePoint" />
+            <mxPoint x="160" y="40" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nwxM2-n29xhYYMJKdfmu-2" value="Login" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;" edge="1" parent="1">
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-2" value="Login" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nwxM2-n29xhYYMJKdfmu-17">
           <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="139.5" y="140" as="sourcePoint" />
-            <mxPoint x="139.5" y="80" as="targetPoint" />
+            <mxPoint x="260" y="100" as="sourcePoint" />
+            <mxPoint x="235" y="40" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="nwxM2-n29xhYYMJKdfmu-3" value="Logout" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;" edge="1" parent="1">
           <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="200" y="140" as="sourcePoint" />
-            <mxPoint x="200" y="80" as="targetPoint" />
+            <mxPoint x="310" y="120" as="sourcePoint" />
+            <mxPoint x="310" y="40" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="nwxM2-n29xhYYMJKdfmu-17" value="Gestore utente" style="html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;appType=comp;archiType=square;" vertex="1" parent="1">
-          <mxGeometry x="80" y="140" width="150" height="75" as="geometry" />
+          <mxGeometry x="160" y="120" width="150" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-18" value="Modifica dati" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="160" y="190" as="sourcePoint" />
+            <mxPoint x="160" y="280" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-20" value="Visualizzazione dati" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="310" y="195" as="sourcePoint" />
+            <mxPoint x="310" y="280" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-21" value="Modifica dati" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nwxM2-n29xhYYMJKdfmu-17">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="220" y="210" as="sourcePoint" />
+            <mxPoint x="235" y="280" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-23" value="Conferma email" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="160" y="120.00428571428566" as="sourcePoint" />
+            <mxPoint x="60" y="120.28999999999999" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nwxM2-n29xhYYMJKdfmu-24" value="Recupero password" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="160" y="195" as="sourcePoint" />
+            <mxPoint x="60" y="195.5" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
