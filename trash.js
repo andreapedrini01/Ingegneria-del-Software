@@ -1,3 +1,5 @@
 function doSomething() {
-    // Inserisci qui il tuo codice per fare qualcosa
+    if(1) {
+        console.log('1');
+    }
 }
