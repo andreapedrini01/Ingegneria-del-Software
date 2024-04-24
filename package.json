@@ -1,0 +1,18 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "Progetto di Ingegneria del Software, Università degli studi di Trento",
+  "main": "trash.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ingegneria-del-software"
+  },
+  "author": "andreapedrini01",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
