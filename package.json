@@ -2,7 +2,7 @@
   "name": "package",
   "version": "1.0.0",
   "description": "Progetto di Ingegneria del Software, Università degli studi di Trento",
-  "main": "main.js",
+  "main": "start.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
