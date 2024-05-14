@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const RegisteredUserSchema = new mongoose.Schema({
+const registeredUserSchema = new mongoose.Schema({
     username:String,
     email: {
         type: String,
@@ -17,10 +17,10 @@ const RegisteredUserSchema = new mongoose.Schema({
     },
     subscribedGroups: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Group'
+        ref: 'group'
     }]
 });
 
-const RegisteredUser = mongoose.model('RegisteredUser', RegisteredUserSchema);
+const registeredUser = mongoose.model('registeredUser', registeredUserSchema);
 
-module.exports = RegisteredUser;
+module.exports = registeredUser;

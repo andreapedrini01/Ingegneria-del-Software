@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const SuperUserSchema = new mongoose.Schema({
+const superUserSchema = new mongoose.Schema({
 
     password: {
         type: String,
@@ -20,5 +20,5 @@ const SuperUserSchema = new mongoose.Schema({
 
 
 });
-const SuperUser = mongoose.model('SuperUser', SuperUserSchema);
-module.exports = SuperUser;
+const superUser = mongoose.model('superUser', superUserSchema);
+module.exports = superUser;
