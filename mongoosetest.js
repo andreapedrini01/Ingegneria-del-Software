@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const RegisteredUser = require('./models/RegisteredUser');
-const VerifiedUser = require('./models/VerifiedUser');
+const RegisteredUser = require('./models/registeredUser');
+const VerifiedUser = require('./models/verifiedUser');
 const gruppo = require('./models/gruppo');
-const CentroRaccolta = require('./models/CentroRaccolta');
-const SuperUser = require('./models/SuperUser');
+const CentroRaccolta = require('./models/centroRaccolta');
+const SuperUser = require('./models/superUser');
 
 mongoose.connect('mongodb+srv://marcomartinico:mongolia@cluster00.lfxhzww.mongodb.net/SpazzaTN', )
     .then(() => {

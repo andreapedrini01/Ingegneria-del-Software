@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const RegisteredUser = require('./models/RegisteredUser');
+const RegisteredUser = require('./models/registeredUser');
 
 // Function to save a registered user
 async function saveRegisteredUser(email, password, username) {
