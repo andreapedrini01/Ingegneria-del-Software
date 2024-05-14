@@ -17,7 +17,7 @@ const verifiedUserSchema = new mongoose.Schema({
     },
     stabilimenti: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Stabilimento'
+        ref: 'stabilimento'
     }],
     createdAt: {
         type: Date,
@@ -26,6 +26,7 @@ const verifiedUserSchema = new mongoose.Schema({
 
 });
 
-const VerifiedUser = mongoose.model('VerifiedUser', verifiedUserSchema);
+const verifiedUser = mongoose.model('verifiedUser', verifiedUserSchema);
 
-module.exports = VerifiedUser;
+module.exports = verifiedUser;
+//end

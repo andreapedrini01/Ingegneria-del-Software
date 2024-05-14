@@ -20,6 +20,6 @@ const centroRaccoltaSchema = new mongoose.Schema({
     }
 });
 
-const CentroRaccolta = mongoose.model('CentroRaccolta', centroRaccoltaSchema);
+const centroRaccolta = mongoose.model('centroRaccolta', centroRaccoltaSchema);
 
-module.exports = CentroRaccolta;
+module.exports = centroRaccolta;
