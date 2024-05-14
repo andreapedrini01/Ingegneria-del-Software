@@ -4,7 +4,8 @@
   "description": "Progetto di Ingegneria del Software, Università degli studi di Trento",
   "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node -r dotenv/config index.js"
   },
   "repository": {
     "type": "git",
