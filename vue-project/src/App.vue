@@ -1,47 +1,140 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div>
+    <div class="header">
+      <h1>Welcome to SpazzaTN</h1>
     </div>
-  </header>
 
-  <main>
-    <TheWelcome />
-  </main>
+    <div class="container">
+      <div class="menu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Contact</a>
+        <a href="#">Settings</a>
+      </div>
+
+      <div class="section login-area">
+        <h2>Login</h2>
+        <button class="button login" @click="handleLogin">Login</button>
+      </div>
+
+      <!-- Include the LoginWindow component -->
+      <login-window v-if="showLogin" />
+
+      <div class="section register-area">
+        <h2>Register</h2>
+        <button class="button register" @click="handleRegister">Register</button>
+      </div>
+
+      <register-window v-if="showRegister" />
+
+      <div class="section continue-without-account">
+        <h2>Continue Without Account</h2>
+        <button class="button continue" @click="handleContinue">Continue</button>
+      </div>
+
+      <div class="menu">
+        <button class="button">Button 1</button>
+        <button class="button">Button 2</button>
+        <button class="button">Button 3</button>
+        <button class="button">Button 4</button>
+      </div>
+    </div>
+  </div>
 </template>
 
+<script>
+import LoginWindow from './components/LoginWindow.vue';
+import RegisterWindow from './components/RegisterWindow.vue';
+
+
+export default {
+  components: {
+    LoginWindow,
+    RegisterWindow
+  },
+  methods: {
+    handleLogin() {
+      // Mostra la finestra di login impostando uno stato
+      this.showRegister = false;
+      this.showLogin = true;
+    },
+    handleRegister() {
+      //alert('Register button clicked!');
+      // Chiudi la finestra di login
+      this.showLogin = false;
+      this.showRegister = true;
+    },
+    handleContinue() {
+      //alert('Continue button clicked!');
+      // Chiudi la finestra di login
+      this.showLogin = false;
+      this.showRegister = false;
+    }
+  },
+  data() {
+    return {
+      showLogin: false,
+      showRegister: false
+    };
+  }
+}
+</script>
+
+
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  .header {
+    background-color: #222;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
   }
-}
+
+  .menu {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .menu a {
+    color: #00ff00;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+
+  .section {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .button {
+    background-color: #00ff00;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 20px;
+    display: inline-block;
+  }
+
+  .button:hover {
+    background-color: #00cc00;
+  }
 </style>
+
