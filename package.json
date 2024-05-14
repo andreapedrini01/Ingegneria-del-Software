@@ -2,10 +2,12 @@
   "name": "package",
   "version": "1.0.0",
   "description": "Progetto di Ingegneria del Software, Università degli studi di Trento",
-  "main": "main.js",
+  "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node -r dotenv/config index.js"
+    "test": "jest",
+    "start": "node index.js",
+    "start_local": "node -r dotenv/config server.js",
+    "dev": "vite"
   },
   "repository": {
     "type": "git",
@@ -16,7 +18,9 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
-    "mongoose": "^8.3.4"
+    "mongoose": "^8.3.4",
+    "vue": "^3.4.27"
   }
 }
