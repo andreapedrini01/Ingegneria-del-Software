@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
-const RegisteredUser = require('./models/registeredUser');
+const registeredUser = require('./models/registeredUser');
 
 // Function to save a registered user
 async function saveRegisteredUser(email, password, username) {
     try {
         // Create a new user instance
-        const user = new RegisteredUser({ email, password, username });
+        const user = new registeredUser({ email, password, username });
         // Check if a user with the same email already exists in the database
-        const existingUser = await RegisteredUser.findOne({ email });
+        const existingUser = await registeredUser.findOne({ email });
 
         if (existingUser) {
             console.log('User with the same email already exists');

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const RegisteredUser = require('./models/registeredUser');
-const VerifiedUser = require('./models/verifiedUser');
+const registeredUser = require('./models/registeredUser');
+const verifiedUser = require('./models/verifiedUser');
 const gruppo = require('./models/gruppo');
-const CentroRaccolta = require('./models/centroRaccolta');
-const SuperUser = require('./models/superUser');
+const centroRaccolta = require('./models/centroRaccolta');
+const superUser = require('./models/superUser');
 
 mongoose.connect('mongodb+srv://marcomartinico:mongolia@cluster00.lfxhzww.mongodb.net/SpazzaTN', )
     .then(() => {
@@ -15,20 +15,20 @@ mongoose.connect('mongodb+srv://marcomartinico:mongolia@cluster00.lfxhzww.mongod
         console.error('Error connecting to MongoDB:', error);
     });
 /*
-    Ruser = new RegisteredUser({
+    Ruser = new registeredUser({
         username: "marco",
         password: "password",
         email: "ciao",
     });    
     Ruser.save(); 
 
-    Suser = new SuperUser({
+    Suser = new superUser({
 
-        password: "SuperUser",
+        password: "superUser",
         email: "superuser@admin",
     });
     Suser.save();
-    SuperUser.find()
+    superUser.find()
         .then((superusers) => {
             console.log('Superusers:', superusers);
         })
@@ -36,7 +36,7 @@ mongoose.connect('mongodb+srv://marcomartinico:mongolia@cluster00.lfxhzww.mongod
             console.error('Error querying superusers:', error);
         });*/
 
-    RegisteredUser.find({username: "marco"})
+    registeredUser.find({username: "marco"})
         .then((registeredusers) => {
             console.log('Registeredusers:', registeredusers);
         })
