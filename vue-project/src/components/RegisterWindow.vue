@@ -4,23 +4,24 @@
     <form @submit.prevent="submitForm">
       <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" required>
+        <input v-model="username" type="text" placeholder="Username">
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" required>
+        <input v-model="email" type="email" placeholder="Email">
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" required>
+        <input v-model="password" type="password" placeholder="Password">
       </div>
-      <button type="submit">Register</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import axios from 'axios';
 
 export default defineComponent({
   data() {
@@ -31,15 +32,20 @@ export default defineComponent({
     };
   },
   methods: {
-    submitForm() {
-      // Add your registration logic here
-      const userData = {
-        username: this.username,
+    async submitForm() {
+      //registration logic
+      const user = {
         email: this.email,
-        password: this.password
+        password: this.password,
+        username: this.username,
       };
-      console.log('User data:', userData);
-      // You can emit an event or call a method in the parent component to handle registration
+      //send POST request
+      try {
+        const response = await axios.post('http://localhost:8080/register', user);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error registering user:', error);
+      }
     }
   }
 });
