@@ -53,7 +53,7 @@ router.post('/register', async (req, res) => {
         //console.log('Existing user:', existingUser);
         if (existingUser) {
             res.status(409).json({ error: 'The email is already in use' });
-            console.log('User with the same email already exists, console log');
+            console.log('User with the same email already exists');
             return;
         }
         console.log('Started waiting for save');

@@ -1,6 +1,3 @@
-const mongoose = require('mongoose');
-const RegisteredUser = require('./app/models/registeredUser');
-
 fetch('http://localhost:8080/users/register', {
   method: 'POST',
   headers: {
