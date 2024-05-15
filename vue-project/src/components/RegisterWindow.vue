@@ -33,21 +33,32 @@ export default defineComponent({
   },
   methods: {
     async submitForm() {
-      //registration logic
-      const user = {
-        email: this.email,
-        password: this.password,
-        username: this.username,
-      };
-      //send POST request
       try {
-        const response = await axios.post('http://localhost:8080/register', user);
-        console.log(response.data);
+        alert('Form submitted');
+        const response = await fetch('http://localhost:8080/users/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: this.email,
+            password: this.password,
+            username: this.username,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // If you expect a JSON response, you can parse it
+        const data = await response.json();
+        console.log(data);
       } catch (error) {
-        console.error('Error registering user:', error);
+        console.error('An error occurred while submitting the form:', error);
       }
-    }
-  }
+    },
+  },
 });
 </script>
 
