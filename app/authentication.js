@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const registeredUser = require('./models/registeredUser'); // get our mongoose model
+const RegisteredUser = require('./models/registeredUser'); // get our mongoose model
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 router.post('', async function(req, res) {
-    let user = await registeredUser.findOne({ email: req.body.email }).exec()
+    let user = await RegisteredUser.findOne({ email: req.body.email }).exec()
     if (!user) {
         res.json({ success: false, message: 'Authentication failed. User not found.' });
     }
