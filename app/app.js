@@ -3,12 +3,12 @@ const Path = require('path');
 const express = require('express');
 const app = express();
 const cors = require('cors')
-const { frontend } = require('./config');
+const { frontend } = require('../config');
 
 const authentication = require('./authentication.js');
 const tokenChecker = require('./tokenChecker.js');
 
-const users = require('./app/users.js');
+const users = require('./users.js');
 
 
 /**

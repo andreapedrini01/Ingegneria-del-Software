@@ -1,13 +1,9 @@
-const express = require('express');
+const app = require('./app/app.js');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { dburl, configPort } = require('./config');
 
-const usersRouter = require('./app/users');
-
-const app = express();
 app.use(bodyParser.json());
-app.use('/users', usersRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello world');
