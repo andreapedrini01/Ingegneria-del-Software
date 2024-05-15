@@ -1,6 +1,6 @@
 const app = require('./app/app.js');
 const mongoose = require('mongoose');
-const { dburl } = require('./config');
+const { dburl, configPort } = require('./config');
 
 /**
  * https://devcenter.heroku.com/articles/preparing-a-codebase-for-heroku-deployment#4-listen-on-the-correct-port
