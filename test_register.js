@@ -1,21 +1,15 @@
 const mongoose = require('mongoose');
 const RegisteredUser = require('./app/models/registeredUser');
 
-const user = {
-  email: 'carlomazzone@gmail.com',
-  password: 'password',
-  username: 'carlomazzone',
-}
-
-fetch('http://localhost:8080/register', {
+fetch('http://localhost:8080/users/register', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    email: user.email,
-    password: user.password,
-    username: user.username,
+    email: 'giorgio@gmail.com',
+    password: 'password',
+    username: 'carlomazzone',
   }),
 })
 .then(response => response.json())
