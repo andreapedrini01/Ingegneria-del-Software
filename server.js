@@ -37,7 +37,7 @@ app.post('/register', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.send('');
+    res.send('Hello world');
 });
 
 //connect to MongoDB
