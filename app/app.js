@@ -9,6 +9,8 @@ const { frontend } = require('../config');
 const authentication = require('./authentication.js');
 const tokenChecker = require('./tokenChecker.js');
 const users = require('./users.js');
+const fs = require('fs');
+const yaml = require('js-yaml');
 
 /**
  * Configure Swagger
@@ -25,6 +27,7 @@ const swaggerOptions = {
     };
 const swaggerDocument = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+fs.writeFileSync('./swagger.yaml', yaml.dump(swaggerDocument));
 
 /**
  * Configure Express.js parsing middleware
