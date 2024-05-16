@@ -126,10 +126,9 @@ $RECYCLE.BIN/
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# mongodb connection
-mongodb-connection.json
+# test_register.js
+test_register.json
 
 # End of https://www.gitignore.io/api/node,windows,linux,visualstudiocode
-
 
 **/.DS_Store
