@@ -1,4 +1,4 @@
-fetch('http://localhost:8080/users/register', {
+fetch('http://localhost:8080/api/v1/users/register', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
