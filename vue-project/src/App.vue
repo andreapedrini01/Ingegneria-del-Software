@@ -26,7 +26,7 @@
         <button class="button register" @click="handleRegister">Register</button>
       </div>
 
-      <register-window v-if="showRegister" />
+      <register-window v-if="showRegister" @register="handleRegister" />
 
       <div class="section continue-without-account">
         <h2>Continue Without Account</h2>
@@ -46,7 +46,7 @@
 <script>
 import LoginWindow from './components/LoginWindow.vue';
 import RegisterWindow from './components/RegisterWindow.vue';
-
+import axios from 'axios';
 
 export default {
   components: {
@@ -59,7 +59,7 @@ export default {
       this.showRegister = false;
       this.showLogin = true;
     },
-    handleRegister() {
+    async handleRegister() {
       //alert('Register button clicked!');
       // Chiudi la finestra di login
       this.showLogin = false;
@@ -75,7 +75,10 @@ export default {
   data() {
     return {
       showLogin: false,
-      showRegister: false
+      showRegister: false,
+      email: '',
+      password: '',
+      username: '',
     };
   }
 }

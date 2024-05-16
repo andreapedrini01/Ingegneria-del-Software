@@ -5,9 +5,9 @@
   "main": "start.js",
   "scripts": {
     "test": "jest",
-    "start": "node index.js",
-    "start_local": "node -r dotenv/config server.js",
-    "dev": "vite"
+    "start": "node server.js",
+    "start_local": "echo use: $ npm run dev",
+    "dev": "node -r dotenv/config server.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,8 @@
   "author": "andreapedrini01",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",

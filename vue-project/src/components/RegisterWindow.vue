@@ -4,23 +4,24 @@
     <form @submit.prevent="submitForm">
       <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" required>
+        <input v-model="username" type="text" placeholder="Username">
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" required>
+        <input v-model="email" type="email" placeholder="Email">
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" required>
+        <input v-model="password" type="password" placeholder="Password">
       </div>
-      <button type="submit">Register</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import axios from 'axios';
 
 export default defineComponent({
   data() {
@@ -31,17 +32,33 @@ export default defineComponent({
     };
   },
   methods: {
-    submitForm() {
-      // Add your registration logic here
-      const userData = {
-        username: this.username,
-        email: this.email,
-        password: this.password
-      };
-      console.log('User data:', userData);
-      // You can emit an event or call a method in the parent component to handle registration
-    }
-  }
+    async submitForm() {
+      try {
+        alert('Form submitted');
+        const response = await fetch('http://localhost:8080/api/v1/users/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: this.email,
+            password: this.password,
+            username: this.username,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // If you expect a JSON response, you can parse it
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error('An error occurred while submitting the form:', error);
+      }
+    },
+  },
 });
 </script>
 
