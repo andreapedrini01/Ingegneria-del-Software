@@ -127,7 +127,7 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 # test_register.js
-test_register.json
+test_register.js
 
 # End of https://www.gitignore.io/api/node,windows,linux,visualstudiocode
 
