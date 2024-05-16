@@ -44,16 +44,21 @@ router.post('/register', async (req, res) => {
             username: req.body.username
         });
 
-        if (!user.email || typeof user.email != 'string' || !checkIfEmailInString(user.email)) {
-            res.status(400).json({ error: 'The field "email" must be a non-empty string, in email format' });
-            return;
+        try {
+            if (!user.email || typeof user.email != 'string' || !checkIfEmailInString(user.email)) {
+                res.status(400).json({ error: 'The field "email" must be a non-empty string, in email format' });
+                console.log('The field "email" must be a non-empty string, in email format');
+                return;
+            }
+        } catch(error){
+            console.log(error);
         }
-
+        
         const existingUser = await User.findOne({ email: user.email });
-        //console.log('Existing user:', existingUser);
+        
         if (existingUser) {
             res.status(409).json({ error: 'The email is already in use' });
-            console.log('User with the same email already exists');
+            //console.log('User with the same email already exists');
             return;
         }
         console.log('Started waiting for save');
