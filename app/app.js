@@ -69,7 +69,6 @@ app.use((req,res,next) => {
  */
 app.use('/api/v1/authentications', authentication);
 
-// Protect booklendings endpoint
 // access is restricted only to authenticated users
 // a valid token must be provided in the request
 app.use('/api/v1/users/me', tokenChecker);

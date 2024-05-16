@@ -33,7 +33,7 @@ router.get('', async (req, res) => {
         }
     });
 
-    res.status(200).json(students);
+    res.status(200).json(users);
 });
 
 router.post('/register', async (req, res) => {
