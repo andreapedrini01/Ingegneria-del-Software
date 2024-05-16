@@ -3,13 +3,28 @@ const Path = require('path');
 const express = require('express');
 const app = express();
 const cors = require('cors')
+const swaggerUI = require('swagger-ui-express') 
+const swaggerJsDoc = require('swagger-jsdoc')
 const { frontend } = require('../config');
-
 const authentication = require('./authentication.js');
 const tokenChecker = require('./tokenChecker.js');
-
 const users = require('./users.js');
 
+/**
+ * Configure Swagger
+ */
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+        title: 'SpazzaTN API',
+        version: '1.0.0'
+        },
+    },
+    apis: ['./app/*.js'], // files containing annotations as above
+    };
+const swaggerDocument = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 /**
  * Configure Express.js parsing middleware
