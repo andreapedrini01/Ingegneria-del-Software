@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const registeredUser = require('./models/registeredUser');
+const registeredUser = require('./app/models/registeredUser');
 
 // Function to save a registered user
 async function saveRegisteredUser(email, password, username) {
@@ -27,7 +27,7 @@ async function saveRegisteredUser(email, password, username) {
 mongoose.connect('mongodb+srv://marcomartinico:mongolia@cluster00.lfxhzww.mongodb.net/SpazzaTN', )
 .then(() => {
     console.log('Connected to MongoDB');
-    saveRegisteredUser('example@example.com', 'password123', 'exampleUser');
+    saveRegisteredUser('mammacalabra.com', 'password123', 'examplseUser');
 })
 .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
