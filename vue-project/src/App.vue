@@ -90,7 +90,7 @@ export default {
       showRegister: false,
       email: '',
       password: '',
-      username: '',,
+      username: '',
       isLoggedIn: false,
       loggedInUsername: '' // Memorizza il nome utente dell'utente loggato
     };
