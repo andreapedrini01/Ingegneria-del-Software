@@ -2,9 +2,12 @@
   "name": "package",
   "version": "1.0.0",
   "description": "Progetto di Ingegneria del Software, Università degli studi di Trento",
-  "main": "main.js",
+  "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start": "node server.js",
+    "start_local": "echo use: $ npm run dev",
+    "dev": "node -r dotenv/config server.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +16,19 @@
   "author": "andreapedrini01",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongodb": "^6.5.0"
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "vue": "^3.4.27"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }

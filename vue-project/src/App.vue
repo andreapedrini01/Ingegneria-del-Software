@@ -29,7 +29,7 @@
         <button class="button register" @click="handleRegister">Register</button>
       </div>
 
-      <register-window v-if="showRegister" />
+      <register-window v-if="showRegister" @register="handleRegister" />
 
       <div class="section continue-without-account">
         <h2>Continue Without Account</h2>
@@ -50,7 +50,7 @@
 import LoginWindow from './components/LoginWindow.vue';
 import RegisterWindow from './components/RegisterWindow.vue';
 import UserProfile from './components/UserProfile.vue';
-
+import axios from 'axios';
 
 export default {
   components: {
@@ -88,6 +88,9 @@ export default {
     return {
       showLogin: false,
       showRegister: false,
+      email: '',
+      password: '',
+      username: '',,
       isLoggedIn: false,
       loggedInUsername: '' // Memorizza il nome utente dell'utente loggato
     };
