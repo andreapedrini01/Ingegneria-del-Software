@@ -37,7 +37,7 @@ router.post('', async function(req, res) {
         id: user._id,
         self: '/api/v1/' + user._id
     });
-    console.log('Token created for user ' + user.email);
+    console.log('Token created for user ' + user.username);
 });
 
 module.exports = router;
