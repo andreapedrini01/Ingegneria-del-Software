@@ -16,10 +16,13 @@
       <div class="section login-area">
         <h2>Login</h2>
         <button class="button login" @click="handleLogin">Login</button>
+        
       </div>
 
       <!-- Include the LoginWindow component -->
-      <login-window v-if="showLogin" />
+      <!--<login-window v-if="showLogin" />-->
+      <login-window v-if="showLogin" @login-success="handleLoginSuccess" />
+      <user-profile v-if="isLoggedIn" :username="loggedInUsername" />
 
       <div class="section register-area">
         <h2>Register</h2>
@@ -46,12 +49,14 @@
 <script>
 import LoginWindow from './components/LoginWindow.vue';
 import RegisterWindow from './components/RegisterWindow.vue';
+import UserProfile from './components/UserProfile.vue';
 import axios from 'axios';
 
 export default {
   components: {
     LoginWindow,
-    RegisterWindow
+    RegisterWindow,
+    UserProfile
   },
   methods: {
     handleLogin() {
@@ -59,7 +64,14 @@ export default {
       this.showRegister = false;
       this.showLogin = true;
     },
-    async handleRegister() {
+    handleLoginSuccess(username) {
+      // Imposta lo stato di accesso e il nome utente dell'utente loggato
+      this.isLoggedIn = true;
+      this.loggedInUsername = username;
+      // Chiudi la finestra di login
+      this.showLogin = false;
+    },
+    handleRegister() {
       //alert('Register button clicked!');
       // Chiudi la finestra di login
       this.showLogin = false;
@@ -79,6 +91,8 @@ export default {
       email: '',
       password: '',
       username: '',
+      isLoggedIn: false,
+      loggedInUsername: '' // Memorizza il nome utente dell'utente loggato
     };
   }
 }
