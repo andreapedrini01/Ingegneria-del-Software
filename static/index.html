@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="/SpazzaTN.png">
+</head>
+
+<body>
+
+<h1>SpazzaTN</h1>
+
+<form action="api/v1/users" method="post" name="loginform" id="loginform">
+    <span id="loggedUser"></span>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br>
+    <button type="button" onclick="login()">LogIn</button>
+</form>
+
+<script src="script.js"></script> 
+    
+</body>
+
+</html>

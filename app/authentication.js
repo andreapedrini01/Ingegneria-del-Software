@@ -7,9 +7,12 @@ router.post('', async function(req, res) {
     let user = await RegisteredUser.findOne({ email: req.body.email }).exec()
     if (!user) {
         res.json({ success: false, message: 'Authentication failed. User not found.' });
+        console.log('User not found');
+        return
     }
     if (user.password != req.body.password) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+        return
     }
 
     //user authenticated -> create a token
@@ -34,6 +37,7 @@ router.post('', async function(req, res) {
         id: user._id,
         self: '/api/v1/' + user._id
     });
+    console.log('Token created for user ' + user.email);
 });
 
 module.exports = router;
