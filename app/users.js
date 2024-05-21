@@ -17,6 +17,36 @@ router.get('/me', async (req, res) => {
     });
 });
 
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Retrieve a list of users
+ *     description: Retrieve a list of users. If an email is provided as a query parameter, retrieve the user with that email.
+ *     parameters:
+ *       - in: query
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: The email of the user to retrieve.
+ *     responses:
+ *       200:
+ *         description: A list of users.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   self:
+ *                     type: string
+ *                     description: The URL of the user.
+ *                   email:
+ *                     type: string
+ *                     description: The email of the user.
+ */
 router.get('', async (req, res) => {
     let users;
 
@@ -33,9 +63,53 @@ router.get('', async (req, res) => {
         }
     });
 
-    res.status(200).json(students);
+    res.status(200).json(users);
 });
 
+/**
+ * @swagger
+ * /register:
+ *   post:
+ *     summary: Register a new user
+ *     description: Register a new user by providing an email, password, and username.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *               - username
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: The user's email.
+ *               password:
+ *                 type: string
+ *                 description: The user's password.
+ *               username:
+ *                 type: string
+ *                 description: The user's username.
+ *     responses:
+ *       201:
+ *         description: User registered successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: A success message.
+ *       400:
+ *         description: The field "email" must be a non-empty string, in email format.
+ *       409:
+ *         description: The email is already in use.
+ *       500:
+ *         description: Error saving user.
+ */
 router.post('/register', async (req, res) => {
     try{
         let user = new User({
