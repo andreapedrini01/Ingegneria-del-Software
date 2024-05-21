@@ -12,8 +12,8 @@ var loggedUser = {};
 function login()
 {
     //get the form object
-    var email = document.getElementById("loginEmail").value;
-    var password = document.getElementById("loginPassword").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
     // console.log(email);
 
     fetch('../api/v1/authentications', {
@@ -30,7 +30,6 @@ function login()
         loggedUser.self = data.self;
         // loggedUser.id = loggedUser.self.substring(loggedUser.self.lastIndexOf('/') + 1);
         document.getElementById("loggedUser").textContent = loggedUser.email;
-        loadLendings();
         return;
     })
     .catch( error => console.error(error) ); // If there is any error you will catch them here
