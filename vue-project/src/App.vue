@@ -3,7 +3,8 @@
     <div class="header">
       <h1>Welcome to SpazzaTN</h1>
       <div class="login-area">
-        <button class="button login" @click="handleLogin">Login</button>
+        <button class="button login" @click="handleLogin">Login</button><br>
+        <button class="button register" @click="handleRegister">Register</button>
       </div>
     </div>
 
@@ -16,7 +17,7 @@
         <a href="#">Settings</a>
       </div>
 
-      <!--<div class="section login-area">
+      <!-- <div class="section login-area">
         <h2>Login</h2>
         <button class="button login" @click="handleLogin">Login</button>
       </div>-->
@@ -26,10 +27,10 @@
       <login-window v-if="showLogin" @login-success="handleLoginSuccess" />
       <user-profile v-if="isLoggedIn" :username="loggedInUsername" />
 
-      <div class="section register-area">
+      <!--<div class="section register-area">
         <h2>Register</h2>
         <button class="button register" @click="handleRegister">Register</button>
-      </div>
+      </div>-->
 
       <register-window v-if="showRegister" @register="handleRegister" />
 
@@ -112,7 +113,7 @@ export default {
 
   .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: #222;
     color: #ffffff;
