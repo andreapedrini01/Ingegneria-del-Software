@@ -2,25 +2,25 @@ const express = require('express');
 const router = express.Router();
 const User = require('./models/registeredUser'); // get our mongoose model for registered users
 const Group = require('./models/gruppo'); // get our mongoose model for groups
-const { walk } = require('vue/compiler-sfc');
-const group = require('./models/gruppo');
 
 
 
 router.post('/newgroup', async (req, res) => {
     try{
-        let user = req.body.loggedUser;
-
+        console.log('Request body:', req.body.email);
+        let user = await User.findOne({email: req.body.email});
         group = new Group({
-            founder: user,
-            participants: [user]
+            founder: user._id,
+            participants: [user._id]
         });
+        console.log('\n\n\n\n\Group created:', group);
+
         try{
             group = await group.save();
-            console.log('Group saved:', group);
+            console.log('\nGroup saved:', group);
         } catch (error) {
             console.error('Error saving group:', error);
-            res.status(500).send();
+            res.status(501).send();
         }
 
     } catch (error) {
@@ -53,3 +53,4 @@ router.post('/addparticipant', async (req, res) => {
 });
 
 
+module.exports = router;

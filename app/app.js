@@ -11,7 +11,7 @@ const tokenChecker = require('./tokenChecker.js');
 const users = require('./users.js');
 const fs = require('fs');
 const yaml = require('js-yaml');
-
+const groups = require('./groups.js');
 /**
  * Configure Swagger
  */
@@ -99,6 +99,9 @@ app.use('/api/v1/users/me', tokenChecker);
 
 app.use('/api/v1/users', users);
 
+app.use('/api/v1/groups', groups);
+
+
 
 
 /* Default 404 handler */
@@ -106,6 +109,7 @@ app.use((req, res) => {
     res.status(404);
     res.json({ error: 'Not found' });
 });
+
 
 
 
