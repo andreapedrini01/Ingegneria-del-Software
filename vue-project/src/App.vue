@@ -2,6 +2,9 @@
   <div>
     <div class="header">
       <h1>Welcome to SpazzaTN</h1>
+      <div class="login-area">
+        <button class="button login" @click="handleLogin">Login</button>
+      </div>
     </div>
 
     <div class="container">
@@ -13,11 +16,10 @@
         <a href="#">Settings</a>
       </div>
 
-      <div class="section login-area">
+      <!--<div class="section login-area">
         <h2>Login</h2>
         <button class="button login" @click="handleLogin">Login</button>
-        
-      </div>
+      </div>-->
 
       <!-- Include the LoginWindow component -->
       <!--<login-window v-if="showLogin" />-->
@@ -109,6 +111,9 @@ export default {
   }
 
   .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #222;
     color: #ffffff;
     padding: 20px;
