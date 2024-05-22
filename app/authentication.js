@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const RegisteredUser = require('./models/registeredUser'); // get our mongoose model
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+const Token = require("./models/token");
+const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 
 router.post('', async function(req, res) {
     let user = await RegisteredUser.findOne({ email: req.body.email }).exec()
@@ -13,6 +16,11 @@ router.post('', async function(req, res) {
     if (user.password != req.body.password) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
         return
+    }
+    
+    //delete previous token if exists
+    if(await Token.findOneAndDelete({ userId: user._id }).exec()) {
+        console.log('Previous token deleted for user ' + user.username);
     }
 
     //user authenticated -> create a token
@@ -29,10 +37,17 @@ router.post('', async function(req, res) {
         options
     );
 
+    // save the token in db
+    let tkn = new Token({
+        userId: payload.id,
+        token: token,
+    });
+    tkn = await tkn.save();
+
     res.json({
         success: true,
         message: 'Enjoy your token!',
-        token: token,
+        token: tkn.token,
         email: user.email,
         id: user._id,
         self: '/api/v1/' + user._id
