@@ -16,6 +16,7 @@
       </div>
       <button type="submit">Submit</button>
     </form>
+    <br><button type="back" @click="goBack">Go back</button>
   </div>
 </template>
 
@@ -58,6 +59,9 @@ export default defineComponent({
         console.error('An error occurred while submitting the form:', error);
       }
     },
+    goBack() {
+      this.$router.push('/');
+    }
   },
 });
 </script>
@@ -67,7 +71,7 @@ export default defineComponent({
   background-color: #333;
     padding: 20px;
     border-radius: 5px;
-    width: 50%; /* Riduci la larghezza al 50% del contenitore padre */
+    width: 100%;
     margin: 0 auto; /* Centra orizzontalmente */
     display: block; /* Assicurati che l'elemento sia un blocco per applicare il margine e la larghezza */
 }
@@ -94,7 +98,7 @@ button {
   background-color: #00ff00;
   color: #000;
   padding: 10px 20px;
-  border: none;
+  border: 20px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;

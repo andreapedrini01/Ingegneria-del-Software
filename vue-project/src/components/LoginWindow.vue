@@ -14,6 +14,7 @@
       </div>
       <button type="submit">Enter</button>
     </form>
+    <br><button type="back" @click="goBack">Go back</button>
   </div>
 </template>
 
@@ -32,6 +33,9 @@ export default defineComponent({
       // Simuliamo il login corretto (si presume che la validazione sia sempre superata)
       const loggedInUsername = this.email.split('@')[0]; // Utilizziamo l'email come username
       this.$emit('login-success', loggedInUsername);
+    },
+    goBack() {
+      this.$router.push('/');
     }
   }
 });
@@ -47,7 +51,7 @@ export default defineComponent({
     background-color: #333;
     padding: 20px;
     border-radius: 5px;
-    width: 50%; /* Riduci la larghezza al 50% del contenitore padre */
+    width: 100%; /* Riduci la larghezza al 50% del contenitore padre */
     margin: 0 auto; /* Centra orizzontalmente */
     display: block; /* Assicurati che l'elemento sia un blocco per applicare il margine e la larghezza */
   }
