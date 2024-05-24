@@ -1,45 +1,46 @@
 <!-- LoginWindow.vue -->
 
 <template>
-    <div class="login-window">
-      <h2>Login</h2>
-      <form @submit.prevent="submitForm">
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" v-model="email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" v-model="password" required>
-        </div>
-        <button type="submit">Enter</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  import { defineComponent } from 'vue';
-  
-  export default defineComponent({
-    data() {
-      return {
-        email: '',
-        password: ''
-      };
-    },
-    methods: {
-      submitForm() {
-        // Add your login logic here
-        const credentials = {
-          email: this.email,
-          password: this.password
-        };
-        console.log('Login credentials:', credentials);
-        // You can emit an event or call a method in the parent component to handle login
-      }
+  <div class="login-window">
+    <h2>Login</h2>
+    <form @submit.prevent="submitForm">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" v-model="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" v-model="password" required>
+      </div>
+      <button type="submit">Enter</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  data() {
+    return {
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+    submitForm() {
+      // Simuliamo il login corretto (si presume che la validazione sia sempre superata)
+      const loggedInUsername = this.email.split('@')[0]; // Utilizziamo l'email come username
+      this.$emit('login-success', loggedInUsername);
     }
-  });
-  </script>
+  }
+});
+</script>
+
+<style scoped>
+/* Stili rimossi per brevità */
+</style>
+
   
   <style scoped>
   .login-window {

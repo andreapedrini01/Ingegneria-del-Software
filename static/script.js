@@ -12,9 +12,9 @@ var loggedUser = {};
 function login()
 {
     //get the form object
-    var email = document.getElementById("loginEmail").value;
-    var password = document.getElementById("loginPassword").value;
-    // console.log(email);
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    //console.log(email);
 
     fetch('../api/v1/authentications', {
         method: 'POST',
@@ -28,11 +28,25 @@ function login()
         loggedUser.email = data.email;
         loggedUser.id = data.id;
         loggedUser.self = data.self;
-        // loggedUser.id = loggedUser.self.substring(loggedUser.self.lastIndexOf('/') + 1);
-        document.getElementById("loggedUser").textContent = loggedUser.email;
-        loadLendings();
+        loggedUser.id = loggedUser.self.substring(loggedUser.self.lastIndexOf('/') + 1);
+        document.getElementById("loggedUser").textContent = loggedUser.id;
         return;
     })
     .catch( error => console.error(error) ); // If there is any error you will catch them here
 
 };
+
+function logout() {
+    // Check if loggedUser is defined
+    if (typeof loggedUser.self !== 'undefined') {
+        loggedUser.token = undefined;
+        loggedUser.email = undefined;
+        loggedUser.id = undefined;
+        loggedUser.self = undefined;
+        document.getElementById("loggedUser").textContent = '';
+        console.log('User has been logged out');
+    } else {
+        console.error('There is not a logged user');
+        return;
+    }
+}
