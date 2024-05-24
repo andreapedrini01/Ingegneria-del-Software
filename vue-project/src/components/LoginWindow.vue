@@ -47,6 +47,9 @@ export default defineComponent({
     background-color: #333;
     padding: 20px;
     border-radius: 5px;
+    width: 50%; /* Riduci la larghezza al 50% del contenitore padre */
+    margin: 0 auto; /* Centra orizzontalmente */
+    display: block; /* Assicurati che l'elemento sia un blocco per applicare il margine e la larghezza */
   }
   
   .form-group {

@@ -3,14 +3,13 @@
     <div class="header">
       <h1>Welcome to SpazzaTN</h1>
       <div class="login-area">
-        <button class="button login" @click="handleLogin">Login</button><br>
+        <button class="button login" @click="handleLogin">Login</button>
         <button class="button register" @click="handleRegister">Register</button>
       </div>
     </div>
-
     <div class="container">
       <div class="menu">
-        <a href="#">Home</a>
+        <RouterLink to="/">Home</RouterLink>
         <a href="#">About</a>
         <a href="#">Portfolio</a>
         <a href="#">Contact</a>
@@ -54,16 +53,21 @@ import LoginWindow from './components/LoginWindow.vue';
 import RegisterWindow from './components/RegisterWindow.vue';
 import UserProfile from './components/UserProfile.vue';
 import axios from 'axios';
+import LoginPage from './components/LoginPage.vue';
+import {ref, onMounted} from 'vue';
 
 export default {
+  name: 'App',
   components: {
     LoginWindow,
     RegisterWindow,
-    UserProfile
+    UserProfile,
+    LoginPage
   },
   methods: {
     handleLogin() {
-      // Mostra la finestra di login impostando uno stato
+      //naviga alla pagina di login
+      this.$router.push('/login');
       this.showRegister = false;
       this.showLogin = true;
     },
@@ -75,14 +79,14 @@ export default {
       this.showLogin = false;
     },
     handleRegister() {
-      //alert('Register button clicked!');
-      // Chiudi la finestra di login
+      this.$router.push('/register');
       this.showLogin = false;
       this.showRegister = true;
     },
     handleContinue() {
       //alert('Continue button clicked!');
       // Chiudi la finestra di login
+      this.$router.push('/');
       this.showLogin = false;
       this.showRegister = false;
     }
@@ -104,27 +108,33 @@ export default {
 
 <style scoped>
   body {
+    width: 100%;
+    height: 100%;
     font-family: Arial, sans-serif;
     background-color: #111;
     color: #fff;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 
   .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
     background-color: #222;
     color: #ffffff;
     padding: 20px;
-    text-align: center;
+    box-sizing: border-box;
   }
 
   .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 0 20px;
+    width: 100vw; /* Larghezza al 100% dello schermo */
+    padding: 0; /* Rimuovi il padding per far coincidere il bordo con il bordo dello schermo */
+    box-sizing: border-box; /* Mantieni il box-sizing */
   }
 
   .menu {
@@ -158,6 +168,11 @@ export default {
 
   .button:hover {
     background-color: #00cc00;
+  }
+
+  .header .login-area {
+    position: absolute;
+    right: 20px;
   }
 </style>
 
