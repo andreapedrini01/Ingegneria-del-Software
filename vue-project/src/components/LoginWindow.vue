@@ -40,11 +40,6 @@ export default defineComponent({
   }
 });
 </script>
-
-<style scoped>
-/* Stili rimossi per brevità */
-</style>
-
   
   <style scoped>
   .login-window {

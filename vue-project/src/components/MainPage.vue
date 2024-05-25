@@ -10,12 +10,17 @@
       <div class="container">
         <router-view></router-view> <!-- Componente visualizzato dinamicamente in base alla rotta -->
       </div>
+      <UserLocation />
     </div>
   </template>
   
   <script>
+  import UserLocation from './UserLocation.vue';
   export default {
     name: 'MainPage',
+    components: {
+      UserLocation
+    },
     methods: {
       handleLogin() {
         // Navigazione alla pagina di login
