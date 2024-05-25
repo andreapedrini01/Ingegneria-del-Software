@@ -50,3 +50,24 @@ function logout() {
         return;
     }
 }
+
+function rstPwd() {
+    //console.log('started resetPassword');
+    var urlParams = new URLSearchParams(window.location.search);
+    var password = document.getElementById("password").value;
+    var token = urlParams.get('token');
+    var userId = urlParams.get('id');
+    //console.log('userId: ' + userId);
+    //console.log('token: ' + token);
+    try{
+        fetch('/api/v1/authentications/passwordReset', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify( { userId: userId, token: token, password: password } ),
+        })
+        .then((resp) => resp.json())
+    } catch (error) {
+        console.error(error);
+        return;
+    }
+}

@@ -7,6 +7,7 @@ const Token = require("./models/token");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const sendEmail = require("../utils/sendEmail");
+const path = require("path");
 
 router.post('', async function(req, res) {
     let user = await RegisteredUser.findOne({ email: req.body.email }).exec()
@@ -89,6 +90,10 @@ router.post('/requestPasswordReset', async function(req, res) {
   res.json({ link: link });
 });
 
+router.get('/passwordReset', async function(req, res) {
+  res.sendFile(path.join(__dirname, '../static', 'passwordReset.html'));
+});
+
 router.post('/passwordReset', async function(req, res) {
   let passwordResetToken = await Token.findOne({ userId: req.body.userId });
 
@@ -96,11 +101,11 @@ router.post('/passwordReset', async function(req, res) {
     throw new Error("Invalid or expired password reset token1");
   }
 
-  console.log(passwordResetToken.token, req.body.token);
+  //console.log(passwordResetToken.token, req.body.token);
 
   const isValid = await bcrypt.compare(req.body.token, passwordResetToken.token);
 
-  console.log(isValid + " " + req.body.token + " " + passwordResetToken.token);
+  //console.log(isValid + " " + req.body.token + " " + passwordResetToken.token);
 
   if (!isValid) {
     throw new Error("Invalid or expired password reset token2");
@@ -127,7 +132,7 @@ router.post('/passwordReset', async function(req, res) {
 
   await passwordResetToken.deleteOne();
 
-  res.json({ message: "Password reset was successful" });
+  res.json({ message: "Password reset was successful for User: " + user.username });
 });
 
 module.exports = router;
