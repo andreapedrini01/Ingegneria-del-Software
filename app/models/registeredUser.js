@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
+const { bcrypt_salt } = require('../../config');
 const bcrypt = require("bcrypt");
-const bcryptSalt = process.env.BCRYPT_SALT;
 
 const registeredUserSchema = new mongoose.Schema({
     username:String,
@@ -32,7 +32,7 @@ registeredUserSchema.pre("save", async function (next) {
     if (!this.isModified("password")) {
       return next();
     }
-    const hash = await bcrypt.hash(this.password, Number(bcryptSalt));
+    const hash = await bcrypt.hash(this.password, Number(bcrypt_salt));
     this.password = hash;
     next();
   });
