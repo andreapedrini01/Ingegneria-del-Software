@@ -1,5 +1,3 @@
-const Path = require('path');
-
 const express = require('express');
 const app = express();
 const cors = require('cors')
@@ -12,6 +10,7 @@ const users = require('./users.js');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const groups = require('./groups.js');
+
 /**
  * Configure Swagger
  */
@@ -100,8 +99,6 @@ app.use('/api/v1/users/me', tokenChecker);
 app.use('/api/v1/users', users);
 
 app.use('/api/v1/groups', groups);
-
-
 
 
 /* Default 404 handler */
