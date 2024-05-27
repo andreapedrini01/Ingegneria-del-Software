@@ -16,8 +16,11 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@fawmi/vue-google-maps": "^0.9.79",
     "axios": "^1.6.8",
-    "vue": "^3.4.21"
+    "leaflet": "^1.9.4",
+    "vue": "^3.4.21",
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
