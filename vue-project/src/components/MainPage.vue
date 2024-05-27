@@ -10,16 +10,16 @@
       <div class="container">
         <router-view></router-view> <!-- Componente visualizzato dinamicamente in base alla rotta -->
       </div>
-      <UserLocation />
+      <MapWindow />
     </div>
   </template>
   
   <script>
-  import UserLocation from './UserLocation.vue';
+  import MapWindow from './MapWindow.vue';
   export default {
     name: 'MainPage',
     components: {
-      UserLocation
+      MapWindow
     },
     methods: {
       handleLogin() {
