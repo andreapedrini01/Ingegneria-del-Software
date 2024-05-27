@@ -1,3 +1,14 @@
+
+
+var map = L.map('map').setView([46.0665, 11.12], 13);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var marker = L.marker([46.0665, 11.12]).addTo(map);
+marker.bindPopup("<b>hello world</b><br>I am a popup.").openPopup();
+
 /**
  * This variable stores the logged in user
  */
@@ -14,7 +25,7 @@ function login()
     //get the form object
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-    // console.log(email);
+    //console.log(email);
 
     fetch('../api/v1/authentications', {
         method: 'POST',
@@ -28,8 +39,8 @@ function login()
         loggedUser.email = data.email;
         loggedUser.id = data.id;
         loggedUser.self = data.self;
-        // loggedUser.id = loggedUser.self.substring(loggedUser.self.lastIndexOf('/') + 1);
-        document.getElementById("loggedUser").textContent = loggedUser.email;
+        loggedUser.id = loggedUser.self.substring(loggedUser.self.lastIndexOf('/') + 1);
+        document.getElementById("loggedUser").textContent = loggedUser.id;
         return;
     })
     .catch( error => console.error(error) ); // If there is any error you will catch them here
@@ -47,6 +58,27 @@ function logout() {
         console.log('User has been logged out');
     } else {
         console.error('There is not a logged user');
+        return;
+    }
+}
+
+function rstPwd() {
+    //console.log('started resetPassword');
+    var urlParams = new URLSearchParams(window.location.search);
+    var password = document.getElementById("password").value;
+    var token = urlParams.get('token');
+    var userId = urlParams.get('id');
+    //console.log('userId: ' + userId);
+    //console.log('token: ' + token);
+    try{
+        fetch('/api/v1/authentications/passwordReset', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify( { userId: userId, token: token, password: password } ),
+        })
+        .then((resp) => resp.json())
+    } catch (error) {
+        console.error(error);
         return;
     }
 }

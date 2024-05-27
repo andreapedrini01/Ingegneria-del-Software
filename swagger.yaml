@@ -3,6 +3,66 @@ info:
   title: SpazzaTN API
   version: 1.0.0
 paths:
+  /newgroup:
+    post:
+      summary: Create a new group
+      description: >-
+        Create a new group with the provided user as the founder and
+        participant.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: The email of the user creating the group.
+              example:
+                email: john@example.com
+      responses:
+        '200':
+          description: The created group object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '500':
+          description: Internal server error.
+        '501':
+          description: Error saving the group.
+  /addparticipant:
+    post:
+      summary: Add a participant to a group
+      description: Add a participant to an existing group.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groupId:
+                  type: string
+                  description: The ID of the group.
+                userId:
+                  type: string
+                  description: The ID of the user to add as a participant.
+              example:
+                groupId: 1234567890
+                userId: abcdefghij
+      responses:
+        '200':
+          description: The updated group object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '404':
+          description: Group not found.
+        '500':
+          description: Internal server error.
   /:
     get:
       summary: Retrieve a list of users

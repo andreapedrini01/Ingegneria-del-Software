@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+const { masterKey } = require('../config');
 
 const tokenChecker = function(req, res, next) {
 	
@@ -14,7 +15,7 @@ const tokenChecker = function(req, res, next) {
 	}
 
 	// decode token, verifies secret and checks exp
-	jwt.verify(token, process.env.SUPER_SECRET, function(err, decoded) {			
+	jwt.verify(token, masterKey, function(err, decoded) {			
 		if (err) {
 			return res.status(403).send({
 				success: false,

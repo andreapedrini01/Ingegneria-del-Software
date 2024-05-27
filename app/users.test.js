@@ -4,6 +4,7 @@
 const request = require('supertest');
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const app = require('./app');
+const { masterKey } = require('../config');
 
 describe('GET /api/v1/users/me', () => {
 
@@ -40,7 +41,7 @@ describe('GET /api/v1/users/me', () => {
   var options = {
     expiresIn: 86400 // expires in 24 hours
   }
-  var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
+  var token = jwt.sign(payload, masterKey, options);
       
   test('GET /api/v1/users/me?token=<valid> should return 200', async () => {
     expect.assertions(1);
