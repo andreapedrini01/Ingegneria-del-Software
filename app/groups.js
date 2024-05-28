@@ -33,8 +33,6 @@ const Group = require('./models/gruppo'); // get our mongoose model for groups
  *       501:
  *         description: Error saving the group.
  */
-
-
 router.post('/newgroup', async (req, res) => {
     try{
         console.log('Request body:', req.body.email);

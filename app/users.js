@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const Path = require('path');
 const User = require('./models/registeredUser'); // get our mongoose model
-const { walk } = require('vue/compiler-sfc');
 
 router.get('/me', async (req, res) => {
     if(!req.loggedUser) {
@@ -150,6 +150,10 @@ router.post('/register', async (req, res) => {
         console.error('Error saving user:', error);
         res.status(500).send();
     }
+});
+
+router.get('/calendar', async (req, res) => {
+    res.sendFile(Path.join(__dirname, '../utils/Calendar', 'Calendar.html'));
 });
 
 // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
