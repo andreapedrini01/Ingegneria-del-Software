@@ -6,10 +6,6 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    startTime: {
-        type: String, // Conserva solo l'orario, ad esempio "08:00"
-        required: true
-    },
     endTime: {
         type: String, // Conserva solo l'orario, ad esempio "09:00"
         required: true
@@ -17,6 +13,10 @@ const eventSchema = new mongoose.Schema({
     recurrenceDays: {
         type: [String],
         enum: ['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica'],
+        required: true
+    },
+    zone: {
+        type: String,
         required: true
     }
 }, {
