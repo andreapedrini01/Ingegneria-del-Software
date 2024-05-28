@@ -135,6 +135,12 @@ centriRaccolta.js
 # gestione_rifiuti_view
 gestione_rifiuti_view.geojson
 
+#createCalendars.js
+createCalendars.js
+
+#createEvents.js
+createEvents.js
+
 # End of https://www.gitignore.io/api/node,windows,linux,visualstudiocode
 
 **/.DS_Store
