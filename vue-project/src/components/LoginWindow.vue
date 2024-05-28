@@ -14,7 +14,7 @@
       </div>
       <button type="submit">Enter</button>
     </form>
-    <br><button type="back" @click="goBack">Go back</button>
+    <br><button type="back" @click="goBack">Go back</button><button type="back" @click="Forgot">Forgot Password</button>
   </div>
 </template>
 
@@ -36,6 +36,9 @@ export default defineComponent({
     },
     goBack() {
       this.$router.push('/');
+    },
+    Forgot() {
+      this.$router.push('/requestNewPwd');
     }
   }
 });
