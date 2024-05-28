@@ -129,6 +129,13 @@ $RECYCLE.BIN/
 # test_register.js
 test_register.js
 
+# centri_di_raccolta script
+centriRaccolta.js
+
+# gestione_rifiuti_view
+gestione_rifiuti_view.geojson
+
+
 # End of https://www.gitignore.io/api/node,windows,linux,visualstudiocode
 
 **/.DS_Store

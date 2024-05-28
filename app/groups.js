@@ -27,7 +27,7 @@ const Group = require('./models/gruppo'); // get our mongoose model for groups
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Group'
+ *               $ref: '#models/gruppo'
  *       500:
  *         description: Internal server error.
  *       501:
@@ -85,7 +85,7 @@ router.post('/newgroup', async (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Group'
+ *               $ref: '#/models/gruppo'
  *       404:
  *         description: Group not found.
  *       500:
