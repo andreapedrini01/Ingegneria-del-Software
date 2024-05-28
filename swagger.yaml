@@ -27,7 +27,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Group'
+                $ref: '#models/gruppo'
         '500':
           description: Internal server error.
         '501':
