@@ -12,6 +12,8 @@ const users = require('./users.js');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const groups = require('./groups.js');
+const crm = require('./crm.js');
+const { createCommentVNode } = require('vue');
 /**
  * Configure Swagger
  */
@@ -100,6 +102,8 @@ app.use('/api/v1/users/me', tokenChecker);
 app.use('/api/v1/users', users);
 
 app.use('/api/v1/groups', groups);
+
+app.use('/api/v1/crm', crm);
 
 
 
