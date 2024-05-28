@@ -14,10 +14,6 @@ const eventSchema = new mongoose.Schema({
         type: String, // Conserva solo l'orario, ad esempio "09:00"
         required: true
     },
-    users: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }],
     recurrenceDays: {
         type: [String],
         enum: ['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica'],
