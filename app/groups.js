@@ -7,8 +7,9 @@ const Group = require('./models/gruppo'); // get our mongoose model for groups
  * @swagger
  * /newgroup:
  *   post:
- *     summary: Create a new group
- *     description: Create a new group with the provided user as the founder and participant.
+ *     summary: Crea un nuovo gruppo
+ *     tags: 
+ *       - Gruppi
  *     requestBody:
  *       required: true
  *       content:
@@ -18,20 +19,30 @@ const Group = require('./models/gruppo'); // get our mongoose model for groups
  *             properties:
  *               email:
  *                 type: string
- *                 description: The email of the user creating the group.
- *             example:
- *               email: john@example.com
+ *                 description: L'email dell'utente che sta creando il gruppo
+ *                 example: example@example.com
  *     responses:
  *       200:
- *         description: The created group object.
+ *         description: Gruppo creato con successo
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#models/gruppo'
+ *               type: object
+ *               properties:
+ *                 founder:
+ *                   type: string
+ *                   description: ID del fondatore del gruppo
+ *                   example: 60c72b2f5f1b2c001c8e4b4b
+ *                 participants:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   description: Lista degli ID dei partecipanti
+ *                   example: ["60c72b2f5f1b2c001c8e4b4b"]
  *       500:
- *         description: Internal server error.
+ *         description: Errore durante la creazione del gruppo
  *       501:
- *         description: Error saving the group.
+ *         description: Errore durante il salvataggio del gruppo
  */
 router.post('/newgroup', async (req, res) => {
     try{
@@ -61,8 +72,9 @@ router.post('/newgroup', async (req, res) => {
  * @swagger
  * /addparticipant:
  *   post:
- *     summary: Add a participant to a group
- *     description: Add a participant to an existing group.
+ *     summary: Aggiungi un partecipante a un gruppo
+ *     tags: 
+ *       - Gruppi
  *     requestBody:
  *       required: true
  *       content:
@@ -72,26 +84,35 @@ router.post('/newgroup', async (req, res) => {
  *             properties:
  *               groupId:
  *                 type: string
- *                 description: The ID of the group.
+ *                 description: L'ID del gruppo a cui aggiungere il partecipante
+ *                 example: 60c72b2f5f1b2c001c8e4b4b
  *               userId:
  *                 type: string
- *                 description: The ID of the user to add as a participant.
- *             example:
- *               groupId: 1234567890
- *               userId: abcdefghij
+ *                 description: L'ID dell'utente da aggiungere al gruppo
+ *                 example: 60c72b2f5f1b2c001c8e4b4b
  *     responses:
  *       200:
- *         description: The updated group object.
+ *         description: Partecipante aggiunto con successo
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/models/gruppo'
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   description: L'ID del gruppo
+ *                   example: 60c72b2f5f1b2c001c8e4b4b
+ *                 participants:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   description: Lista degli ID dei partecipanti
+ *                   example: ["60c72b2f5f1b2c001c8e4b4b", "60d72b2f5f1b2c001c8e4b4c"]
  *       404:
- *         description: Group not found.
+ *         description: Gruppo non trovato
  *       500:
- *         description: Internal server error.
+ *         description: Errore durante l'aggiunta del partecipante
  */
-
 router.post('/addparticipant', async (req, res) => {
     try {
         const groupId = req.body.groupId;

@@ -9,6 +9,57 @@ const bcrypt = require("bcrypt");
 const sendEmail = require("../utils/sendEmail");
 const path = require("path");
 
+/**
+ * @swagger
+ * /:
+ *   post:
+ *     summary: Autentica un utente
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: user@example.com
+ *               password:
+ *                 type: string
+ *                 example: password123
+ *     responses:
+ *       200:
+ *         description: Token generato con successo
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *                 token:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 id:
+ *                   type: string
+ *                 self:
+ *                   type: string
+ *       400:
+ *         description: Autenticazione fallita
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ */
 router.post('', async function(req, res) {
     let user = await RegisteredUser.findOne({ email: req.body.email }).exec()
     if (!user) {
@@ -61,6 +112,33 @@ router.post('', async function(req, res) {
     console.log('Token created for user ' + user.username);
 });
 
+/**
+ * @swagger
+ * /requestPasswordReset:
+ *   post:
+ *     summary: Richiede il reset della password
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: user@example.com
+ *     responses:
+ *       200:
+ *         description: Link per il reset della password generato con successo
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 link:
+ *                   type: string
+ */
 router.post('/requestPasswordReset', async function(req, res) {
 
   const user = await RegisteredUser.findOne({ email: req.body.email });
@@ -97,6 +175,40 @@ router.get('/passwordReset', async function(req, res) {
   res.sendFile(path.join(__dirname, '../static', 'passwordReset.html'));
 });
 
+/**
+ * @swagger
+ * /passwordReset:
+ *   post:
+ *     summary: Resetta la password dell'utente
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: string
+ *                 example: 60d0fe4f5311236168a109ca
+ *               token:
+ *                 type: string
+ *                 example: 123456
+ *               password:
+ *                 type: string
+ *                 example: newpassword123
+ *     responses:
+ *       200:
+ *         description: Password resettata con successo
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Password reset was successful for User
+ */
 router.post('/passwordReset', async function(req, res) {
   let passwordResetToken = await Token.findOne({ userId: req.body.userId });
 
