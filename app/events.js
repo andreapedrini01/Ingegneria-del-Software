@@ -8,7 +8,7 @@ const Event = require('./models/event');
 const getEventsForUser = async (userId) => {
     try {
       const user = await User.findById(userId).populate({
-        path: 'calendars',
+        path: 'subscribedCalendar',
         populate: {
           path: 'events',
           model: 'Event'
@@ -19,7 +19,7 @@ const getEventsForUser = async (userId) => {
         throw new Error('User not found');
       }
   
-      const events = user.subscribedCalendar.flatMap(calendar => calendar.events);
+      const events = user.subscribedCalendar ? user.subscribedCalendar.events : [];
       return events;
     } catch (error) {
       console.error(error);
