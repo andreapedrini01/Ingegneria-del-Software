@@ -16,17 +16,20 @@ router.post('', async function(req, res) {
         console.log('User not found');
         return
     }
-    if (user.password != req.body.password) {
+
+    //controlla se la password è corretta, facendo un check con quella criptata nel db
+    const isValid = await bcrypt.compare(req.body.password, user.password);
+    if (!isValid) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
         return
     }
     
-    //delete previous token if exists
+    //elimina il token precedente se esiste
     if(await Token.findOneAndDelete({ userId: user._id }).exec()) {
         console.log('Previous token deleted for user ' + user.username);
     }
 
-    //user authenticated -> create a token
+    //user authenticated -> crea il token
     var payload = {
         email: user.email,
         id: user._id,
@@ -40,7 +43,7 @@ router.post('', async function(req, res) {
         options
     );
 
-    // save the token in db
+    // salva il token nel db
     let tkn = new Token({
         userId: payload.id,
         token: token,

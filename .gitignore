@@ -139,7 +139,7 @@ gestione_rifiuti_view.geojson
 createCalendars.js
 
 #createEvents.js
-createEvents.js
+createEvents.js 
 
 # End of https://www.gitignore.io/api/node,windows,linux,visualstudiocode
 
