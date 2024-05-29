@@ -2,10 +2,13 @@
   <div class="user-profile">
     <h2>User Profile</h2>
     <div>
-      <p>Welcome, {{ username }}!</p>
+      <p>Welcome!</p>
       <!-- Add user profile information here -->
     </div>
-    <button @click="logout">Logout</button>
+    <button class="gruppi-button" type="Gruppi" @click="goToGruppi">Gestisci gruppi</button>
+  </div>
+  <div>
+    <button class="logout-button" type="logout"  @click="logout">Logout</button>
   </div>
 </template>
 
@@ -20,9 +23,13 @@ export default defineComponent({
     }
   },
   methods: {
+    goToGruppi() {
+      this.$router.push('/Gruppi');
+    },
     logout() {
       // Add logout logic here
       alert('Logged out!');
+      this.$router.push('/');
       // You can emit an event or call a method in the parent component to handle logout
     }
   }
@@ -45,6 +52,11 @@ button {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+}
+
+.gruppi-button {
+  background-color: #00ff00; /* Cambia questo colore come preferisci */
+  color: #000000; /* Cambia questo colore come preferisci */
 }
 
 button:hover {

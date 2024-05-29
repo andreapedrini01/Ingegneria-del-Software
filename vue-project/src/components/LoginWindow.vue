@@ -33,6 +33,7 @@ export default defineComponent({
       // Simuliamo il login corretto (si presume che la validazione sia sempre superata)
       const loggedInUsername = this.email.split('@')[0]; // Utilizziamo l'email come username
       this.$emit('login-success', loggedInUsername);
+      this.$router.push('/UserProfile');
     },
     goBack() {
       this.$router.push('/');
