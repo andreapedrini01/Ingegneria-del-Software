@@ -11,6 +11,8 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const groups = require('./groups.js');
 const crm = require('./crm.js');
+const events = require('./events.js');
+
 /**
  * Configure Swagger
  */
@@ -102,6 +104,7 @@ app.use('/api/v1/groups', groups);
 
 app.use('/api/v1/crm', crm);
 
+app.use('/api/v1/events', events);
 
 /* Default 404 handler */
 app.use((req, res) => {

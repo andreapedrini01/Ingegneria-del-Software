@@ -22,7 +22,7 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                events: '/api/get-events', // Endpoint per ottenere gli eventi dal server
+                events: '/api/v1/users/get-events', // Endpoint per ottenere gli eventi dal server
                 dateClick: function(info) {
                     var title = prompt('Inserisci il titolo dell\'evento:');
                     if (title) {

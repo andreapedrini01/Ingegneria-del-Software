@@ -163,5 +163,4 @@ function checkIfEmailInString(text) {
     return re.test(text);
 }
 
-
 module.exports = router;
