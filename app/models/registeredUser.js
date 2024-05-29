@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const { bcrypt_salt } = require('../../config');
 const bcrypt = require("bcrypt");
+const Calendar = require('./calendar');
+const Group = require('./gruppo');
 
 const registeredUserSchema = new mongoose.Schema({
     username:String,
@@ -16,8 +18,12 @@ const registeredUserSchema = new mongoose.Schema({
     },
     subscribedGroups: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'group'
-    }]
+        ref: 'Group'
+    }],
+    subscribedCalendar:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Calendar'
+    }
 },
 {
     timestamps: true,
