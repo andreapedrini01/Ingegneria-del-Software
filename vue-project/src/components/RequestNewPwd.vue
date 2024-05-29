@@ -3,7 +3,7 @@
         <h1>Reset Password</h1>
         <form action="/api/v1/authentications/requestPasswordReset" method="post" name="requestPasswordReset" id="requestPasswordReset">
             <label for="email">Inserire email profilo:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" v-model="email" required>
             <br>
             <button type="button" @click="sendEmail">Invia</button>
         </form>
