@@ -83,14 +83,16 @@ router.post('/subscribe', async (req, res) => {
 router.post('/unsubscribe', async (req, res) => {
     try {
         let userId = req.loggedUser.id;
-        let prevCalendar = await User.findById(userId, 'subscribedCalendar').exec();
+        let utemp = await User.findById(userId).exec();
+        let prevCalendar = utemp.subscribedCalendar;
+
         if(prevCalendar){
          //rimuove l'utente dal calendario
         await Calendar.findByIdAndUpdate(prevCalendar, {$pull : {users: userId}}, {new: true}).exec();
         //rimuove il calendario all' utente
         await User.findByIdAndUpdate(userId, {subscribedCalendar: null}, {new: true},).exec();
      
-        res.status(200).json({ message: 'User unsubscribed to successfully'});
+        res.status(200).json({ message: 'User unsubscribed successfully'});
         }
         else{
             res.status(404).json({ message: 'User not subscribed to any calendar'});
