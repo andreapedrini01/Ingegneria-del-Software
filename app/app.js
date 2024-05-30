@@ -92,6 +92,8 @@ app.use('/api/v1/authentications', authentication);
 // a valid token must be provided in the request
 app.use('/api/v1/users/me', tokenChecker);
 
+app.use('/api/v1/calendars', tokenChecker);
+
 /**
  * Resource routing
  */
