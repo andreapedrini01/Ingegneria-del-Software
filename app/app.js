@@ -13,6 +13,7 @@ const groups = require('./groups.js');
 const crm = require('./crm.js');
 const events = require('./events.js');
 const path = require('path');
+const calendars = require('./calendars.js');
 
 /**
  * Configure Swagger
