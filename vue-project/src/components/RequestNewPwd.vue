@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         async sendEmail() {
-            alert('Form submitted' + this.email);
+            alert('Form submitted ' + this.email);
             console.log('started requestPasswordReset' + this.email)
             try {
                 const response = await fetch('http://localhost:8080/api/v1/authentications/requestPasswordReset', {

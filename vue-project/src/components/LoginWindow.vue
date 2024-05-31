@@ -3,7 +3,7 @@
 <template>
   <div class="login-window">
     <h2>Login</h2>
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="login">
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" v-model="email" required>
@@ -31,9 +31,35 @@ export default defineComponent({
   methods: {
     submitForm() {
       // Simuliamo il login corretto (si presume che la validazione sia sempre superata)
-      const loggedInUsername = this.email.split('@')[0]; // Utilizziamo l'email come username
-      this.$emit('login-success', loggedInUsername);
-      this.$router.push('/UserProfile');
+      //const loggedInUsername = this.email.split('@')[0]; // Utilizziamo l'email come username
+      //this.$emit('login-success', loggedInUsername);
+      //this.$router.push('/UserProfile');
+    },
+    async login() {
+      alert('Form submitted ' + this.email);
+      console.log('started login ' + this.password)
+      try {
+        const response = await fetch('http://localhost:8080/api/v1/authentications', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: this.email,
+            password: this.password
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // If you expect a JSON response, you can parse it
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error('An error occurred while submitting the form:', error);
+      }
     },
     goBack() {
       this.$router.push('/');
