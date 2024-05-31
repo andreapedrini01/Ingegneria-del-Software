@@ -5,10 +5,6 @@ const { dburl, configPort } = require('./config');
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello world');
-});
-
 //connect to MongoDB
 mongoose.connect(dburl)
 .then(() => {

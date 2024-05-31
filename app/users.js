@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const Path = require('path');
 const User = require('./models/registeredUser'); // get our mongoose model
-const { walk } = require('vue/compiler-sfc');
 
 router.get('/me', async (req, res) => {
     if(!req.loggedUser) {
@@ -152,12 +152,15 @@ router.post('/register', async (req, res) => {
     }
 });
 
+router.get('/calendar', async (req, res) => {
+    res.sendFile(Path.join(__dirname, '../utils/Calendar', 'Calendar.html'));
+});
+
 // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
 function checkIfEmailInString(text) {
     // eslint-disable-next-line
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(text);
 }
-
 
 module.exports = router;

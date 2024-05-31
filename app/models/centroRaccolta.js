@@ -1,22 +1,19 @@
 const mongoose = require('mongoose');
 
 const centroRaccoltaSchema = new mongoose.Schema({
+    descrizione:{
+        type:String
+    },
     indirizzo: {
+        type: String
+    },
+    tipologia: {
         type: String,
         required: true
     },
-    tipoCentro: {
-        type: String,
-        required: true
-    },
-    orari: {
-        type: String,
-        required: true
-    },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+    coordinates: {
+        latitudine:{type:Number},
+        longitudine:{type:Number}
     }
 });
 

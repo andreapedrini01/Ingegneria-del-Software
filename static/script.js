@@ -1,14 +1,4 @@
 
-
-var map = L.map('map').setView([46.0665, 11.12], 13);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-
-var marker = L.marker([46.0665, 11.12]).addTo(map);
-marker.bindPopup("<b>hello world</b><br>I am a popup.").openPopup();
-
 /**
  * This variable stores the logged in user
  */
@@ -25,7 +15,6 @@ function login()
     //get the form object
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-    //console.log(email);
 
     fetch('../api/v1/authentications', {
         method: 'POST',
@@ -35,6 +24,7 @@ function login()
     .then((resp) => resp.json()) // Transform the data into json
     .then(function(data) { // Here you get the data to modify as you please
         //console.log(data);
+        localStorage.setItem('authToken', data.token);
         loggedUser.token = data.token;
         loggedUser.email = data.email;
         loggedUser.id = data.id;
@@ -82,3 +72,5 @@ function rstPwd() {
         return;
     }
 }
+
+

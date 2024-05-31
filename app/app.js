@@ -1,5 +1,3 @@
-const Path = require('path');
-
 const express = require('express');
 const app = express();
 const cors = require('cors')
@@ -12,6 +10,11 @@ const users = require('./users.js');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const groups = require('./groups.js');
+const crm = require('./crm.js');
+const events = require('./events.js');
+const path = require('path');
+const calendars = require('./calendars.js');
+
 /**
  * Configure Swagger
  */
@@ -91,26 +94,28 @@ app.use('/api/v1/authentications', authentication);
 // a valid token must be provided in the request
 app.use('/api/v1/users/me', tokenChecker);
 
-
+app.use('/api/v1/calendars', tokenChecker);
 
 /**
  * Resource routing
  */
-
 app.use('/api/v1/users', users);
 
 app.use('/api/v1/groups', groups);
 
+app.use('/api/v1/crm', crm);
 
+app.use('/api/v1/events', events);
 
+app.get('/api/v1/users/favicon.ico', (req, res) => {
+    const filePath = path.join(__dirname, '../utils/Calendar', 'favicon.ico');
+    res.sendFile(filePath);
+});
 
 /* Default 404 handler */
 app.use((req, res) => {
     res.status(404);
     res.json({ error: 'Not found' });
 });
-
-
-
 
 module.exports = app;
