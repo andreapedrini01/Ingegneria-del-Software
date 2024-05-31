@@ -12,6 +12,7 @@ const yaml = require('js-yaml');
 const groups = require('./groups.js');
 const crm = require('./crm.js');
 const events = require('./events.js');
+const path = require('path');
 
 /**
  * Configure Swagger
@@ -105,13 +106,15 @@ app.use('/api/v1/crm', crm);
 
 app.use('/api/v1/events', events);
 
+app.get('/api/v1/users/favicon.ico', (req, res) => {
+    const filePath = path.join(__dirname, '../utils/Calendar', 'favicon.ico');
+    res.sendFile(filePath);
+});
+
 /* Default 404 handler */
 app.use((req, res) => {
     res.status(404);
     res.json({ error: 'Not found' });
 });
-
-
-
 
 module.exports = app;

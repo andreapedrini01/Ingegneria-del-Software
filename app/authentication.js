@@ -77,7 +77,7 @@ router.post('', async function(req, res) {
     
     //elimina il token precedente se esiste
     if(await Token.findOneAndDelete({ userId: user._id }).exec()) {
-        console.log('Previous token deleted for user ' + user.username);
+      console.log('Previous token deleted for user ' + user.username);
     }
 
     //user authenticated -> crea il token

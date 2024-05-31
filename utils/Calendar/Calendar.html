@@ -4,7 +4,7 @@
     <link rel="icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario Personalizzato</title>
+    <title>Calendario di Raccolta</title>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
     <style>
@@ -21,9 +21,35 @@
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                throw new Error("Token di autenticazione non trovato in localStorage.");
+            }
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                events: '/api/v1/users/get-events', // Endpoint per ottenere gli eventi dal server
+                events: function(fetchInfo, successCallback, failureCallback) {
+                    fetch('/api/v1/users/get-events', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}` // Aggiungi il token come intestazione
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Errore di rete durante il recupero degli eventi.');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        successCallback(data);
+                    })
+                    .catch(error => {
+                        console.error('Errore:', error);
+                        failureCallback(error);
+                    });
+                },
                 dateClick: function(info) {
                     var title = prompt('Inserisci il titolo dell\'evento:');
                     if (title) {
