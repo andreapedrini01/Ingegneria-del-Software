@@ -2,8 +2,9 @@
   <div class="user-profile">
     <h2>User Profile</h2>
     <div>
-      <p>Welcome!</p>
+      <p>Welcome, {{ email }}!</p>
       <!-- Add user profile information here -->
+
     </div>
     <button class="gruppi-button" type="Gruppi" @click="goToGruppi">Gestisci gruppi</button>
   </div>
@@ -16,21 +17,29 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  props: {
-    username: {
-      type: String,
-      required: true
+ 
+  data(){
+    return{
+      token:'',
+      email:''
     }
+  },
+  mounted(){
+    this.token = localStorage.getItem('token');
+    if (!this.token) {
+      this.$router.push('/login');
+    }
+    this.email = localStorage.getItem('email');
   },
   methods: {
     goToGruppi() {
       this.$router.push('/Gruppi');
     },
     logout() {
-      // Add logout logic here
       alert('Logged out!');
+      localStorage.removeItem('token');
+      this.token = '';
       this.$router.push('/');
-      // You can emit an event or call a method in the parent component to handle logout
     }
   }
 });

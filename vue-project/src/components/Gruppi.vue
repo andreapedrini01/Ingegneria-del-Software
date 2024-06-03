@@ -47,20 +47,29 @@ export default {
         },
       ],
       showNewGroup: false,
+      token:'',
+      email:''
     };
   },
-    methods: {
-        goBack() {
-            this.$router.push('/UserProfile');
-        },
-        createNewGroup() {
-            //show.NewGroup;
-        },
-        gestisci(id) {
-            // Mostra la finestra di gestione del gruppo con l'id specificato
-            this.$router.push(`/gestisci-gruppo/${id}`);
-        }
+  mounted(){
+    this.token = localStorage.getItem('token');
+    if (!this.token) {
+        this.$router.push('/login');
+    }
+    this.email = localStorage.getItem('email');
+  },
+  methods: {
+    goBack() {
+        this.$router.push('/UserProfile');
     },
+    createNewGroup() {
+        //show.NewGroup;
+    },
+    gestisci(id) {
+        // Mostra la finestra di gestione del gruppo con l'id specificato
+        this.$router.push(`/gestisci-gruppo/${id}`);
+    }
+  },
 };
 </script>
 

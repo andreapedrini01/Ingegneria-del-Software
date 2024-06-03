@@ -25,7 +25,7 @@ export default defineComponent({
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
     };
   },
   methods: {
@@ -51,14 +51,20 @@ export default defineComponent({
         });
 
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error('Response not OK');
         }
 
-        // If you expect a JSON response, you can parse it
         const data = await response.json();
-        console.log(data);
+
+        // Salviamo il token in localStorage
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('email', data.email);
+
+        // Navigiamo alla pagina /UserProfile
+        alert('Login successful!');
+        this.$router.push('/UserProfile');
       } catch (error) {
-        console.error('An error occurred while submitting the form:', error);
+        console.error('Error:', error);
       }
     },
     goBack() {
