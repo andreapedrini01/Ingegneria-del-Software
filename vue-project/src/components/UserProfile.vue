@@ -6,7 +6,10 @@
       <!-- Add user profile information here -->
 
     </div>
-    <button class="gruppi-button" type="Gruppi" @click="goToGruppi">Gestisci gruppi</button>
+    <div class="options">
+      <button class="gruppi-button" type="Gruppi" @click="goToGruppi">Gestisci gruppi</button>
+      <button class="calendario-button" type="Calendario" @click="goToCalendario">Calendario</button>
+    </div>
   </div>
   <div>
     <button class="logout-button" type="logout"  @click="logout">Logout</button>
@@ -34,6 +37,9 @@ export default defineComponent({
   methods: {
     goToGruppi() {
       this.$router.push('/Gruppi');
+    },
+    goToCalendario() {
+      this.$router.push('/calendar');
     },
     logout() {
       alert('Logged out!');
