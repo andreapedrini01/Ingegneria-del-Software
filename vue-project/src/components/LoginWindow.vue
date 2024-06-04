@@ -3,7 +3,7 @@
 <template>
   <div class="login-window">
     <h2>Login</h2>
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="login">
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" v-model="email" required>
@@ -14,7 +14,7 @@
       </div>
       <button type="submit">Enter</button>
     </form>
-    <br><button type="back" @click="goBack">Go back</button>
+    <br><button type="back" @click="goBack">Go back</button><button type="back" @click="Forgot">Forgot Password</button>
   </div>
 </template>
 
@@ -25,17 +25,53 @@ export default defineComponent({
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
     };
   },
   methods: {
     submitForm() {
       // Simuliamo il login corretto (si presume che la validazione sia sempre superata)
-      const loggedInUsername = this.email.split('@')[0]; // Utilizziamo l'email come username
-      this.$emit('login-success', loggedInUsername);
+      //const loggedInUsername = this.email.split('@')[0]; // Utilizziamo l'email come username
+      //this.$emit('login-success', loggedInUsername);
+      //this.$router.push('/UserProfile');
+    },
+    async login() {
+      alert('Form submitted ' + this.email);
+      console.log('started login ' + this.password)
+      try {
+        const response = await fetch('http://localhost:8080/api/v1/authentications', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: this.email,
+            password: this.password
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Response not OK');
+        }
+
+        const data = await response.json();
+
+        // Salviamo il token in localStorage
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('email', data.email);
+
+        // Navigiamo alla pagina /UserProfile
+        alert('Login successful!');
+        this.$router.push('/UserProfile');
+      } catch (error) {
+        console.error('Error:', error);
+      }
     },
     goBack() {
       this.$router.push('/');
+    },
+    Forgot() {
+      this.$router.push('/requestNewPwd');
     }
   }
 });
