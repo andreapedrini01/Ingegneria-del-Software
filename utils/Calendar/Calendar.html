@@ -36,14 +36,19 @@
                     start: '2024-06-10T10:00:00'
                 },
                 {
-                    title: 'Evento Ricorrente Settimanale',
-                    start: '10:00',
-                    end: '12:00',
-                    dow: [3]
+                    title: 'Evento Ricorrente',
+                    rrule: {
+                        freq: 'weekly',
+                        interval: 5,
+                        byweekday: [ 'mo', 'fr' ],
+                        dtstart: '2012-02-01T10:30:00', // will also accept '20120201T103000'
+                        until: '2012-06-01' // will also accept '20120201'
+                    },
                 }
             ];
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ 'rrule' ],
                 initialView: 'dayGridMonth',
                 events: eventList,
             });
