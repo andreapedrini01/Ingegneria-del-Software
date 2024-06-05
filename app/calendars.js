@@ -2,46 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Calendar = require('./models/calendar.js');
 const User = require('./models/registeredUser.js');
-
 /*
-router.post('/subscribe', async (req, res) => {
-    try {
-        
-        let userId = req.loggedUser.id;
-        let prevCalendar = await User.findById(userId).subscribedCalendar;
-        console.log(userId)
-        //rimuove l'utente dal calendario a cui era precedentemente iscritto se esiste
-        if (prevCalendar) {Calendar.findByIdAndUpdate(prevCalendar, {$pull : {users: userId}}, {new: true}, (err, calendar) => {
-            if (err) {
-                res.status(500).json({ message: err.message });
-            } else {
-                res.status(200).json({ message: 'removed '+ userId + ' from calendar ' + prevCalendar });
-            }
-        }).exec();}
-
-        //aggiunge il calendario all' utente
-        await User.findByIdAndUpdate(userId, {subscribedCalendar: req.body.calendarId}, {new: true}, (err, user) => {
-            if (err) {
-                res.status(500).json({ message: err.message });
-            } else {
-                res.status(200).json({ message: 'User subscribed to calendar ' + req.body.calendarId });
-            }
-        }).exec();
-
-        //aggiunge l'utente al nuovo calendario
-        Calendar.findByIdAndUpdate(req.body.calendarId, {$addtoset : {users: userId}}, {new: true}, (err, calendar) => {
-            if (err) {
-                res.status(500).json({ message: err.message });
-            } else {
-                res.status(200).json({ message: 'added' + userId + ' to calendar ' + req.body.calendarId});
-            }
-        });
-
-      } catch (err) {
-        res.status(500).json({ message: err.message });}
-});
-
-*/
 router.post('/subscribe', async (req, res) => {
     try {
         let userId = req.loggedUser.id;
@@ -76,9 +37,34 @@ router.post('/subscribe', async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+});*/
+
+router.post('/subscribe', async (req, res) => {
+    let userId = req.loggedUser.id;
+
+    try {
+        // Remove the user from the calendar they were previously subscribed to, if it exists
+        let prevCalendar = (await User.findById(userId, 'subscribedCalendar')).subscribedCalendar;
+        if (prevCalendar) {
+            await Calendar.findByIdAndUpdate(prevCalendar, {$pull : {users: userId}}, {new: true}).exec();
+            console.log('User removed from calendar ' + prevCalendar);
+        }
+
+        let newCalendarId = req.body.calendarId;
+        if (!newCalendarId) {
+            throw new Error('Missing calendarId in request body');
+        }
+        // Add the calendar to the user
+        await User.findByIdAndUpdate(userId, {subscribedCalendar: req.body.calendarId}, {new: true}).exec();
+
+        // Add the user to the new calendar
+        await Calendar.findByIdAndUpdate(req.body.calendarId, {$push : {users: userId}}, {new: true}).exec();
+
+        res.status(200).json({ message: userId + ' subscribed to calendar ' + req.body.calendarId });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
-
-
 
 router.post('/unsubscribe', async (req, res) => {
     try {

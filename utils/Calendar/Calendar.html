@@ -7,6 +7,9 @@
     <title>Calendario di Raccolta</title>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.8/dist/es5/rrule.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/rrule.min.js'></script>
     <style>
         #calendar {
             max-width: 900px;
@@ -21,24 +24,26 @@
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem('token');
             if (!token) {
-                throw new Error("Token di autenticazione non trovato in localStorage.");
+                console.error("Token di autenticazione non trovato in localStorage.");
+                alert("Devi essere autenticato per visualizzare gli eventi.");
+                return; // Fermiamo l'esecuzione se non c'è il token
             }
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 events: function(fetchInfo, successCallback, failureCallback) {
-                    fetch('/api/v1/users/get-events', {
+                    fetch('/api/v1/events/get-events?token='+token, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}` // Aggiungi il token come intestazione
+                            //'Authorization': `Bearer ${token}` // Aggiungi il token come intestazione
                         }
                     })
                     .then(response => {
                         if (!response.ok) {
-                            throw new Error('Errore di rete durante il recupero degli eventi.');
+                            throw new Error('Errore di rete durante il recupero degli eventi: ' + response.status);
                         }
                         return response.json();
                     })
