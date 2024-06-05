@@ -1,6 +1,6 @@
 <template>
     <div class="head">
-        <h1>Welcome to SpazzaTN</h1>
+        <h1>Centri di raccolta materiali</h1>
     </div>
     <div id="map" style="height: 400px; width: 100%;"></div>
     <button @click="updateLocation">Aggiorna Posizione</button>
