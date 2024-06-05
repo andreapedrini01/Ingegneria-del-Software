@@ -24,7 +24,7 @@ function login()
     .then((resp) => resp.json()) // Transform the data into json
     .then(function(data) { // Here you get the data to modify as you please
         //console.log(data);
-        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('token', data.token);
         loggedUser.token = data.token;
         loggedUser.email = data.email;
         loggedUser.id = data.id;

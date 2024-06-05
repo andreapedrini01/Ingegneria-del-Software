@@ -49,6 +49,8 @@ app.use(cors())
 app.use(function (req, res, next) {
 
 //     // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+//     //
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
 
 //     // Request methods you wish to allow
@@ -94,7 +96,7 @@ app.use('/api/v1/authentications', authentication);
 // a valid token must be provided in the request
 app.use('/api/v1/users/me', tokenChecker);
 
-app.use('/api/v1/calendars', tokenChecker);
+app.use('/api/v1/calendars', tokenChecker, calendars);
 
 /**
  * Resource routing
