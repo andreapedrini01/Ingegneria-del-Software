@@ -9,7 +9,6 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.8/dist/es5/rrule.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/rrule.min.js'></script>
     <style>
         #calendar {
             max-width: 900px;
@@ -31,30 +30,21 @@
                 return; // Fermiamo l'esecuzione se non c'è il token
             }
 
+            var eventList = [
+            {
+                    title: 'Evento Ricorrente Settimanale',
+                    rrule: {
+                        freq: 'weekly',
+                        dtstart: '2024-06-05T10:00:00', // 5 giugno 2024 alle 10:00
+                        until: '2024-12-31',
+                        byweekday: ['mo', 'we', 'fr']
+                    }
+                }
+            ];
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                events: function(fetchInfo, successCallback, failureCallback) {
-                    fetch('/api/v1/events/get-events?token='+token, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            //'Authorization': `Bearer ${token}` // Aggiungi il token come intestazione
-                        }
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Errore di rete durante il recupero degli eventi: ' + response.status);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        successCallback(data);
-                    })
-                    .catch(error => {
-                        console.error('Errore:', error);
-                        failureCallback(error);
-                    });
-                },
+                events: eventList,
                 dateClick: function(info) {
                     var title = prompt('Inserisci il titolo dell\'evento:');
                     if (title) {
