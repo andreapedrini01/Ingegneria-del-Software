@@ -159,13 +159,15 @@ router.post('/setgroup', async (req, res) => {
         await gruppo.save();
         console.log('\n\n\n\nGroup created:', gruppo);
         
+        res.status(200).json({ message: ' Group created successfully' });
+        
     } catch (error) {
         console.error('Error setting group:', error);
         res.status(500).send();
     }
 });
 
-router.get('/getgroups', async (req, res) => {
+router.post('/getgroups', async (req, res) => {
     try {
         const groups = await Group.find({ participants: req.loggedUser.id });
         res.status(200).json(groups);
