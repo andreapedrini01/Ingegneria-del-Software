@@ -48,7 +48,7 @@ const Group = require('./models/gruppo'); // get our mongoose model for groups
  */
 router.post('/newgroup', async (req, res) => {
     try{
-        user = req.loggeduser.id;
+        user = req.loggedUser.id;
         group = new Group({
             nome: req.body.nome,
             founder: user,
@@ -139,12 +139,12 @@ router.post('/addparticipant', async (req, res) => {
 router.post('/setgroup', async (req, res) => {
     try {
 
-        let fondatore = req.loggeduser.id;
+        let fondatore = req.loggedUser.id;
         let invitati = req.body.invitati;
 
         const userIds = [];
         for (const email of invitati) {
-            const user = await User.findOne({ email });
+            let user = await User.findOne({ email:email });
             if (user) {
                 userIds.push(user._id);
             }
@@ -156,7 +156,7 @@ router.post('/setgroup', async (req, res) => {
             participants: [fondatore, ...userIds]
         });
 
-        gruppo.save();
+        await gruppo.save();
         console.log('\n\n\n\nGroup created:', gruppo);
         
     } catch (error) {
@@ -165,9 +165,9 @@ router.post('/setgroup', async (req, res) => {
     }
 });
 
-router.post('/getgroups', async (req, res) => {
+router.get('/getgroups', async (req, res) => {
     try {
-        const groups = await Group.find({ participants: req.loggeduser.id });
+        const groups = await Group.find({ participants: req.loggedUser.id });
         res.status(200).json(groups);
     } catch (error) {
         console.error('Error getting group:', error);

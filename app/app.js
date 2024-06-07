@@ -98,12 +98,12 @@ app.use('/api/v1/users/me', tokenChecker);
 
 app.use('/api/v1/calendars', tokenChecker, calendars);
 
+app.use('/api/v1/groups', tokenChecker, groups);
+
 /**
  * Resource routing
  */
 app.use('/api/v1/users', users);
-
-app.use('/api/v1/groups', tokenChecker, groups);
 
 app.use('/api/v1/crm', crm);
 
