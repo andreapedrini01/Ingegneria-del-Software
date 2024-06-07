@@ -136,6 +136,29 @@ router.post('/addparticipant', async (req, res) => {
     }
 });
 
+router.post('/removeparticipant', async (req, res) => {
+    try {
+        const group = await Group.findById(req.body.groupId).exec();
+        const userId = req.body.userId;
+        const logged = req.loggedUser.id;
+
+        if (userId === logged) {
+            return res.status(403).send('Cannot remove yourself');
+        }
+        if (!group) {
+            return res.status(404).send('Group not found');
+        }
+        if (group.founder.toString() !== logged) {
+            return res.status(403).send('Not authorized');
+        }
+        Group.findByIdAndUpdate(req.body.groupId, { $pull: { participants: userId } },{new:true}).exec();
+        res.status(200).json({message: userId +" removed from group"+req.body.groupId});
+    } catch (error) {
+        console.error('Error removing participant:', error);
+        res.status(500).send();
+    }
+});
+
 router.post('/setgroup', async (req, res) => {
     try {
 
