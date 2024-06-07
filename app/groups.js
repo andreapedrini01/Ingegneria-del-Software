@@ -165,7 +165,7 @@ router.post('/setgroup', async (req, res) => {
     }
 });
 
-router.get('/getgroups', async (req, res) => {
+router.post('/getgroups', async (req, res) => {
     try {
         const groups = await Group.find({ participants: req.loggedUser.id });
         res.status(200).json(groups);

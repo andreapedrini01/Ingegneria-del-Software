@@ -9,15 +9,15 @@
     </div>
   <div class="gruppi-window">
     <h1>Gruppi</h1>
-    <div v-for="gruppo in gruppi" :key="gruppo.id">
-        <h2>{{ gruppo.nome }} <button @click="gestisci(gruppo.id)">Gestisci</button></h2>
+    <div v-for="gruppo in this.gruppi" :key="gruppo.id">
+      <h2>{{ gruppo.nome }} <button @click="gestisci()">Gestisci</button></h2>
       <ul>
-        <li v-for="partecipante in gruppo.partecipanti" :key="partecipante.id">
+        <li v-for="partecipante in this.gruppi.participants" :key="partecipante.id">
           {{ partecipante.nome }}
         </li>
       </ul>
     </div>
-    <div v-if="gruppi.length === 0">
+    <div v-if="this.gruppi.length === 0">
       <p>Nessun gruppo trovato.</p>
     </div>
     <button type="newGroup" @click="showNewGroup = true">Crea nuovo gruppo</button>
@@ -49,21 +49,28 @@ export default {
         this.$router.push('/login');
     }
     this.email = localStorage.getItem('email');
+    this.fetchGruppi();
   },
   methods: {
     async fetchGruppi() {
       try {
         const response = await fetch('http://localhost:8080/api/v1/groups/getgroups', {
-          method: 'GET',
+          method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${this.token}`, // Passa il token JWT nell'intestazione
             },
             body: JSON.stringify({
-              email: this.email,
-              password: this.password
+              token: this.token,
             }),
         });
+
+        if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
+        console.log(data);
         this.gruppi = data;
       } catch (error) {
         console.error('Errore durante il recupero dei gruppi:', error);
@@ -75,9 +82,12 @@ export default {
     createNewGroup() {
         //show.NewGroup;
     },
-    gestisci(id) {
+    gestisci() {
+      //Salva l'id del gruppo in localstorage
+      localStorage.setItem('idGruppo', this.id);
+      console.log('idGruppo:', this.id);
         // Mostra la finestra di gestione del gruppo con l'id specificato
-        this.$router.push(`/gestisci-gruppo/${id}`);
+        this.$router.push(`/gestisciGruppo`);
     },
     goHome() {
         this.$router.push('/');

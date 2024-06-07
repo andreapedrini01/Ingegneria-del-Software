@@ -2,7 +2,7 @@
 <template>
     <div>
         <h1>Gestisci gruppo</h1>
-        <h2>{{ gruppo.nome }}</h2>
+        <h2>{{ id }}</h2>
         <ul>
             <li v-for="partecipante in gruppo.partecipanti" :key="partecipante.id">
                 {{ partecipante.nome }}
@@ -25,8 +25,19 @@ export default {
                     { id: 2, nome: 'Luigi Verdi' },
                 ],
             },
+            token: '',
+            id: '',
         };
     },
+    mounted(){
+    this.token = localStorage.getItem('token');
+    if (!this.token) {
+        this.$router.push('/login');
+    }
+    this.email = localStorage.getItem('email');
+    this.idGruppo = localStorage.getItem('idGruppo');
+    //this.fetchGruppi();
+  },
     methods: {
         goBack() {
             this.$router.push('/Gruppi');
