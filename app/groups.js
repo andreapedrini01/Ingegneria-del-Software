@@ -177,4 +177,14 @@ router.post('/getgroups', async (req, res) => {
     }
 });
 
+router.post('/getgroup', async (req, res) => {
+    try{
+        const group = await Group.findById(req.body.groupId);
+        res.status(200).json(group);
+    } catch (error) {
+        console.error('Error getting group:', error);
+        res.status(500).send();
+    }
+    });
+
 module.exports = router;
