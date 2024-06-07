@@ -15,7 +15,6 @@ function login()
     //get the form object
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-    //console.log(email);
 
     fetch('../api/v1/authentications', {
         method: 'POST',
@@ -25,6 +24,7 @@ function login()
     .then((resp) => resp.json()) // Transform the data into json
     .then(function(data) { // Here you get the data to modify as you please
         //console.log(data);
+        localStorage.setItem('token', data.token);
         loggedUser.token = data.token;
         loggedUser.email = data.email;
         loggedUser.id = data.id;

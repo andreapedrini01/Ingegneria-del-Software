@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const { masterKey } = require('../config');
+const Token = require("./models/token");
 
-const tokenChecker = function(req, res, next) {
+const tokenChecker = async function(req, res, next) {
+	console.log('Checking token');
 	
 	// check header or url parameters or post parameters for token
 	var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -10,8 +12,16 @@ const tokenChecker = function(req, res, next) {
 	if (!token) {
 		return res.status(401).send({ 
 			success: false,
-			message: 'No token provided.'
+			message: 'Nessun token fornito.'
 		});
+	}
+
+	if (!await Token.findOne({ token: token })) {
+		res.status(401).send({ 
+			success: false,
+			message: 'Il token è scaduto o invalido.'
+		});
+		return;
 	}
 
 	// decode token, verifies secret and checks exp
@@ -19,7 +29,7 @@ const tokenChecker = function(req, res, next) {
 		if (err) {
 			return res.status(403).send({
 				success: false,
-				message: 'Failed to authenticate token.'
+				message: 'Errore nell\'autenticare il token.'
 			});		
 		} else {
 			// if everything is good, save to request for use in other routes

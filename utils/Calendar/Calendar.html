@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <link rel="icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario Personalizzato</title>
+    <title>Calendario di Raccolta</title>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.8/dist/es5/rrule.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js'></script>
     <style>
         #calendar {
             max-width: 900px;
@@ -20,9 +23,28 @@
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error("Token di autenticazione non trovato in localStorage.");
+                alert("Devi essere autenticato per visualizzare gli eventi.");
+                return; // Fermiamo l'esecuzione se non c'è il token
+            }
+
+            var eventList = [
+            {
+                    title: 'Evento Ricorrente Settimanale',
+                    rrule: {
+                        freq: 'weekly',
+                        dtstart: '2024-06-05T10:00:00', // 5 giugno 2024 alle 10:00
+                        until: '2024-12-31',
+                        byweekday: ['mo', 'we', 'fr']
+                    }
+                }
+            ];
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                events: '/api/v1/users/get-events', // Endpoint per ottenere gli eventi dal server
+                events: eventList,
                 dateClick: function(info) {
                     var title = prompt('Inserisci il titolo dell\'evento:');
                     if (title) {

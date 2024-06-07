@@ -3,12 +3,11 @@ info:
   title: SpazzaTN API
   version: 1.0.0
 paths:
-  /newgroup:
+  /:
     post:
-      summary: Create a new group
-      description: >-
-        Create a new group with the provided user as the founder and
-        participant.
+      summary: Autentica un utente
+      tags:
+        - Authentication
       requestBody:
         required: true
         content:
@@ -18,52 +17,41 @@ paths:
               properties:
                 email:
                   type: string
-                  description: The email of the user creating the group.
-              example:
-                email: john@example.com
+                  example: user@example.com
+                password:
+                  type: string
+                  example: password123
       responses:
         '200':
-          description: The created group object.
+          description: Token generato con successo
           content:
             application/json:
               schema:
-                $ref: '#models/gruppo'
-        '500':
-          description: Internal server error.
-        '501':
-          description: Error saving the group.
-  /addparticipant:
-    post:
-      summary: Add a participant to a group
-      description: Add a participant to an existing group.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                groupId:
-                  type: string
-                  description: The ID of the group.
-                userId:
-                  type: string
-                  description: The ID of the user to add as a participant.
-              example:
-                groupId: 1234567890
-                userId: abcdefghij
-      responses:
-        '200':
-          description: The updated group object.
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  token:
+                    type: string
+                  email:
+                    type: string
+                  id:
+                    type: string
+                  self:
+                    type: string
+        '400':
+          description: Autenticazione fallita
           content:
             application/json:
               schema:
-                $ref: '#/models/gruppo'
-        '404':
-          description: Group not found.
-        '500':
-          description: Internal server error.
-  /:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
     get:
       summary: Retrieve a list of users
       description: >-
@@ -92,6 +80,185 @@ paths:
                     email:
                       type: string
                       description: The email of the user.
+  /requestPasswordReset:
+    post:
+      summary: Richiede il reset della password
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: user@example.com
+      responses:
+        '200':
+          description: Link per il reset della password generato con successo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  link:
+                    type: string
+  /passwordReset:
+    post:
+      summary: Resetta la password dell'utente
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  example: 60d0fe4f5311236168a109ca
+                token:
+                  type: string
+                  example: 123456
+                password:
+                  type: string
+                  example: newpassword123
+      responses:
+        '200':
+          description: Password resettata con successo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Password reset was successful for User
+  /get-events:
+    get:
+      summary: Ottieni eventi associati all'utente autenticato
+      description: Ritorna una lista di eventi a cui l'utente autenticato è iscritto.
+      tags:
+        - Eventi
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista degli eventi dell'utente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                      description: ID dell'evento
+                    title:
+                      type: string
+                      description: Titolo dell'evento
+                    description:
+                      type: string
+                      description: Descrizione dell'evento
+                    start:
+                      type: string
+                      format: date-time
+                      description: Data e ora di inizio dell'evento
+                    end:
+                      type: string
+                      format: date-time
+                      description: Data e ora di fine dell'evento
+        '401':
+          description: Non autorizzato. Token non valido o mancante.
+        '500':
+          description: Errore interno del server.
+  /newgroup:
+    post:
+      summary: Crea un nuovo gruppo
+      tags:
+        - Gruppi
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: L'email dell'utente che sta creando il gruppo
+                  example: example@example.com
+      responses:
+        '200':
+          description: Gruppo creato con successo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  founder:
+                    type: string
+                    description: ID del fondatore del gruppo
+                    example: 60c72b2f5f1b2c001c8e4b4b
+                  participants:
+                    type: array
+                    items:
+                      type: string
+                    description: Lista degli ID dei partecipanti
+                    example:
+                      - 60c72b2f5f1b2c001c8e4b4b
+        '500':
+          description: Errore durante la creazione del gruppo
+        '501':
+          description: Errore durante il salvataggio del gruppo
+  /addparticipant:
+    post:
+      summary: Aggiungi un partecipante a un gruppo
+      tags:
+        - Gruppi
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groupId:
+                  type: string
+                  description: L'ID del gruppo a cui aggiungere il partecipante
+                  example: 60c72b2f5f1b2c001c8e4b4b
+                userId:
+                  type: string
+                  description: L'ID dell'utente da aggiungere al gruppo
+                  example: 60c72b2f5f1b2c001c8e4b4b
+      responses:
+        '200':
+          description: Partecipante aggiunto con successo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    description: L'ID del gruppo
+                    example: 60c72b2f5f1b2c001c8e4b4b
+                  participants:
+                    type: array
+                    items:
+                      type: string
+                    description: Lista degli ID dei partecipanti
+                    example:
+                      - 60c72b2f5f1b2c001c8e4b4b
+                      - 60d72b2f5f1b2c001c8e4b4c
+        '404':
+          description: Gruppo non trovato
+        '500':
+          description: Errore durante l'aggiunta del partecipante
   /register:
     post:
       summary: Register a new user

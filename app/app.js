@@ -12,6 +12,7 @@ const yaml = require('js-yaml');
 const groups = require('./groups.js');
 const crm = require('./crm.js');
 const events = require('./events.js');
+const path = require('path');
 const calendars = require('./calendars.js');
 
 /**
@@ -48,6 +49,8 @@ app.use(cors())
 app.use(function (req, res, next) {
 
 //     // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+//     //
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
 
 //     // Request methods you wish to allow
@@ -93,16 +96,12 @@ app.use('/api/v1/authentications', authentication);
 // a valid token must be provided in the request
 app.use('/api/v1/users/me', tokenChecker);
 
-app.use('/api/v1/calendars/subscribe', tokenChecker);
+app.use('/api/v1/calendars', tokenChecker, calendars);
 
-app.use('/api/v1/calendars/unsubscribe', tokenChecker);
 /**
  * Resource routing
  */
-
 app.use('/api/v1/users', users);
-
-app.use('/api/v1/calendars', calendars);
 
 app.use('/api/v1/groups', groups);
 
@@ -110,13 +109,15 @@ app.use('/api/v1/crm', crm);
 
 app.use('/api/v1/events', events);
 
+app.get('/api/v1/users/favicon.ico', (req, res) => {
+    const filePath = path.join(__dirname, '../utils/Calendar', 'favicon.ico');
+    res.sendFile(filePath);
+});
+
 /* Default 404 handler */
 app.use((req, res) => {
     res.status(404);
     res.json({ error: 'Not found' });
 });
-
-
-
 
 module.exports = app;

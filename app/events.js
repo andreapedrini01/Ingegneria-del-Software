@@ -8,7 +8,7 @@ const Event = require('./models/event');
 const getEventsForUser = async (userId) => {
     try {
       const user = await User.findById(userId).populate({
-        path: 'calendars',
+        path: 'subscribedCalendar',
         populate: {
           path: 'events',
           model: 'Event'
@@ -19,7 +19,7 @@ const getEventsForUser = async (userId) => {
         throw new Error('User not found');
       }
   
-      const events = user.subscribedCalendar.flatMap(calendar => calendar.events);
+      const events = user.subscribedCalendar ? user.subscribedCalendar.events : [];
       return events;
     } catch (error) {
       console.error(error);
@@ -27,6 +27,49 @@ const getEventsForUser = async (userId) => {
     }
   };
 
+
+  /**
+ * @swagger
+ * /get-events:
+ *   get:
+ *     summary: Ottieni eventi associati all'utente autenticato
+ *     description: Ritorna una lista di eventi a cui l'utente autenticato è iscritto.
+ *     tags:
+ *       - Eventi
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista degli eventi dell'utente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                     description: ID dell'evento
+ *                   title:
+ *                     type: string
+ *                     description: Titolo dell'evento
+ *                   description:
+ *                     type: string
+ *                     description: Descrizione dell'evento
+ *                   start:
+ *                     type: string
+ *                     format: date-time
+ *                     description: Data e ora di inizio dell'evento
+ *                   end:
+ *                     type: string
+ *                     format: date-time
+ *                     description: Data e ora di fine dell'evento
+ *       401:
+ *         description: Non autorizzato. Token non valido o mancante.
+ *       500:
+ *         description: Errore interno del server.
+ */
   router.get('/get-events', tokenChecker, async (req, res) => {
     const userId = req.loggedUser.id;
     try {
