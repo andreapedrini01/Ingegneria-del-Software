@@ -10,12 +10,7 @@
   <div class="gruppi-window">
     <h1>Gruppi</h1>
     <div v-for="gruppo in this.gruppi" :key="gruppo.id">
-      <h2>{{ gruppo.nome }} <button @click="gestisci()">Gestisci</button></h2>
-      <ul>
-        <li v-for="partecipante in this.gruppi.participants" :key="partecipante.id">
-          {{ partecipante.nome }}
-        </li>
-      </ul>
+      <h2>{{ gruppo.nome }} <button @click="gestisci(gruppo)">Gestisci</button></h2>
     </div>
     <div v-if="this.gruppi.length === 0">
       <p>Nessun gruppo trovato.</p>
@@ -82,12 +77,12 @@ export default {
     createNewGroup() {
         //show.NewGroup;
     },
-    gestisci() {
+    gestisci(gruppo) {
       //Salva l'id del gruppo in localstorage
-      localStorage.setItem('idGruppo', this.id);
-      console.log('idGruppo:', this.id);
-        // Mostra la finestra di gestione del gruppo con l'id specificato
-        this.$router.push(`/gestisciGruppo`);
+      localStorage.setItem('idGruppo', gruppo._id);
+      console.log('idGruppo:', gruppo._id);
+      // Mostra la finestra di gestione del gruppo con l'id specificato
+      this.$router.push(`/gestisciGruppo`);
     },
     goHome() {
         this.$router.push('/');

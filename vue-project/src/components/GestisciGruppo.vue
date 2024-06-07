@@ -2,7 +2,7 @@
 <template>
     <div>
         <h1>Gestisci gruppo</h1>
-        <h2>{{ id }}</h2>
+        <h2>{{ idGruppo }}</h2>
         <ul>
             <li v-for="partecipante in gruppo.partecipanti" :key="partecipante.id">
                 {{ partecipante.nome }}
@@ -26,7 +26,7 @@ export default {
                 ],
             },
             token: '',
-            id: '',
+            idGruppo: '',
         };
     },
     mounted(){
