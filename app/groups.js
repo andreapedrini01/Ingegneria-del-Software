@@ -5,6 +5,8 @@ const Group = require('./models/gruppo'); // get our mongoose model for groups
 
 /**
  * @swagger
+ * TODO: Add swagger documentation
+ *
  * /newgroup:
  *   post:
  *     summary: Crea un nuovo gruppo
@@ -46,13 +48,13 @@ const Group = require('./models/gruppo'); // get our mongoose model for groups
  */
 router.post('/newgroup', async (req, res) => {
     try{
-        console.log('Request body:', req.body.email);
-        let user = await User.findOne({email: req.body.email});
+        user = req.loggeduser.id;
         group = new Group({
-            founder: user._id,
-            participants: [user._id]
+            nome: req.body.nome,
+            founder: user,
+            participants: [user]
         });
-        console.log('\n\n\n\n\Group created:', group);
+        console.log('\n\n\n\nGroup created:', group);
 
         try{
             group = await group.save();
@@ -134,5 +136,43 @@ router.post('/addparticipant', async (req, res) => {
     }
 });
 
+router.post('/setgroup', async (req, res) => {
+    try {
+
+        let fondatore = req.loggeduser.id;
+        let invitati = req.body.invitati;
+
+        const userIds = [];
+        for (const email of invitati) {
+            const user = await User.findOne({ email });
+            if (user) {
+                userIds.push(user._id);
+            }
+        }
+
+        const gruppo = new Group({
+            nome: req.body.nome,
+            founder : fondatore,
+            participants: [fondatore, ...userIds]
+        });
+
+        gruppo.save();
+        console.log('\n\n\n\nGroup created:', gruppo);
+        
+    } catch (error) {
+        console.error('Error setting group:', error);
+        res.status(500).send();
+    }
+});
+
+router.post('/getgroups', async (req, res) => {
+    try {
+        const groups = await Group.find({ participants: req.loggeduser.id });
+        res.status(200).json(groups);
+    } catch (error) {
+        console.error('Error getting group:', error);
+        res.status(500).send();
+    }
+});
 
 module.exports = router;
