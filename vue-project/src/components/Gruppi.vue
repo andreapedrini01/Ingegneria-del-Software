@@ -1,5 +1,12 @@
 <!-- Pagina in cui l'utente registrato vedrà il suo gruppo (una finestra con nome gruppo e nomi partecipanti)-->
 <template>
+  <div class="body">
+  <div class="header">
+      <h1>Pagina utente</h1>
+      <div class="Button-Home">
+      <button @click="goHome">Home</button>
+      </div>
+    </div>
   <div class="gruppi-window">
     <h1>Gruppi</h1>
     <div v-for="gruppo in gruppi" :key="gruppo.id">
@@ -12,11 +19,12 @@
     </div>
     <div v-if="gruppi.length === 0">
       <p>Nessun gruppo trovato.</p>
-      <button type="newGroup" @click="showNewGroup = true">Crea nuovo gruppo</button>
     </div>
+    <button type="newGroup" @click="showNewGroup = true">Crea nuovo gruppo</button>
     <NewGroup v-if="showNewGroup" />
     </div>
   <button type="back" @click="goBack">Go back</button>
+  </div>
 </template>
 
 <script>
@@ -68,6 +76,9 @@ export default {
     gestisci(id) {
         // Mostra la finestra di gestione del gruppo con l'id specificato
         this.$router.push(`/gestisci-gruppo/${id}`);
+    },
+    goHome() {
+        this.$router.push('/');
     }
   },
 };
@@ -112,5 +123,39 @@ export default {
   
   button:hover {
     background-color: #00cc00;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .header .Button-Home {
+    background-color: #00ff00;
+    color: #000000;
+    position: absolute;
+    right: 20px;
   }
 </style>
