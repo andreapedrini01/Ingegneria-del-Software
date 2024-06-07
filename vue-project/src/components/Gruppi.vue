@@ -79,6 +79,7 @@ export default {
     },
     gestisci(gruppo) {
       //Salva l'id del gruppo in localstorage
+      localStorage.removeItem('idGruppo');
       localStorage.setItem('idGruppo', gruppo._id);
       console.log('idGruppo:', gruppo._id);
       // Mostra la finestra di gestione del gruppo con l'id specificato
