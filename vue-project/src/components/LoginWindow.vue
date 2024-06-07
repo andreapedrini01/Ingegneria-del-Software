@@ -44,8 +44,8 @@ export default defineComponent({
       //this.$router.push('/UserProfile');
     },
     async login() {
-      alert('Form submitted ' + this.email);
-      console.log('started login ' + this.password)
+      //alert('Form submitted ' + this.email);
+      //console.log('started login ' + this.password)
       try {
         const response = await fetch('http://localhost:8080/api/v1/authentications', {
           method: 'POST',

@@ -37,22 +37,6 @@ export default {
   data() {
     return {
       gruppi: [
-        {
-          id: 1,
-          nome: 'Gruppo 1',
-          partecipanti: [
-            { id: 1, nome: 'Mario Rossi' },
-            { id: 2, nome: 'Luigi Verdi' },
-          ],
-        },
-        {
-          id: 2,
-          nome: 'Gruppo 2',
-          partecipanti: [
-            { id: 3, nome: 'Paolo Bianchi' },
-            { id: 4, nome: 'Giovanni Neri' },
-          ],
-        },
       ],
       showNewGroup: false,
       token:'',
@@ -67,6 +51,24 @@ export default {
     this.email = localStorage.getItem('email');
   },
   methods: {
+    async fetchGruppi() {
+      try {
+        const response = await fetch('http://localhost:8080/api/v1/groups/getgroups', {
+          method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: this.email,
+              password: this.password
+            }),
+        });
+        const data = await response.json();
+        this.gruppi = data;
+      } catch (error) {
+        console.error('Errore durante il recupero dei gruppi:', error);
+      }
+    },
     goBack() {
         this.$router.push('/UserProfile');
     },
