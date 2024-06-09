@@ -23,14 +23,46 @@ export default {
       partecipanti: ['']
     };
   },
+  mounted(){
+    this.token = localStorage.getItem('token');
+    if (!this.token) {
+        this.$router.push('/login');
+    }
+    this.email = localStorage.getItem('email');
+    //this.submitForm();
+  },
   methods: {
     addPartecipante() {
       this.partecipanti.push('');
     },
-    submitForm() {
+    async submitForm() {
       // Simuliamo la creazione del gruppo
       alert('Gruppo creato!');
       console.log(this.nome, this.partecipanti);
+      try{
+        const response = await fetch('http://localhost:8080/api/v1/groups/setgroup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.token}`, // Passa il token JWT nell'intestazione
+          },
+          body: JSON.stringify({
+            token: this.token,
+            nome: this.nome,
+            invitati: Array.isArray(this.partecipanti) ? this.partecipanti : [this.partecipanti],
+          }),
+        });
+
+        if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        this.$router.push('/Gruppi');
+      } catch (error) {
+        console.error('Errore:', error);
+      }
     },
     goBack() {
       this.$router.push('/Gruppi');

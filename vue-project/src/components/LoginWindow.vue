@@ -1,6 +1,13 @@
 <!-- LoginWindow.vue -->
 
 <template>
+  <div class="body">
+  <div class="header">
+    <h1>Bentornato!</h1>
+    <div class="Button-Home">
+    <button class= "button Home" @click="goBack">Home</button>
+    </div>
+  </div>
   <div class="login-window">
     <h2>Login</h2>
     <form @submit.prevent="login">
@@ -15,6 +22,7 @@
       <button type="submit">Enter</button>
     </form>
     <br><button type="back" @click="goBack">Go back</button><button type="back" @click="Forgot">Forgot Password</button>
+  </div>
   </div>
 </template>
 
@@ -36,8 +44,8 @@ export default defineComponent({
       //this.$router.push('/UserProfile');
     },
     async login() {
-      alert('Form submitted ' + this.email);
-      console.log('started login ' + this.password)
+      //alert('Form submitted ' + this.email);
+      //console.log('started login ' + this.password)
       try {
         const response = await fetch('http://localhost:8080/api/v1/authentications', {
           method: 'POST',
@@ -117,5 +125,41 @@ export default defineComponent({
   button:hover {
     background-color: #00cc00;
   }
-  </style>
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .header .Button-Home {
+    background-color: #00ff00;
+    color: #000000;
+    position: absolute;
+    right: 20px;
+  }
+
+
+</style>
   

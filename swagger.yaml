@@ -176,6 +176,32 @@ paths:
           description: Non autorizzato. Token non valido o mancante.
         '500':
           description: Errore interno del server.
+  TODO:
+    '0': A
+    '1': d
+    '2': d
+    '3': ' '
+    '4': s
+    '5': w
+    '6': a
+    '7': g
+    '8': g
+    '9': e
+    '10': r
+    '11': ' '
+    '12': d
+    '13': o
+    '14': c
+    '15': u
+    '16': m
+    '17': e
+    '18': 'n'
+    '19': t
+    '20': a
+    '21': t
+    '22': i
+    '23': o
+    '24': 'n'
   /newgroup:
     post:
       summary: Crea un nuovo gruppo

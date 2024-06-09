@@ -1,18 +1,26 @@
 <template>
-  <div class="user-profile">
-    <h2>User Profile</h2>
-    <div>
-      <p>Welcome, {{ email }}!</p>
-      <!-- Add user profile information here -->
+  <div class="body">
+    <div class="header">
+      <h1>Pagina utente</h1>
+      <div class="Button-Home">
+      <button @click="goBack">Home</button>
+      </div>
+    </div>
+    <div class="user-profile">
+      <h2>User Profile</h2>
+      <div>
+        <p>Welcome, {{ email }}!</p>
+        <!-- Add user profile information here -->
 
+      </div>
+      <div class="options">
+        <button class="gruppi-button" type="Gruppi" @click="goToGruppi">Gestisci gruppi</button>
+        <button class="calendario-button" type="Calendario" @click="goToCalendario">Calendario</button>
+      </div>
     </div>
-    <div class="options">
-      <button class="gruppi-button" type="Gruppi" @click="goToGruppi">Gestisci gruppi</button>
-      <button class="calendario-button" type="Calendario" @click="goToCalendario">Calendario</button>
+    <div>
+      <button class="logout-button" type="logout"  @click="logout">Logout</button>
     </div>
-  </div>
-  <div>
-    <button class="logout-button" type="logout"  @click="logout">Logout</button>
   </div>
 </template>
 
@@ -35,6 +43,9 @@ export default defineComponent({
     this.email = localStorage.getItem('email');
   },
   methods: {
+    goBack() {
+      this.$router.push('/');
+    },
     goToGruppi() {
       this.$router.push('/Gruppi');
     },
@@ -44,6 +55,7 @@ export default defineComponent({
     logout() {
       alert('Logged out!');
       localStorage.removeItem('token');
+      localStorage.removeItem('email');
       this.token = '';
       this.$router.push('/');
     }
@@ -77,4 +89,53 @@ button {
 button:hover {
   background-color: #cc0000;
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+}
+
+.home-button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .header .Button-Home {
+    background-color: #00ff00;
+    color: #000000;
+    position: absolute;
+    right: 20px;
+  }
 </style>

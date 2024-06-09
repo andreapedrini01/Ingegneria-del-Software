@@ -1,18 +1,20 @@
 <template>
-    <div>
-      <div class="header">
-        <h1>Welcome to SpazzaTN</h1>
-        <div class="login-area">
-          <button class="button login" @click="handleLogin">Login</button>
-          <button class="button register" @click="handleRegister">Register</button>
-        </div>
+  <div class="body">
+    <div class="header">
+      <h1>Welcome to SpazzaTN</h1>
+      <div class="login-area">
+        <button class="button login" @click="handleLogin">Login</button>
+        <button class="button register" @click="handleRegister">Register</button>
       </div>
-      <div class="container">
-        <router-view></router-view> <!-- Componente visualizzato dinamicamente in base alla rotta -->
-      </div>
+    </div>
+    <div class="container">
+      <router-view></router-view> <!-- Componente visualizzato dinamicamente in base alla rotta -->
+    </div>
+    <div class="map">
       <MapWindow />
     </div>
-  </template>
+  </div>
+</template>
   
   <script>
   import MapWindow from './MapWindow.vue';
@@ -37,6 +39,9 @@
   
   <style scoped>
   body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
     height: 100%;
     font-family: Arial, sans-serif;
@@ -51,7 +56,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 99%;
     display: flex;
     justify-content: center;
     background-color: #222;
@@ -61,7 +66,7 @@
   }
 
   .container {
-    width: 100vw; /* Larghezza al 100% dello schermo */
+    width: 100%; /* Larghezza al 100% dello schermo */
     padding: 0; /* Rimuovi il padding per far coincidere il bordo con il bordo dello schermo */
     box-sizing: border-box; /* Mantieni il box-sizing */
   }
@@ -102,6 +107,16 @@
   .header .login-area {
     position: absolute;
     right: 20px;
+  }
+
+  .map {
+    position: relative;
+    width: 1000px;
+    height: 75%;
+    background-color: #222;
+    border: 1px solid #333;
+    margin: auto;
+    display: block;
   }
 </style>
   

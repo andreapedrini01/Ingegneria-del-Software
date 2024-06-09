@@ -5,6 +5,8 @@ const Group = require('./models/gruppo'); // get our mongoose model for groups
 
 /**
  * @swagger
+ * TODO: Add swagger documentation
+ *
  * /newgroup:
  *   post:
  *     summary: Crea un nuovo gruppo
@@ -46,13 +48,13 @@ const Group = require('./models/gruppo'); // get our mongoose model for groups
  */
 router.post('/newgroup', async (req, res) => {
     try{
-        console.log('Request body:', req.body.email);
-        let user = await User.findOne({email: req.body.email});
+        user = req.loggedUser.id;
         group = new Group({
-            founder: user._id,
-            participants: [user._id]
+            nome: req.body.nome,
+            founder: user,
+            participants: [user]
         });
-        console.log('\n\n\n\n\Group created:', group);
+        console.log('\n\n\n\nGroup created:', group);
 
         try{
             group = await group.save();
@@ -134,5 +136,78 @@ router.post('/addparticipant', async (req, res) => {
     }
 });
 
+router.post('/removeparticipant', async (req, res) => {
+    try {
+        const group = await Group.findById(req.body.groupId).exec();
+        const userId = req.body.userId;
+        const logged = req.loggedUser.id;
+
+        if (userId === logged) {
+            return res.status(403).send('Cannot remove yourself');
+        }
+        if (!group) {
+            return res.status(404).send('Group not found');
+        }
+        if (group.founder.toString() !== logged) {
+            return res.status(403).send('Not authorized');
+        }
+        Group.findByIdAndUpdate(req.body.groupId, { $pull: { participants: userId } },{new:true}).exec();
+        res.status(200).json({message: userId +" removed from group"+req.body.groupId});
+    } catch (error) {
+        console.error('Error removing participant:', error);
+        res.status(500).send();
+    }
+});
+
+router.post('/setgroup', async (req, res) => {
+    try {
+
+        let fondatore = req.loggedUser.id;
+        let invitati = req.body.invitati;
+
+        const userIds = [];
+        for (const email of invitati) {
+            let user = await User.findOne({ email:email });
+            if (user) {
+                userIds.push(user._id);
+            }
+        }
+
+        const gruppo = new Group({
+            nome: req.body.nome,
+            founder : fondatore,
+            participants: [fondatore, ...userIds]
+        });
+
+        await gruppo.save();
+        console.log('\n\n\n\nGroup created:', gruppo);
+        
+        res.status(200).json({ message: ' Group created successfully' });
+        
+    } catch (error) {
+        console.error('Error setting group:', error);
+        res.status(500).send();
+    }
+});
+
+router.post('/getgroups', async (req, res) => {
+    try {
+        const groups = await Group.find({ participants: req.loggedUser.id });
+        res.status(200).json(groups);
+    } catch (error) {
+        console.error('Error getting group:', error);
+        res.status(500).send();
+    }
+});
+
+router.post('/getgroup', async (req, res) => {
+    try{
+        const group = await Group.findById(req.body.groupId);
+        res.status(200).json(group);
+    } catch (error) {
+        console.error('Error getting group:', error);
+        res.status(500).send();
+    }
+    });
 
 module.exports = router;

@@ -1,22 +1,25 @@
 <!-- Pagina in cui l'utente registrato vedrà il suo gruppo (una finestra con nome gruppo e nomi partecipanti)-->
 <template>
+  <div class="body">
+  <div class="header">
+      <h1>Pagina utente</h1>
+      <div class="Button-Home">
+      <button @click="goHome">Home</button>
+      </div>
+    </div>
   <div class="gruppi-window">
     <h1>Gruppi</h1>
-    <div v-for="gruppo in gruppi" :key="gruppo.id">
-        <h2>{{ gruppo.nome }} <button @click="gestisci(gruppo.id)">Gestisci</button></h2>
-      <ul>
-        <li v-for="partecipante in gruppo.partecipanti" :key="partecipante.id">
-          {{ partecipante.nome }}
-        </li>
-      </ul>
+    <div v-for="gruppo in this.gruppi" :key="gruppo.id">
+      <h2>{{ gruppo.nome }} <button @click="gestisci(gruppo)">Gestisci</button></h2>
     </div>
-    <div v-if="gruppi.length === 0">
+    <div v-if="this.gruppi.length === 0">
       <p>Nessun gruppo trovato.</p>
-      <button type="newGroup" @click="showNewGroup = true">Crea nuovo gruppo</button>
     </div>
+    <button type="newGroup" @click="showNewGroup = true">Crea nuovo gruppo</button>
     <NewGroup v-if="showNewGroup" />
     </div>
   <button type="back" @click="goBack">Go back</button>
+  </div>
 </template>
 
 <script>
@@ -29,22 +32,6 @@ export default {
   data() {
     return {
       gruppi: [
-        {
-          id: 1,
-          nome: 'Gruppo 1',
-          partecipanti: [
-            { id: 1, nome: 'Mario Rossi' },
-            { id: 2, nome: 'Luigi Verdi' },
-          ],
-        },
-        {
-          id: 2,
-          nome: 'Gruppo 2',
-          partecipanti: [
-            { id: 3, nome: 'Paolo Bianchi' },
-            { id: 4, nome: 'Giovanni Neri' },
-          ],
-        },
       ],
       showNewGroup: false,
       token:'',
@@ -57,17 +44,49 @@ export default {
         this.$router.push('/login');
     }
     this.email = localStorage.getItem('email');
+    this.fetchGruppi();
   },
   methods: {
+    async fetchGruppi() {
+      try {
+        const response = await fetch('http://localhost:8080/api/v1/groups/getgroups', {
+          method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${this.token}`, // Passa il token JWT nell'intestazione
+            },
+            body: JSON.stringify({
+              token: this.token,
+            }),
+        });
+
+        if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        this.gruppi = data;
+      } catch (error) {
+        console.error('Errore durante il recupero dei gruppi:', error);
+      }
+    },
     goBack() {
         this.$router.push('/UserProfile');
     },
     createNewGroup() {
         //show.NewGroup;
     },
-    gestisci(id) {
-        // Mostra la finestra di gestione del gruppo con l'id specificato
-        this.$router.push(`/gestisci-gruppo/${id}`);
+    gestisci(gruppo) {
+      //Salva l'id del gruppo in localstorage
+      localStorage.removeItem('idGruppo');
+      localStorage.setItem('idGruppo', gruppo._id);
+      console.log('idGruppo:', gruppo._id);
+      // Mostra la finestra di gestione del gruppo con l'id specificato
+      this.$router.push(`/gestisciGruppo`);
+    },
+    goHome() {
+        this.$router.push('/');
     }
   },
 };
@@ -112,5 +131,39 @@ export default {
   
   button:hover {
     background-color: #00cc00;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .header .Button-Home {
+    background-color: #00ff00;
+    color: #000000;
+    position: absolute;
+    right: 20px;
   }
 </style>
