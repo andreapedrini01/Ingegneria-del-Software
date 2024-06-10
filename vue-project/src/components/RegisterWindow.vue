@@ -1,22 +1,28 @@
 <template>
-  <div class="register-window">
-    <h2>Crea il tuo profilo</h2>
-    <form @submit.prevent="submitForm">
-      <div class="form-group">
-        <label for="username">Nome utente:</label>
-        <input v-model="username" type="text" placeholder="Username">
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input v-model="email" type="email" placeholder="Email">
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input v-model="password" type="password" placeholder="Password">
-      </div>
-      <button type="submit">Registrati</button>
-    </form>
-    <br><button type="back" @click="goBack">Torna indietro</button>
+  <div class="body">
+    <div class="header">
+      <h1>Gruppi</h1>
+      <button class="Button-Home" @click="goBack">Home</button>
+    </div>
+    <div class="register-window">
+      <h2>Crea il tuo profilo</h2>
+      <form @submit.prevent="submitForm">
+        <div class="form-group">
+          <label for="username">Nome utente:</label>
+          <input v-model="username" type="text" placeholder="Username">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input v-model="email" type="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input v-model="password" type="password" placeholder="Password">
+        </div>
+        <button type="submit">Registrati</button>
+      </form>
+      <br><button type="back" @click="goBack">Torna indietro</button>
+    </div>
   </div>
 </template>
 
@@ -73,7 +79,7 @@ export default defineComponent({
     padding: 20px;
     border-radius: 5px;
     width: 100%;
-    margin: 0 auto; /* Centra orizzontalmente */
+    position: center;
     display: block; /* Assicurati che l'elemento sia un blocco per applicare il margine e la larghezza */
 }
 
@@ -108,4 +114,37 @@ button {
 button:hover {
   background-color: #00cc00;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .header .Button-Home {
+    color: #000000;
+    position: absolute;
+    right: 20px;
+  }
 </style>

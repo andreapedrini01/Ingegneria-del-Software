@@ -1,17 +1,12 @@
 <!-- Form dove inserire i dati del nuovo gruppo -->
 <template>
     <div class="new-group-window">
-      <h1>Nuovo gruppo</h1>
-      <div class="form-group">
-        <label for="nome">Nome del gruppo</label>
-        <input type="text" id="nome" v-model="nome" />
-      </div>
+      <h1 >Nuovo partecipante</h1>
       <div class="form-group" v-for="(partecipante, index) in partecipanti" :key="index">
         <label :for="'partecipante' + index">Partecipante</label>
         <input :id="'partecipante' + index" v-model="partecipanti[index]" />
       </div>
-      <button type="button" @click="addPartecipante">Aggiungi partecipante</button>
-      <button type="submit" @click="submitForm">Crea gruppo</button>
+      <button type="submit" @click="submitForm">Invia</button>
     </div>
   </template>
 
@@ -21,7 +16,7 @@ export default {
     return {
       nome: '',
       partecipanti: [''],
-      clientUrl: import.meta.env.VITE_CLIENT_URL
+      clientUrl: import.meta.env.VITE_CLIENT_URL,
     };
   },
   mounted(){
@@ -33,41 +28,35 @@ export default {
     //this.submitForm();
   },
   methods: {
-    addPartecipante() {
-      this.partecipanti.push('');
-    },
     async submitForm() {
-      // Simuliamo la creazione del gruppo
-      alert('Gruppo creato!');
-      console.log(this.nome, this.partecipanti);
-      try{
-        const response = await fetch(this.clientUrl +'/api/v1/groups/setgroup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.token}`, // Passa il token JWT nell'intestazione
-          },
-          body: JSON.stringify({
-            token: this.token,
-            nome: this.nome,
-            invitati: Array.isArray(this.partecipanti) ? this.partecipanti : [this.partecipanti],
-          }),
-        });
-
-        if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+      // usa /addparticipant
+        try {
+            const response = await fetch(this.clientUrl +'/api/v1/groups/addparticipant', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.token}`, // Passa il token JWT nell'intestazione
+            },
+            body: JSON.stringify({
+                token: this.token,
+                nome: this.nome,
+                partecipanti: this.partecipanti,
+            }),
+            });
+            const data = await response.json();
+            if (data.error) {
+            alert(data.error);
+            } else {
+            alert('Partecipante aggiunto con successo!');
+            this.$router.push('/Gruppi');
+            }
+        } catch (error) {
+            alert('Errore durante l\'aggiunta del partecipante.');
         }
-
-        const data = await response.json();
-        console.log(data);
-        this.$router.push('/Gruppi');
-      } catch (error) {
-        console.error('Errore:', error);
-      }
     },
     goBack() {
       this.$router.push('/Gruppi');
-    }
+    },
   }
 };
 </script>

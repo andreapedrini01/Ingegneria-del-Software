@@ -18,7 +18,7 @@
         <button class="calendario-button" type="Calendario" @click="goToCalendario">Calendario</button>
       </div>
     </div>
-    <div>
+    <div class="logout">
       <button class="logout-button" type="logout"  @click="logout">Logout</button>
     </div>
   </div>
@@ -70,13 +70,14 @@ export default defineComponent({
   color: #fff;
   padding: 20px;
   border-radius: 5px;
+  width: 500px;
 }
 
 button {
-  background-color: #ff0000;
-  color: #fff;
+  background-color: #00ff00;
+  color: #000000;
   padding: 10px 20px;
-  border: none;
+  border: 2px solid #000;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
@@ -88,7 +89,7 @@ button {
 }
 
 button:hover {
-  background-color: #cc0000;
+  background-color: #00cc00;
 }
 
 header {
@@ -134,9 +135,14 @@ body {
   }
 
   .header .Button-Home {
-    background-color: #00ff00;
     color: #000000;
     position: absolute;
     right: 20px;
+  }
+
+  .logout {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
   }
 </style>
