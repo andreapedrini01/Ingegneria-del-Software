@@ -78,7 +78,7 @@ const FRONTEND = path.join(__dirname, '..', 'static');
 app.use('/SpazzaTN/', express.static( FRONTEND ));
 
 // If process.env.FRONTEND folder does not contain index.html then use the one from static
-app.use('/SpazzaTN/', express.static('vue-project/dist')); // expose also this folder
+app.use('/SpazzaTN/', express.static(FRONTEND)); // expose also this folder
 
 
 
