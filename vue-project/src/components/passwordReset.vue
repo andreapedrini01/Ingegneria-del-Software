@@ -12,6 +12,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      clientUrl: import.meta.env.VITE_CLIENT_URL
+    }
+  },
     methods: {
         rstPwd() {
             //console.log('started resetPassword');
@@ -22,7 +27,7 @@ export default {
             //console.log('userId: ' + userId);
             //console.log('token: ' + token);
             try{
-                fetch('/api/v1/authentications/passwordReset', {
+                fetch(this.clientUrl +'/api/v1/authentications/passwordReset', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify( { userId: userId, token: token, password: password } ),

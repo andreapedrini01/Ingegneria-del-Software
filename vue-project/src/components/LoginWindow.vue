@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="login-window">
-    <h2>Login</h2>
+    <h2>Inserire le credenziali</h2>
     <form @submit.prevent="login">
       <div class="form-group">
         <label for="email">Email:</label>
@@ -19,9 +19,9 @@
         <label for="password">Password:</label>
         <input type="password" id="password" v-model="password" required>
       </div>
-      <button type="submit">Enter</button>
+      <button type="submit">Accedi</button>
     </form>
-    <br><button type="back" @click="goBack">Go back</button><button type="back" @click="Forgot">Forgot Password</button>
+    <br><button type="back" @click="goBack">Indietro</button><button type="back" @click="Forgot">Password dimenticata</button>
   </div>
   </div>
 </template>
@@ -34,6 +34,7 @@ export default defineComponent({
     return {
       email: '',
       password: '',
+      clientUrl: import.meta.env.VITE_CLIENT_URL
     };
   },
   methods: {
@@ -47,7 +48,7 @@ export default defineComponent({
       //alert('Form submitted ' + this.email);
       //console.log('started login ' + this.password)
       try {
-        const response = await fetch('http://localhost:8080/api/v1/authentications', {
+        const response = await fetch(this.clientUrl +'/api/v1/authentications', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

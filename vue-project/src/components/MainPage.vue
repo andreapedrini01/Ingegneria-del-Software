@@ -1,10 +1,10 @@
 <template>
   <div class="body">
     <div class="header">
-      <h1>Welcome to SpazzaTN</h1>
+      <h1>Benvenuto in SpazzaTN</h1>
       <div class="login-area">
-        <button class="button login" @click="handleLogin">Login</button>
-        <button class="button register" @click="handleRegister">Register</button>
+        <button class="button login" @click="handleLogin">Accedi</button>
+        <button class="button register" @click="handleRegister">Registrati</button>
       </div>
     </div>
     <div class="container">

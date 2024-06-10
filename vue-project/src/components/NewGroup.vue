@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       nome: '',
-      partecipanti: ['']
+      partecipanti: [''],
+      clientUrl: import.meta.env.VITE_CLIENT_URL
     };
   },
   mounted(){
@@ -40,7 +41,7 @@ export default {
       alert('Gruppo creato!');
       console.log(this.nome, this.partecipanti);
       try{
-        const response = await fetch('http://localhost:8080/api/v1/groups/setgroup', {
+        const response = await fetch(this.clientUrl +'/api/v1/groups/setgroup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

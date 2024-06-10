@@ -7,9 +7,9 @@
       </div>
     </div>
     <div class="user-profile">
-      <h2>User Profile</h2>
+      <h2>Profilo utente</h2>
       <div>
-        <p>Welcome, {{ email }}!</p>
+        <p>Bentornato, {{ email }}!</p>
         <!-- Add user profile information here -->
 
       </div>
@@ -32,7 +32,8 @@ export default defineComponent({
   data(){
     return{
       token:'',
-      email:''
+      email:'',
+      clientUrl: import.meta.env.VITE_CLIENT_URL
     }
   },
   mounted(){

@@ -7,7 +7,7 @@
             <br>
             <button type="button" @click="sendEmail">Invia</button>
         </form>
-        <br><button type="back" @click="goBack">Go back</button>
+        <br><button type="back" @click="goBack">Torna indietro</button>
     </div>
 </template>
 
@@ -16,6 +16,7 @@ export default {
     data() {
         return {
             email: '',
+            clientUrl: import.meta.env.VITE_CLIENT_URL
         };
     },
     methods: {
@@ -23,7 +24,7 @@ export default {
             alert('Form submitted ' + this.email);
             console.log('started requestPasswordReset' + this.email)
             try {
-                const response = await fetch('http://localhost:8080/api/v1/authentications/requestPasswordReset', {
+                const response = await fetch(this.clientUrl + '/api/v1/authentications/requestPasswordReset', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
