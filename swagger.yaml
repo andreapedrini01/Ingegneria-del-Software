@@ -137,6 +137,125 @@ paths:
                   message:
                     type: string
                     example: Password reset was successful for User
+  /subscribe:
+    post:
+      summary: Subscribe a user to a calendar
+      description: >-
+        Subscribe the logged-in user to a specified calendar. If the user is
+        already subscribed to another calendar, they will be unsubscribed from
+        the previous one.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                calendarId:
+                  type: string
+                  description: The ID of the calendar to subscribe to.
+                  example: 6655d55aa16f88a94fc2e1b4
+      responses:
+        '200':
+          description: User subscribed to calendar successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User subscribed to calendar 6655d55aa16f88a94fc2e1b4
+        '404':
+          description: User not subscribed to any calendar
+        '500':
+          description: Error subscribing user to calendar
+  /unsubscribe:
+    post:
+      summary: Unsubscribe a user from their current calendar
+      description: Unsubscribe the logged-in user from their currently subscribed calendar.
+      responses:
+        '200':
+          description: User unsubscribed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User unsubscribed successfully
+        '404':
+          description: User not subscribed to any calendar
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User not subscribed to any calendar
+        '500':
+          description: Error unsubscribing user from calendar
+  /centri:
+    get:
+      summary: Retrieve a list of collection centers
+      description: Retrieve a list of all collection centers from the database.
+      responses:
+        '200':
+          description: A list of collection centers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: object
+                      properties:
+                        $oid:
+                          type: string
+                          description: The center ID.
+                          example: 6655a2e730fd1223143ed6ab
+                    descrizione:
+                      type: string
+                      description: The center description.
+                      example: Dolomiti Energia S.p.a.
+                    indirizzo:
+                      type: string
+                      description: The center address.
+                      example: Tangenziale Ovest 11
+                    tipologia:
+                      type: string
+                      description: The type of center.
+                      example: gestione pubblica rifiuti
+                    coordinates:
+                      type: object
+                      properties:
+                        latitudine:
+                          type: number
+                          description: Latitude of the center.
+                          example: 11.109799334010086
+                        longitudine:
+                          type: number
+                          description: Longitude of the center.
+                          example: 46.05776821434423
+                    __v:
+                      type: number
+                      description: Version key.
+                      example: 0
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message.
+                    example: Internal server error
   /get-events:
     get:
       summary: Ottieni eventi associati all'utente autenticato
@@ -176,37 +295,10 @@ paths:
           description: Non autorizzato. Token non valido o mancante.
         '500':
           description: Errore interno del server.
-  TODO:
-    '0': A
-    '1': d
-    '2': d
-    '3': ' '
-    '4': s
-    '5': w
-    '6': a
-    '7': g
-    '8': g
-    '9': e
-    '10': r
-    '11': ' '
-    '12': d
-    '13': o
-    '14': c
-    '15': u
-    '16': m
-    '17': e
-    '18': 'n'
-    '19': t
-    '20': a
-    '21': t
-    '22': i
-    '23': o
-    '24': 'n'
   /newgroup:
     post:
-      summary: Crea un nuovo gruppo
-      tags:
-        - Gruppi
+      summary: Create a new group
+      description: Create a new group with the logged-in user as the founder.
       requestBody:
         required: true
         content:
@@ -214,38 +306,60 @@ paths:
             schema:
               type: object
               properties:
-                email:
+                nome:
                   type: string
-                  description: L'email dell'utente che sta creando il gruppo
-                  example: example@example.com
+                  description: The name of the group.
+                  example: gruppo example
       responses:
         '200':
-          description: Gruppo creato con successo
+          description: Group created successfully
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  founder:
+                  _id:
+                    type: object
+                    properties:
+                      $oid:
+                        type: string
+                        example: 6663016f8924d5ec730aae59
+                  nome:
                     type: string
-                    description: ID del fondatore del gruppo
-                    example: 60c72b2f5f1b2c001c8e4b4b
+                    example: gruppo example
+                  founder:
+                    type: object
+                    properties:
+                      $oid:
+                        type: string
+                        example: 66571405ef5c8c00f380591b
                   participants:
                     type: array
                     items:
-                      type: string
-                    description: Lista degli ID dei partecipanti
-                    example:
-                      - 60c72b2f5f1b2c001c8e4b4b
+                      type: object
+                      properties:
+                        $oid:
+                          type: string
+                          example: 66571405ef5c8c00f380591b
+                  createdAt:
+                    type: string
+                    format: date-time
+                    example: '2024-06-07T12:47:43.493Z'
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    example: '2024-06-07T12:47:43.493Z'
+                  __v:
+                    type: number
+                    example: 0
         '500':
-          description: Errore durante la creazione del gruppo
+          description: Error creating group
         '501':
-          description: Errore durante il salvataggio del gruppo
+          description: Error saving group
   /addparticipant:
     post:
-      summary: Aggiungi un partecipante a un gruppo
-      tags:
-        - Gruppi
+      summary: Add a participant to a group
+      description: Add a user to the participants list of a group.
       requestBody:
         required: true
         content:
@@ -255,36 +369,232 @@ paths:
               properties:
                 groupId:
                   type: string
-                  description: L'ID del gruppo a cui aggiungere il partecipante
-                  example: 60c72b2f5f1b2c001c8e4b4b
+                  description: The ID of the group.
+                  example: 6663016f8924d5ec730aae59
                 userId:
                   type: string
-                  description: L'ID dell'utente da aggiungere al gruppo
-                  example: 60c72b2f5f1b2c001c8e4b4b
+                  description: The ID of the user to add.
+                  example: 665716ad8ec88ce94acdf255
       responses:
         '200':
-          description: Partecipante aggiunto con successo
+          description: Participant added successfully
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   _id:
+                    type: object
+                    properties:
+                      $oid:
+                        type: string
+                        example: 6663016f8924d5ec730aae59
+                  nome:
                     type: string
-                    description: L'ID del gruppo
-                    example: 60c72b2f5f1b2c001c8e4b4b
+                    example: gruppo example
+                  founder:
+                    type: object
+                    properties:
+                      $oid:
+                        type: string
+                        example: 66571405ef5c8c00f380591b
                   participants:
                     type: array
                     items:
-                      type: string
-                    description: Lista degli ID dei partecipanti
-                    example:
-                      - 60c72b2f5f1b2c001c8e4b4b
-                      - 60d72b2f5f1b2c001c8e4b4c
+                      type: object
+                      properties:
+                        $oid:
+                          type: string
+                          example: 665716ad8ec88ce94acdf255
         '404':
-          description: Gruppo non trovato
+          description: Group not found
         '500':
-          description: Errore durante l'aggiunta del partecipante
+          description: Error adding participant
+  /removeparticipant:
+    post:
+      summary: Remove a participant from a group
+      description: Remove a user from the participants list of a group.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groupId:
+                  type: string
+                  description: The ID of the group.
+                  example: 6663016f8924d5ec730aae59
+                userId:
+                  type: string
+                  description: The ID of the user to remove.
+                  example: 66560401fa668847d09cca6e
+      responses:
+        '200':
+          description: Participant removed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: >-
+                      66560401fa668847d09cca6e removed from group
+                      6663016f8924d5ec730aae59
+        '403':
+          description: Not authorized to remove participant / Cannot remove yourself
+        '404':
+          description: Group not found
+        '500':
+          description: Error removing participant
+  /setgroup:
+    post:
+      summary: Create a new group with specified participants
+      description: >-
+        Create a new group with the logged-in user as the founder and the
+        specified users as participants.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: The name of the group.
+                  example: gruppo example
+                invitati:
+                  type: array
+                  items:
+                    type: string
+                    description: The email of the invited users.
+                    example:
+                      - user1@example.com
+                      - user2@example.com
+      responses:
+        '200':
+          description: Group created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Group created successfully
+        '500':
+          description: Error setting group
+  /getgroups:
+    post:
+      summary: Get groups of the logged-in user
+      description: Retrieve all groups that the logged-in user is a participant of.
+      responses:
+        '200':
+          description: A list of groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: object
+                      properties:
+                        $oid:
+                          type: string
+                          example: 6663016f8924d5ec730aae59
+                    nome:
+                      type: string
+                      example: gruppo example
+                    founder:
+                      type: object
+                      properties:
+                        $oid:
+                          type: string
+                          example: 66571405ef5c8c00f380591b
+                    participants:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          $oid:
+                            type: string
+                            example: 66560401fa668847d09cca6e
+                    createdAt:
+                      type: string
+                      format: date-time
+                      example: '2024-06-07T12:47:43.493Z'
+                    updatedAt:
+                      type: string
+                      format: date-time
+                      example: '2024-06-07T12:47:43.493Z'
+                    __v:
+                      type: number
+                      example: 0
+        '500':
+          description: Error getting groups
+  /getgroup:
+    post:
+      summary: Get a specific group
+      description: Retrieve details of a specific group by its ID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groupId:
+                  type: string
+                  description: The ID of the group to retrieve.
+                  example: 6663016f8924d5ec730aae59
+      responses:
+        '200':
+          description: Group details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: object
+                    properties:
+                      $oid:
+                        type: string
+                        example: 6663016f8924d5ec730aae59
+                  nome:
+                    type: string
+                    example: gruppo example
+                  founder:
+                    type: object
+                    properties:
+                      $oid:
+                        type: string
+                        example: 66571405ef5c8c00f380591b
+                  participants:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        $oid:
+                          type: string
+                          example: 66560401fa668847d09cca6e
+                  createdAt:
+                    type: string
+                    format: date-time
+                    example: '2024-06-07T12:47:43.493Z'
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    example: '2024-06-07T12:47:43.493Z'
+                  __v:
+                    type: number
+                    example: 0
+        '500':
+          description: Error getting group
   /register:
     post:
       summary: Register a new user
