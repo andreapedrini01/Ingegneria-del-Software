@@ -87,7 +87,9 @@ app.use((req,res,next) => {
     next()
 })
 
-
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'static', 'index.html'));
+  });
 
 /**
  * Authentication routing and middleware
