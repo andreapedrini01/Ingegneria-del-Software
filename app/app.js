@@ -43,17 +43,32 @@ app.use(express.urlencoded({ extended: true }));
 /**
  * CORS requests
  */
-app.use(cors())
+// Lista dei domini consentiti
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://ingegneria-del-software-fsjj.onrender.com',
+    'http://localhost:8080'
+];
+
+// Configurazione del middleware CORS
+app.use(cors({
+    origin: function(origin, callback) {
+        // Consentire le richieste senza origine (ad esempio, per i test locali)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true // Permetti l'invio di cookie nelle richieste
+}));
 
 // // Add headers before the routes are defined
 app.use(function (req, res, next) {
 
 //     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
-//     //
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-
-    res.setHeader('Access-Control-Allow-Origin', 'https://ingegneria-del-software-fsjj.onrender.com');
 
 //     // Request methods you wish to allow
      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

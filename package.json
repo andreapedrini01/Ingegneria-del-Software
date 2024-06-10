@@ -5,8 +5,6 @@
   "main": "start.js",
   "scripts": {
     "test": "jest",
-    "build": "vite build",
-    "build.githubpages": "dotenvx run --env-file=.env.production -- vite build",
     "start": "node server.js",
     "start_local": "echo use: $ npm run dev",
     "dev": "nodemon -r dotenv/config server.js"

@@ -20,6 +20,7 @@ export default {
     return {
       map: null,
       userMarker: null,
+      clientUrl: import.meta.env.VITE_CLIENT_URL
     };
   },
   methods: {
@@ -41,12 +42,13 @@ export default {
     },
     async fetchData() {
         try{
-            const response = await fetch('http://localhost:8080/api/v1/crm', {
+            const response = await fetch(this.clientUrl + '/api/v1/crm', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
+            console.log(response);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
