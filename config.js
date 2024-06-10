@@ -1,5 +1,7 @@
 const dotenv = require('dotenv');
+
 dotenv.config();
+
 module.exports = {
   masterKey: process.env.SUPER_SECRET,
   configPort: process.env.PORT,
