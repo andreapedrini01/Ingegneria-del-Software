@@ -7,7 +7,7 @@
             <br>
             <button type="button" @click="sendEmail">Invia</button>
         </form>
-        <br><button type="back" @click="goBack">Go back</button>
+        <br><button type="back" @click="goBack">Torna indietro</button>
     </div>
 </template>
 

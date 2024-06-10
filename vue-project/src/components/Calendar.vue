@@ -3,7 +3,7 @@
     <div class="header"></div>
       <h1>Calendario</h1>
     <div id="calendar"></div>
-    <button type="back" @click="goBack">Go back</button>
+    <button type="back" @click="goBack">Torna indietro</button>
   </div>
   
 </template>

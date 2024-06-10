@@ -18,7 +18,7 @@
     <button type="newGroup" @click="showNewGroup = true">Crea nuovo gruppo</button>
     <NewGroup v-if="showNewGroup" />
     </div>
-  <button type="back" @click="goBack">Go back</button>
+  <button type="back" @click="goBack">Torna indietro</button>
   </div>
 </template>
 

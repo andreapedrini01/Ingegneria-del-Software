@@ -1,9 +1,9 @@
 <template>
   <div class="register-window">
-    <h2>Register</h2>
+    <h2>Crea il tuo profilo</h2>
     <form @submit.prevent="submitForm">
       <div class="form-group">
-        <label for="username">Username:</label>
+        <label for="username">Nome utente:</label>
         <input v-model="username" type="text" placeholder="Username">
       </div>
       <div class="form-group">
@@ -14,9 +14,9 @@
         <label for="password">Password:</label>
         <input v-model="password" type="password" placeholder="Password">
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit">Registrati</button>
     </form>
-    <br><button type="back" @click="goBack">Go back</button>
+    <br><button type="back" @click="goBack">Torna indietro</button>
   </div>
 </template>
 

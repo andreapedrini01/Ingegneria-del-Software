@@ -8,7 +8,7 @@
                 {{ partecipante }}
             </li>
         </ul>
-        <button type="back" @click="goBack">Go back</button>
+        <button type="back" @click="goBack">Torna indietro</button>
     </div>
 </template>
 
