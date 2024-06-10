@@ -33,6 +33,7 @@
     "rrule": "^2.8.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
+    "vite": "^5.2.13",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
   },
