@@ -65,6 +65,7 @@ export default {
     },
   },
   mounted() {
+    console.log('Client URL:', this.clientUrl);
     this.map = L.map('map').setView([46.0665, 11.12], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
