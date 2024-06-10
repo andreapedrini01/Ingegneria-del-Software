@@ -3,7 +3,7 @@
         <h1>Centri di raccolta materiali</h1>
     </div>
     <div id="map" style="height: 400px; width: 100%;"></div>
-    <button @click="updateLocation">Aggiorna Posizione</button>
+    <div class="aggiornaPosizione"><button @click="updateLocation">Centra Posizione</button></div>
 </template>
 
 <script>
@@ -25,20 +25,9 @@ export default {
   },
   methods: {
     updateLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const { latitude, longitude } = position.coords;
           if (this.map) {
-            this.map.setView([latitude, longitude], 13);
-            if (this.userMarker) {
-              this.map.removeLayer(this.userMarker);
-            }
-            this.userMarker = L.marker([latitude, longitude]).addTo(this.map);
+            this.map.setView([46.0665, 11.12], 13);
           }
-        });
-      } else {
-        alert("Geolocation is not supported by this browser.");
-      }
     },
     async fetchData() {
         try{
@@ -76,5 +65,17 @@ export default {
 </script>
 
 <style scoped>
-
+    button {
+    background-color: #00ff00;
+    color: #000;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #00cc00;
+  }
 </style>
