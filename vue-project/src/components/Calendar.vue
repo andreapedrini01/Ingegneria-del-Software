@@ -13,8 +13,14 @@ import { onMounted, ref } from 'vue';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid'; // Importa il plugin dayGrid
 
+
 export default {
   name: 'Calendar',
+  data() {
+    return {
+      clientUrl: import.meta.env.VITE_CLIENT_URL
+    };
+  },
   methods: {
     goBack() {
       this.$router.push('/UserProfile');
@@ -35,7 +41,7 @@ export default {
         plugins: [ dayGridPlugin ], // Registra il plugin dayGrid
         initialView: 'dayGridMonth',
         events: function(fetchInfo, successCallback, failureCallback) {
-          fetch('/api/v1/users/get-events', {
+          fetch(this.clientUrl +'/api/v1/users/get-events', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

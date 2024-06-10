@@ -32,7 +32,8 @@ export default defineComponent({
   data(){
     return{
       token:'',
-      email:''
+      email:'',
+      clientUrl: import.meta.env.VITE_CLIENT_URL
     }
   },
   mounted(){

@@ -29,14 +29,15 @@ export default defineComponent({
     return {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      clientUrl: import.meta.env.VITE_CLIENT_URL
     };
   },
   methods: {
     async submitForm() {
       try {
         alert('Form submitted');
-        const response = await fetch('http://localhost:8080/api/v1/users/register', {
+        const response = await fetch(this.clientUrl +'/api/v1/users/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

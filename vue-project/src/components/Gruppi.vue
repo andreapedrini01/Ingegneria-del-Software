@@ -35,7 +35,8 @@ export default {
       ],
       showNewGroup: false,
       token:'',
-      email:''
+      email:'',
+      clientUrl: import.meta.env.VITE_CLIENT_URL
     };
   },
   mounted(){
@@ -49,7 +50,7 @@ export default {
   methods: {
     async fetchGruppi() {
       try {
-        const response = await fetch('http://localhost:8080/api/v1/groups/getgroups', {
+        const response = await fetch(this.clientUrl +'/api/v1/groups/getgroups', {
           method: 'POST',
             headers: {
               'Content-Type': 'application/json',

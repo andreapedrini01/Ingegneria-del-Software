@@ -34,6 +34,7 @@ export default defineComponent({
     return {
       email: '',
       password: '',
+      clientUrl: import.meta.env.VITE_CLIENT_URL
     };
   },
   methods: {
@@ -47,7 +48,7 @@ export default defineComponent({
       //alert('Form submitted ' + this.email);
       //console.log('started login ' + this.password)
       try {
-        const response = await fetch('http://localhost:8080/api/v1/authentications', {
+        const response = await fetch(this.clientUrl +'/api/v1/authentications', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

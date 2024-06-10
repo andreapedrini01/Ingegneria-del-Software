@@ -23,6 +23,7 @@ export default {
             },
             token: '',
             idGruppo: '',
+            clientUrl: import.meta.env.VITE_CLIENT_URL
         };
     },
     mounted(){
@@ -40,7 +41,7 @@ export default {
         },
         async fetchGruppobyId() {
             try {
-                const response = await fetch('http://localhost:8080/api/v1/groups/getgroup', {
+                const response = await fetch(this.clientUrl +'/api/v1/groups/getgroup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -61,7 +62,7 @@ export default {
         async aggiungiPartecipante() {
             //Aggiungi un partecipante al gruppo
             try{
-                const response = await fetch('http://localhost:8080/api/v1/groups/addparticipant', {
+                const response = await fetch(this.clientUrl +'/api/v1/groups/addparticipant', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -82,7 +83,7 @@ export default {
         async rimuoviPartecipante() {
             //Rimuovi un partecipante dal gruppo
             try{
-                const response = await fetch('http://localhost:8080/api/v1/groups/removeparticipant', {
+                const response = await fetch(this.clientUrl +'/api/v1/groups/removeparticipant', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
