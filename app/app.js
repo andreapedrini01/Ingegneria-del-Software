@@ -74,11 +74,11 @@ app.use(function (req, res, next) {
 /**
  * Serve front-end static files
  */
-/*const FRONTEND = path.join(__dirname, '..', 'static');
-app.use('/SpazzaTN/', express.static( FRONTEND ));
+const FRONTEND = path.join(__dirname, '..', frontend);
+app.use('/', express.static( FRONTEND ));
 
 // If process.env.FRONTEND folder does not contain index.html then use the one from static
-app.use('/SpazzaTN/', express.static(FRONTEND)); // expose also this folder*/
+app.use('/', express.static('static')); // expose also this folder
 
 
 
@@ -87,9 +87,9 @@ app.use((req,res,next) => {
     next()
 })
 
-app.get('*', (req, res) => {
+/*app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', frontend));
-  });
+  });*/
 
 /**
  * Authentication routing and middleware
