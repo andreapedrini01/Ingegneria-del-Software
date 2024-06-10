@@ -156,6 +156,7 @@ router.post('/requestPasswordReset', async function(req, res) {
     createdAt: Date.now(),
   }).save();
 
+  console.log(client_url);
   const link = `${client_url}/api/v1/authentications/passwordReset?token=${resetToken}&id=${user._id}`;
 
   sendEmail(
