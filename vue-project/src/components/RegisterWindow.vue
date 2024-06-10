@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <div class="header">
-      <h1>Gruppi</h1>
+      <h1>Registrazione</h1>
       <button class="Button-Home" @click="goBack">Home</button>
     </div>
     <div class="register-window">
@@ -62,6 +62,10 @@ export default defineComponent({
         // If you expect a JSON response, you can parse it
         const data = await response.json();
         console.log(data);
+
+        // Redirect to the login page
+        this.$router.push('/login');
+        
       } catch (error) {
         console.error('An error occurred while submitting the form:', error);
       }

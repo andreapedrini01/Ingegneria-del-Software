@@ -1,13 +1,21 @@
 <template>
-    <div class="requestWindow">
-        <h1>Reset Password</h1>
-        <form action="/api/v1/authentications/requestPasswordReset" method="post" name="requestPasswordReset" id="requestPasswordReset">
-            <label for="email">Inserire email profilo:</label>
-            <input type="email" id="email" name="email" v-model="email" required>
-            <br>
-            <button type="button" @click="sendEmail">Invia</button>
-        </form>
-        <br><button type="back" @click="goBack">Torna indietro</button>
+    <div class="body">
+        <div class="header">
+            <h1>Password dimenticata</h1>
+            <div class="Button-Home">
+            <button @click="goHome">Home</button>
+            </div>
+        </div>
+        <div class="requestWindow">
+            <h1>Reset password</h1>
+            <form action="/api/v1/authentications/requestPasswordReset" method="post" name="requestPasswordReset" id="requestPasswordReset">
+                <label for="email">Inserire email profilo:</label>
+                <input type="email" id="email" name="email" v-model="email" required>
+                <br>
+                <button type="button" @click="sendEmail" :disabled="isButtonDisabled">Invia</button>
+            </form>
+            <br><button type="back" @click="goBack">Torna indietro</button>
+        </div>
     </div>
 </template>
 
@@ -16,13 +24,15 @@ export default {
     data() {
         return {
             email: '',
-            clientUrl: import.meta.env.VITE_CLIENT_URL
+            clientUrl: import.meta.env.VITE_CLIENT_URL,
+            isButtonDisabled: false,
         };
     },
     methods: {
         async sendEmail() {
             alert('Form submitted ' + this.email);
             console.log('started requestPasswordReset' + this.email)
+            this.isButtonDisabled = true;
             try {
                 const response = await fetch(this.clientUrl + '/api/v1/authentications/requestPasswordReset', {
                     method: 'POST',
@@ -43,9 +53,16 @@ export default {
                 console.log(data);
             } catch (error) {
                 console.error('An error occurred while submitting the form:', error);
+            }finally {
+                setTimeout(() => {
+                this.isButtonDisabled = false;
+                }, 60000); // Disabilita il pulsante per 60 secondi
             }
         },
         goBack() {
+            this.$router.push('/login');
+        },
+        goHome() {
             this.$router.push('/');
         }
     }
@@ -83,7 +100,7 @@ export default {
     background-color: #00ff00;
     color: #000;
     padding: 10px 20px;
-    border: none;
+    border: 2px solid #000;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
@@ -91,5 +108,38 @@ export default {
   
   button:hover {
     background-color: #00cc00;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .header .Button-Home {
+    color: #000000;
+    position: absolute;
+    right: 20px;
   }
 </style>
