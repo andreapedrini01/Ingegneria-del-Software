@@ -70,7 +70,6 @@ function rstPwd(button) {
         .then((resp) => resp.json())
         .then(function(data) {
             alert("La password è stata modificata con successo");
-            
         })
     } catch (error) {
         button.disabled = false;
