@@ -108,10 +108,10 @@ router.post('/newgroup', async (req, res) => {
  *                 type: string
  *                 description: The ID of the group.
  *                 example: 6663016f8924d5ec730aae59
- *               userId:
+ *               email:
  *                 type: string
- *                 description: The ID of the user to add.
- *                 example: 665716ad8ec88ce94acdf255
+ *                 description: The email of the user to add.
+ *                 example: example@example.com
  *     responses:
  *       200:
  *         description: Participant added successfully
@@ -151,7 +151,8 @@ router.post('/newgroup', async (req, res) => {
 router.post('/addparticipant', async (req, res) => {
     try {
         const groupId = req.body.groupId;
-        const userId = req.body.userId;
+        const email = req.body.email;
+        let userId = await User.findOne({email : email}).exec();
         const group = await Group.findByIdAndUpdate(
             groupId,
             { $addToSet: { participants: userId } },
