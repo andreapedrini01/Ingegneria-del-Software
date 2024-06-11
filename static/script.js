@@ -52,8 +52,9 @@ function logout() {
     }
 }
 
-function rstPwd() {
+function rstPwd(button) {
     //console.log('started resetPassword');
+    button.disabled = true;
     var urlParams = new URLSearchParams(window.location.search);
     var password = document.getElementById("password").value;
     var token = urlParams.get('token');
@@ -67,7 +68,12 @@ function rstPwd() {
             body: JSON.stringify( { userId: userId, token: token, password: password } ),
         })
         .then((resp) => resp.json())
+        .then(function(data) {
+            alert("La password è stata modificata con successo");
+            
+        })
     } catch (error) {
+        button.disabled = false;
         console.error(error);
         return;
     }
