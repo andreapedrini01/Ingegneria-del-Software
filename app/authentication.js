@@ -65,6 +65,7 @@ router.post('', async function(req, res) {
     if (!user) {
         res.json({ success: false, message: 'Authentication failed. User not found.' });
         console.log('User not found');
+        throw new Error("Authentication failed. User not found.");
         return
     }
 
@@ -72,6 +73,7 @@ router.post('', async function(req, res) {
     const isValid = await bcrypt.compare(req.body.password, user.password);
     if (!isValid) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+        throw new Error("Authentication failed. Wrong password.");
         return
     }
     
