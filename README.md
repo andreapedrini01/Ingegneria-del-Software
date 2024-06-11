@@ -23,9 +23,20 @@ Questo progetto è un'applicazione web per la gestione della raccolta dei rifiut
 4. Creare un file `.env` basato su `.env.example` e configurare le variabili di ambiente necessarie.
 5. Avviare il server:
     ```sh
-    npm start
+    npm run dev
     ```
-
+6. Navigare nella directory del progetto Vue:
+    ```sh
+    cd vue-project
+    ```
+7. Installare le dipendenze:
+    ```sh
+    npm install
+    ```
+8. Avviare l'applicazione Vue:
+    ```sh
+    npm run dev
+    ```
 ## Struttura dei File e delle Directory
 
 ### File Principali
