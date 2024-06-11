@@ -31,7 +31,7 @@ export default {
     methods: {
         async sendEmail() {
             alert('Form submitted ' + this.email);
-            console.log('started requestPasswordReset' + this.email)
+            //console.log('started requestPasswordReset' + this.email)
             this.isButtonDisabled = true;
             try {
                 const response = await fetch(this.clientUrl + '/api/v1/authentications/requestPasswordReset', {
@@ -50,7 +50,7 @@ export default {
 
                 // If you expect a JSON response, you can parse it
                 const data = await response.json();
-                console.log(data);
+                //console.log(data);
             } catch (error) {
                 console.error('An error occurred while submitting the form:', error);
             }finally {

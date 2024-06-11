@@ -61,7 +61,7 @@ export default defineComponent({
 
         // If you expect a JSON response, you can parse it
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
 
         // Redirect to the login page
         this.$router.push('/login');
