@@ -17,6 +17,15 @@ router.get('/me', async (req, res) => {
     });
 });
 
+router.post('/email', async (req, res) => {
+    try{
+        const user = await User.findById(req.body.userId);
+        const email = user.email;
+        res.status(200).json({ email });
+
+    } catch (error) {
+        console.error('Error getting email:', error);
+    }});
 /**
  * @swagger
  * /:
