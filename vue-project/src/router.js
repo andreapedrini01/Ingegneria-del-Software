@@ -9,6 +9,7 @@ import UserProfile from './components/UserProfile.vue';
 import Gruppi from './components/Gruppi.vue';
 import GestisciGruppo from './components/GestisciGruppo.vue';
 import Calendar from './components/Calendar.vue';
+import AddUser from './components/AddUser.vue';
 
 const routes = [
   { path: '/', component: MainPage},
@@ -19,7 +20,8 @@ const routes = [
   {path: '/userProfile', component: UserProfile, name: 'UserProfile'},
   {path: '/gruppi', component: Gruppi, name: 'Gruppi'},
   {path: '/gestisciGruppo', component: GestisciGruppo, name: 'GestisciGruppo'},
-  {path: '/calendar', component: Calendar, name: 'Calendar'}
+  {path: '/calendar', component: Calendar, name: 'Calendar'},
+  {path: '/addUser', component: AddUser, name: 'AddUser'}
 ]
 
 const router = createRouter({

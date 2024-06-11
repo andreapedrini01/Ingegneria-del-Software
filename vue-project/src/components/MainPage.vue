@@ -3,7 +3,8 @@
     <div class="header">
       <h1>Benvenuto in SpazzaTN</h1>
       <div class="login-area">
-        <button class="button login" @click="handleLogin">Accedi</button>
+        <button class="button login" v-if="!token" @click="handleLogin">Accedi</button>
+        <button class="button profile" v-else @click="handleUserProfile">Profilo personale</button>
         <button class="button register" @click="handleRegister">Registrati</button>
       </div>
     </div>
@@ -23,6 +24,18 @@
     components: {
       MapWindow
     },
+    data(){
+      return{
+        token:'',
+        email:'',
+        clientUrl: import.meta.env.VITE_CLIENT_URL,
+        userIsLogged: false
+      }
+    },
+    mounted(){
+      this.token = localStorage.getItem('token');
+      this.email = localStorage.getItem('email');
+    },
     methods: {
       handleLogin() {
         // Navigazione alla pagina di login
@@ -31,6 +44,10 @@
       handleRegister() {
         // Navigazione alla pagina di registrazione
         this.$router.push('/register');
+      },
+      handleUserProfile() {
+        // Navigazione al profilo utente
+        this.$router.push('/UserProfile');
       }
     }
   }

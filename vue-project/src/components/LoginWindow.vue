@@ -2,27 +2,27 @@
 
 <template>
   <div class="body">
-  <div class="header">
-    <h1>Bentornato!</h1>
-    <div class="Button-Home">
-    <button class= "button Home" @click="goBack">Home</button>
+    <div class="header">
+      <h1>Bentornato!</h1>
+      <div class="Button-Home">
+      <button class= "button Home" @click="goBack">Home</button>
+      </div>
     </div>
-  </div>
-  <div class="login-window">
-    <h2>Inserire le credenziali</h2>
-    <form @submit.prevent="login">
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" required>
-      </div>
-      <button type="submit">Accedi</button>
-    </form>
-    <br><button type="back" @click="goBack">Indietro</button><button type="back" @click="Forgot">Password dimenticata</button>
-  </div>
+    <div class="login-window">
+      <h2>Inserire le credenziali</h2>
+      <form @submit.prevent="login">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" v-model="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" v-model="password" required>
+        </div>
+        <button type="submit">Accedi</button>
+      </form>
+      <br><button class="back" @click="goBack">Indietro</button><button type="back" @click="Forgot">Password dimenticata</button>
+    </div>
   </div>
 </template>
 
@@ -117,7 +117,7 @@ export default defineComponent({
     background-color: #00ff00;
     color: #000;
     padding: 10px 20px;
-    border: none;
+    border: 2px solid #000;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
@@ -155,7 +155,6 @@ export default defineComponent({
   }
 
   .header .Button-Home {
-    background-color: #00ff00;
     color: #000000;
     position: absolute;
     right: 20px;

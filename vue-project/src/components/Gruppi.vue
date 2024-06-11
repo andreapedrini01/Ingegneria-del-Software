@@ -6,9 +6,9 @@
       <div class="Button-Home">
       <button @click="goHome">Home</button>
       </div>
-    </div>
+  </div>
   <div class="gruppi-window">
-    <h1>Gruppi</h1>
+    <h1 style="color: white;">Gruppi</h1>
     <div v-for="gruppo in this.gruppi" :key="gruppo.id">
       <h2>{{ gruppo.nome }} <button @click="gestisci(gruppo)">Gestisci</button></h2>
     </div>
@@ -98,7 +98,7 @@ export default {
     background-color: #333;
     padding: 20px;
     border-radius: 5px;
-    width: 100%; /* Riduci la larghezza al 50% del contenitore padre */
+    width: 500px;
     margin: 0 auto; /* Centra orizzontalmente */
     display: block; /* Assicurati che l'elemento sia un blocco per applicare il margine e la larghezza */
   }
@@ -124,7 +124,7 @@ export default {
     background-color: #00ff00;
     color: #000;
     padding: 10px 20px;
-    border: none;
+    border: 2px solid #000;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
@@ -162,7 +162,6 @@ export default {
   }
 
   .header .Button-Home {
-    background-color: #00ff00;
     color: #000000;
     position: absolute;
     right: 20px;
