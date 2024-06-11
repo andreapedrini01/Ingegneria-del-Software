@@ -67,6 +67,10 @@ function rstPwd() {
             body: JSON.stringify( { userId: userId, token: token, password: password } ),
         })
         .then((resp) => resp.json())
+        .then(function(data) {
+            alert("La password è stata modificata con successo");
+            window.close();
+        })
     } catch (error) {
         console.error(error);
         return;
