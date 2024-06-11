@@ -78,4 +78,34 @@ describe('GET /api/v1/users/me', () => {
     expect(user).toBeDefined();
     expect(user.email).toBe('example@example.com');
   });
+
+  test('GET /api/v1/users should return list of users', async () => {
+    const response = await request(app).get('/api/v1/users');
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toBeDefined();
+    expect(response.body.length).toBeGreaterThan(0);
+  });
+});
+
+describe('POST /api/v1/users/register', () => {
+  beforeAll(async () => {
+    await mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true });
+    const User = require('./models/registeredUser');
+    userSpy = jest.spyOn(User, 'findOne').mockImplementation((criterias) => {
+      return {
+        email: 'example@example.com'
+      };
+    });
+  });
+
+  afterAll(() => {
+    userSpy.mockRestore();
+  });
+
+  test('POST /api/v1/users/register the field email has not be empty string should return 400', async () => {
+    const response = await request(app)
+      .post('/api/v1/users/register')
+      expect(response.statusCode).toBe(400);
+  });
+      
 });
