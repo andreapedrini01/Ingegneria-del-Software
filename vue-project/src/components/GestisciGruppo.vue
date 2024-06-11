@@ -74,27 +74,6 @@ export default {
                 console.error('Errore:', error);
             }
         },
-        async aggiungiPartecipante() {
-            //Aggiungi un partecipante al gruppo
-            try{
-                const response = await fetch(this.clientUrl +'/api/v1/groups/addparticipant', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.token}`, // Passa il token JWT nell'intestazione
-                    },
-                    body: JSON.stringify({
-                        token: this.token,
-                        groupId: this.idGruppo,
-                        participant: 'nuovo_partecipante',
-                    }),
-                });
-                const data = await response.json();
-                console.log(data);
-            } catch (error) {
-                console.error('Errore:', error);
-            }
-        },
         async rimuoviPartecipante() {
             //Rimuovi un partecipante dal gruppo
             try{
@@ -110,8 +89,6 @@ export default {
                         participant: this.partecipante,
                     }),
                 });
-                const data = await response.json();
-                console.log(data);
             } catch (error) {
                 console.error('Errore:', error);
             }

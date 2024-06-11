@@ -2,9 +2,9 @@
 <template>
     <div class="new-group-window">
       <h1 >Nuovo partecipante</h1>
-      <div class="form-group" v-for="(partecipante, index) in partecipanti" :key="index">
-        <label :for="'partecipante' + index">Partecipante</label>
-        <input :id="'partecipante' + index" v-model="partecipanti[index]" />
+      <div class="form-group">
+        <label for="partecipante">Partecipante</label>
+        <input id="partecipante" v-model="partecipante" />
       </div>
       <button type="submit" @click="submitForm">Invia</button>
     </div>
@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       nome: '',
-      partecipanti: [''],
+      partecipante: '',
       clientUrl: import.meta.env.VITE_CLIENT_URL,
     };
   },
@@ -48,7 +48,7 @@ export default {
             alert(data.error);
             } else {
             alert('Partecipante aggiunto con successo!');
-            this.$router.push('/Gruppi');
+            //this.$router.push('/Gruppi');
             }
         } catch (error) {
             alert('Errore durante l\'aggiunta del partecipante.');
