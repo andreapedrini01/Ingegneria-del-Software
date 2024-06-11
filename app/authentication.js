@@ -8,7 +8,6 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const sendEmail = require("../utils/sendEmail");
 const path = require("path");
-const tokenChecker = require('./tokenChecker.js');
 
 /**
  * @swagger
@@ -173,7 +172,7 @@ router.post('/requestPasswordReset', async function(req, res) {
   res.json({ link: link });
 });
 
-router.get('/passwordReset', tokenChecker, async function(req, res) {
+router.get('/passwordReset', async function(req, res) {
   res.sendFile(path.join(__dirname, '../static', 'passwordReset.html'));
 });
 
