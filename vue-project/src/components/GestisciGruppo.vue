@@ -39,6 +39,7 @@ export default {
             idGruppo: '',
             clientUrl: import.meta.env.VITE_CLIENT_URL,
             showNewUser: false,
+            userToDelete: '',
         };
     },
     mounted(){

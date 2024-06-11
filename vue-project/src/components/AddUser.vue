@@ -3,8 +3,8 @@
     <div class="new-group-window">
       <h1 >Nuovo partecipante</h1>
       <div class="form-group">
-        <label for="partecipante">Partecipante</label>
-        <input id="partecipante" v-model="partecipante" />
+        <label for="nome">Nuovo partecipante</label>
+        <input type="text" id="nome" v-model="nome" placeholder="Email del partecipante" />
       </div>
       <button type="submit" @click="submitForm">Invia</button>
     </div>
@@ -14,8 +14,10 @@
 export default {
   data() {
     return {
+      token: '',
       nome: '',
       partecipante: '',
+      idGruppo: '',
       clientUrl: import.meta.env.VITE_CLIENT_URL,
     };
   },
@@ -25,6 +27,7 @@ export default {
         this.$router.push('/login');
     }
     this.email = localStorage.getItem('email');
+    this.idGruppo = localStorage.getItem('idGruppo');
     //this.submitForm();
   },
   methods: {
@@ -39,8 +42,10 @@ export default {
             },
             body: JSON.stringify({
                 token: this.token,
-                nome: this.nome,
-                partecipanti: this.partecipanti,
+                email: this.nome,
+                groupId: this.idGruppo,
+                
+
             }),
             });
             const data = await response.json();
