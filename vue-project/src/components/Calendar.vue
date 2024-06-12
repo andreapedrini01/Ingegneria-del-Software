@@ -3,7 +3,7 @@
     <div class="header"></div>
       <h1>Calendario</h1>
     <div id="calendar"></div>
-    <button type="back" @click="goBack">Torna indietro</button>
+    <button type="back" class = "button" @click="goBack">Torna indietro</button>
   </div>
   
 </template>
@@ -41,7 +41,7 @@ export default {
         plugins: [ dayGridPlugin ], // Registra il plugin dayGrid
         initialView: 'dayGridMonth',
         events: function(fetchInfo, successCallback, failureCallback) {
-          fetch(this.clientUrl +'/api/v1/users/get-events', {
+          fetch('/api/v1/users/get-events', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

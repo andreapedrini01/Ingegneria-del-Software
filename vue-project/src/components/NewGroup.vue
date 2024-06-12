@@ -39,7 +39,7 @@ export default {
     async submitForm() {
       // Simuliamo la creazione del gruppo
       alert('Gruppo creato!');
-      console.log(this.nome, this.partecipanti);
+      //console.log(this.nome, this.partecipanti);
       try{
         const response = await fetch(this.clientUrl +'/api/v1/groups/setgroup', {
           method: 'POST',
@@ -59,7 +59,7 @@ export default {
         }
 
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         this.$router.push('/Gruppi');
       } catch (error) {
         console.error('Errore:', error);

@@ -66,7 +66,7 @@ export default {
         }
 
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         this.gruppi = data;
       } catch (error) {
         console.error('Errore durante il recupero dei gruppi:', error);
@@ -82,7 +82,7 @@ export default {
       //Salva l'id del gruppo in localstorage
       localStorage.removeItem('idGruppo');
       localStorage.setItem('idGruppo', gruppo._id);
-      console.log('idGruppo:', gruppo._id);
+      //console.log('idGruppo:', gruppo._id);
       // Mostra la finestra di gestione del gruppo con l'id specificato
       this.$router.push(`/gestisciGruppo`);
     },

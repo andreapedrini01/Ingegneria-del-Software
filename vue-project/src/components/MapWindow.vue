@@ -51,7 +51,7 @@ export default {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log(response);
+            //console.log(response);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -60,7 +60,8 @@ export default {
             const data = await response.json();
             //console.log(data);
             data.forEach((location) => {
-                L.marker([location.coordinates.longitudine, location.coordinates.latitudine]).addTo(this.map);
+              var marker = L.marker([location.coordinates.longitudine, location.coordinates.latitudine]).addTo(this.map);
+                marker.bindPopup(location.descrizione + '<br>' + location.indirizzo).openPopup();
             });
         } catch (error) {
             console.error('An error occurred while fetching data:', error);

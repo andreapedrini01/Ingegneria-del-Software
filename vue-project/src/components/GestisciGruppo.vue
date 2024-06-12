@@ -12,7 +12,7 @@
             <h2>Nome gruppo: {{ this.gruppo.nome }}</h2>
             <ul>
                 <li v-for="partecipante in this.gruppo.participants" :key="partecipante">
-                    {{ partecipante }} <button @click="rimuoviPartecipante">Rimuovi</button>
+                    {{ partecipante}} <button @click="rimuoviPartecipante(partecipante)">Rimuovi</button>
                 </li>
             </ul>
             <button type="addUser" @click="showNewUser = true">Aggiungi partecipante</button>
@@ -34,12 +34,13 @@ export default {
             gruppo: {
                 nome: '',
                 participants: [],
+                founder: '',
             },
             token: '',
             idGruppo: '',
             clientUrl: import.meta.env.VITE_CLIENT_URL,
             showNewUser: false,
-            userToDelete: '',
+            
         };
     },
     mounted(){
@@ -70,13 +71,14 @@ export default {
                 });
                 const data = await response.json();
                 this.gruppo = data;
-                console.log(data);
+                //console.log(data);
             } catch (error) {
                 console.error('Errore:', error);
             }
         },
-        async rimuoviPartecipante() {
+        async rimuoviPartecipante(partecipante) {
             //Rimuovi un partecipante dal gruppo
+            //console.log(this.gruppo.founder, partecipante, this.idGruppo);
             try{
                 const response = await fetch(this.clientUrl +'/api/v1/groups/removeparticipant', {
                     method: 'POST',
@@ -87,9 +89,13 @@ export default {
                     body: JSON.stringify({
                         token: this.token,
                         groupId: this.idGruppo,
-                        participant: this.partecipante,
+                        userId: partecipante,
+                        logged: this.gruppo.founder,
                     }),
                 });
+
+                const data = await response.json();
+                //console.log(data);
             } catch (error) {
                 console.error('Errore:', error);
             }
