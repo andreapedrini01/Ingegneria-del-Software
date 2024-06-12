@@ -64,14 +64,21 @@ export default defineComponent({
         }
 
         const data = await response.json();
+        console.log('Data:', data);
 
-        // Salviamo il token in localStorage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('email', data.email);
+        if(data.success === true) {
+          // Salviamo il token in localStorage
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('email', data.email);
 
-        // Navigiamo alla pagina /UserProfile
-        alert('Login successful!');
-        this.$router.push('/UserProfile');
+          // Navigiamo alla pagina /UserProfile
+          alert('Login successful!');
+          this.$router.push('/UserProfile');
+        }else{
+          throw new Error('Login failed');
+        }
+
+
       } catch (error) {
         console.error('Error:', error);
       }
