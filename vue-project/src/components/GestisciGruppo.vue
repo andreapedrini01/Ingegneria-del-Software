@@ -96,6 +96,7 @@ export default {
 
                 const data = await response.json();
                 //console.log(data);
+                window.location.reload();
             } catch (error) {
                 console.error('Errore:', error);
             }

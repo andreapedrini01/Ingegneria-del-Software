@@ -53,7 +53,7 @@ export default {
             alert(data.error);
             } else {
             alert('Partecipante aggiunto con successo!');
-            //this.$router.push('/Gruppi');
+            window.location.reload();
             }
         } catch (error) {
             alert('Errore durante l\'aggiunta del partecipante.');
