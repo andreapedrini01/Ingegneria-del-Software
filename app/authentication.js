@@ -61,19 +61,19 @@ const path = require("path");
  *                   type: string
  */
 router.post('', async function(req, res) {
+  try {
     let user = await RegisteredUser.findOne({ email: req.body.email }).exec()
     if (!user) {
-        res.json({ success: false, message: 'Authentication failed. User not found.' });
-        console.log('User not found');
-        throw new Error("Authentication failed. User not found.");
+        res.json({ success: false, message: 'Autenticazione fallita. Non esiste nessun utente con le email fornita.' });
+        throw new Error("Autenticazione fallita. Non esiste nessun utente con le email fornita.");
         return
     }
 
     //controlla se la password è corretta, facendo un check con quella criptata nel db
     const isValid = await bcrypt.compare(req.body.password, user.password);
     if (!isValid) {
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-        throw new Error("Authentication failed. Wrong password.");
+        res.json({ success: false, message: 'Autenticazione fallita. Password non corretta.' });
+        throw new Error("Autenticazione fallita. Password non corretta.");
         return
     }
     
@@ -112,6 +112,9 @@ router.post('', async function(req, res) {
         self: '/api/v1/' + user._id
     });
     console.log('Token created for user ' + user.username);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 /**

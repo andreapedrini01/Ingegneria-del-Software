@@ -72,10 +72,10 @@ export default defineComponent({
           localStorage.setItem('email', data.email);
 
           // Navigiamo alla pagina /UserProfile
-          alert('Login successful!');
+          alert('Accesso effettuato con successo!');
           this.$router.push('/UserProfile');
         }else{
-          throw new Error('Login failed');
+          alert(data.message);
         }
 
 

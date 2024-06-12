@@ -1,0 +1,690 @@
+<html><head><title>Deliverable Four - Gruppo #6</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body class="pdf en-US" lang="en-US"><article id="f4063056-2611-43c4-b63d-346544893089" class="page sans"><header><h1 class="page-title">Deliverable Four - Gruppo #6</h1><p class="page-description"></p></header><div class="page-body"><p id="d92f11a5-d8d9-4b3a-8fbe-d1ad446561f9" class="">Pedrini Andrea - 226607 - <a href="https://github.com/andreapedrini01">https://github.com/andreapedrini01</a></p><p id="dea9b91d-188b-4948-aa7e-859564cd6570" class="">Martinico Marco - 230509 - <a href="https://github.com/martinicomarco">https://github.com/martinicomarco</a></p><p id="1a23876c-d1be-4986-b5eb-4a47e1c7d164" class="">Santus Tommaso - 226666 - <a href="https://github.com/tommso00">https://github.com/tommso00</a></p><p id="18a72718-10b0-4c85-b2c7-a62de8feed7c" class="">
+</p><p id="4f4c097c-c88a-41dc-82e1-1b1accb14c5d" class="">Link API DOCUMENTATION: <a href="https://spazzatn.docs.apiary.io/">https://spazzatn.docs.apiary.io/</a></p><p id="08055336-7089-4662-b5b6-77f139b7e9d3" class="">
+</p><p id="1f8a0b74-0430-4483-b3f5-e3e8f407c669" class="">Link deployment: <a href="https://ingegneria-del-software-fsjj.onrender.com/">https://ingegneria-del-software-fsjj.onrender.com/</a> </p><p id="cb9fd121-e735-419d-bc25-2569a3dca2eb" class="">Account Utente: email: <a href="mailto:example@example.com">example@example.com</a> password:password1234</p><figure id="df58d74d-dfc7-4f56-8131-b4ed06bdbd39"><div class="source">https://github.com/andreapedrini01/Ingegneria-del-Software</div></figure><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Project Idea</summary><div class="indented"><p id="6c2c3d29-8b8c-4a6e-8e67-ab66e3630255" class="">l’applicazione ha lo scopo di ottimizzare la gestione dei rifiuti attraverso notifiche, calendari e mappe interattive per i centri di smaltimento. L&#x27;obiettivo finale è quello di promuovere una gestione dei rifiuti più responsabile e sostenibile tra gli utenti. L&#x27;applicazione dovrà essere accessibile sia su dispositivi mobili che su desktop e verrà integrata con vari servizi esterni, per offrire un servizio più completo e versatile agli utenti.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Branching Strategy</summary><div class="indented"><p id="33e887b6-2662-4467-8ae6-4e18827eac20" class="">Abbiamo deciso di riutilizzare la strategia di branching utilizzata per il primo sprint, tuttavia sono stati fatti anche merge tra il branch Marco ed il branch Tommaso per poter lavorare sulle stesse features.</p><figure id="8f9f0fdf-0b5c-45db-b1e4-24d9e43d0132" class="image"><img style="width:295px" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/c402b163-8ce8-422c-af85-6d2a51454014/6d3f5856-778d-4030-a16c-a125cf1a0496/Screenshot_2024-05-15_at_13-20-12_Telegram.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240612%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240612T082531Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=38c0f8cb6de13a17e7e1b4b83e08cfad844b86a49dc41e273f6e7d9974c2ec0f&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject"/></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Product Backlog</summary><div class="indented"><table id="e77b3f9f-9b62-4f88-afb0-34bed32779a7" class="simple-table"><thead class="simple-table-header"><tr id="a003f710-1f6a-4c0d-b54f-16216aaa47e2"><th id="q~&gt;~" class="simple-table-header-color simple-table-header">Id</th><th id="UkJk" class="simple-table-header-color simple-table-header">Nome</th><th id="]PFU" class="simple-table-header-color simple-table-header">User Story</th><th id="@BVa" class="simple-table-header-color simple-table-header">How to Demo</th><th id="Hx}D" class="simple-table-header-color simple-table-header">Importanza</th></tr></thead><tbody><tr id="88cd153f-bcfc-46c4-8aaa-1fa3f39e7f78"><td id="q~&gt;~" class="">1</td><td id="UkJk" class="">Registrazione</td><td id="]PFU" class="">Come utente anonimo voglio registrarmi per accedere a più funzionalità </td><td id="@BVa" class="">L’utente dovrà cliccare sulla voce “Registrati” e poi inserire una mail mai utilizzata nell’applicazione e una password che rispetti i criteri.</td><td id="Hx}D" class="">5</td></tr><tr id="953f16b5-9f58-4db2-8c5c-173fd5aba3e8"><td id="q~&gt;~" class="">2</td><td id="UkJk" class="">Log in</td><td id="]PFU" class="">Come utente, voglio essere in grado di accedere al mio account inserendo le mie credenziali in modo da accedere ai miei dati personali.</td><td id="@BVa" class="">Dopo aver inserito correttamente le credenziali, l&#x27;utente dovrebbe essere reindirizzato alla pagina principale del suo account.</td><td id="Hx}D" class="">10</td></tr><tr id="d4e7cf27-5a05-4595-b4e7-e7840d78fabe"><td id="q~&gt;~" class="">3</td><td id="UkJk" class="">Log out</td><td id="]PFU" class="">Come utente, voglio essere in grado di disconnettermi dal mio account in modo da proteggere i miei dati personali.</td><td id="@BVa" class="">Dopo aver selezionato l&#x27;opzione di disconnessione, l&#x27;utente dovrebbe essere reindirizzato alla pagina di accesso.</td><td id="Hx}D" class="">20</td></tr><tr id="2d6c0103-f830-4716-94bb-da15e217fa44"><td id="q~&gt;~" class="">4</td><td id="UkJk" class="">Recupero password</td><td id="]PFU" class="">Come utente, voglio recuperare la mia password perché non la ricordo più.</td><td id="@BVa" class="">Dalla pagina di login l’utente seleziona &quot;Password dimenticata&quot;.<br/>L’utente inserisce l&#x27;email.<br/>Una email viene inviata alla casella postale elettronica fornita e l’utente dovrà seguire il link e impostare una nuova password.<br/></td><td id="Hx}D" class="">30</td></tr><tr id="bf2fcc4b-ba77-4763-8d13-5d74493b2fc5"><td id="q~&gt;~" class="">5</td><td id="UkJk" class="">Modifica dati</td><td id="]PFU" class="">Come utente, voglio modificare la mia email e password associati al mio account</td><td id="@BVa" class="">Dalla pagina di profilo, l’utente seleziona &quot;Modifica email&quot; o &quot;Modifica password&quot;.<br/>Inserisce la nuova email o password desiderata.<br/>Conferma le modifiche seguendo le istruzioni visualizzate.<br/></td><td id="Hx}D" class="">40</td></tr><tr id="3dbd51a7-4921-4c43-8d3b-4b5a6a066508"><td id="q~&gt;~" class="">6</td><td id="UkJk" class="">Visualizzazione e personalizzazione calendari</td><td id="]PFU" class="">Come utente, voglio poter visualizzare i calendari di raccolta dei rifiuti e personalizzarli secondo le mie preferenze.</td><td id="@BVa" class="">L’utente accede all&#x27;applicazione e va alla sezione &quot;Calendario di Raccolta&quot;.<br/>Seleziona la sua area geografica e<br/>personalizza le preferenze di visualizzazione e salva le modifiche.<br/></td><td id="Hx}D" class="">60</td></tr><tr id="d7823493-4acf-4caf-9988-8ef739c70261"><td id="q~&gt;~" class="">7</td><td id="UkJk" class="">Gruppi</td><td id="]PFU" class="">Come utente, voglio poter creare e gestire gruppi all&#x27;interno dell&#x27;app per condividere informazioni sullo stato dei rifiuti.</td><td id="@BVa" class="">L’utente accede all&#x27;applicazione e va alla sezione &quot;Gruppi&quot;.<br/>Seleziona &quot;Crea nuovo gruppo&quot; e inserisci i dettagli.<br/>Invita membri e inizia a condividere informazioni.<br/></td><td id="Hx}D" class="">70</td></tr><tr id="54167b35-7fd9-4efa-b59e-4aac5ece8ffa"><td id="q~&gt;~" class="">8</td><td id="UkJk" class="">visualizzazione mappa interattiva</td><td id="]PFU" class="">Come utente, voglio poter visualizzare una mappa interattiva dove poter visualizzare la posizione dei centri di raccolta</td><td id="@BVa" class="">L’utente accede all’applicazione ed accede alla sezione mappa. Seleziona un centro di raccolta dalla mappa interattiva e ne visualizza le informazioni</td><td id="Hx}D" class="">75</td></tr><tr id="9ae8fc65-3548-4ef0-8d25-93712c860770"><td id="q~&gt;~" class="">9</td><td id="UkJk" class="">Ricerca centri di smaltimento</td><td id="]PFU" class="">Come utente, voglio poter vedere la mia posizione sulla mappa interattiva e trovare facilmente centri di smaltimento vicini.</td><td id="@BVa" class="">L’utente va alla sezione &quot;Mappa&quot; e<br/>abilita la geolocalizzazione.<br/>Trova i centri vicini e cliccando su ognuno di essi vengono mostrate le informazioni aggiuntive.<br/></td><td id="Hx}D" class="">80</td></tr><tr id="fa3abf79-fc79-468e-baaa-bc83ae89b175"><td id="q~&gt;~" class="">10</td><td id="UkJk" class="">Notifiche personalizzate</td><td id="]PFU" class="">Come utente, voglio ricevere notifiche e promemoria riguardanti la raccolta dei rifiuti per non perdermi mai un giorno di raccolta importante per me.</td><td id="@BVa" class="">L’utente accede all&#x27;applicazione e va alle impostazioni, attiva le notifiche per i giorni di raccolta e imposta gli orari e le preferenze di notifica. Infine, salva le impostazioni.</td><td id="Hx}D" class="">50</td></tr><tr id="ba43b1fe-25a2-4f02-95d6-04fad24b2658"><td id="q~&gt;~" class="">11</td><td id="UkJk" class="">Assegnazione punti</td><td id="]PFU" class="">Come utente, voglio essere premiato con punti per le azioni intraprese per migliorare la gestione dei rifiuti nella mia casa.</td><td id="@BVa" class="">L’utente verrà premiato ogni volta che svuoterà i rifiuti e lo farà sapere agli altri membri del gruppo modificando lo stato dei rifiuti nella sezione dedicata. Infine potrà visualizzare una classifica nella sezione “Classifica” dell’applicazione</td><td id="Hx}D" class="">90</td></tr><tr id="87e0e97e-c31b-4d00-87d2-0713ee63a1aa"><td id="q~&gt;~" class="">12</td><td id="UkJk" class="">Registrazione utente verificato</td><td id="]PFU" class="">Come utente anonimo voglio registrarmi come utente verificato per inserire il mio centro di smaltimento rifiuti nell’elenco dei centri</td><td id="@BVa" class="">L’utente compila il form di registrazione e lo invia. Successivamente, un tecnico verificherà le informazioni fornite e in caso di esito positivo provvederà all’inserimento dei dati nel database</td><td id="Hx}D" class="">100</td></tr><tr id="14a9fd56-7887-479f-9708-5489ef03841a"><td id="q~&gt;~" class="">13</td><td id="UkJk" class="">Servizi esterni</td><td id="]PFU" class="">Come utente, voglio poter integrare l&#x27;applicazione con servizi esterni, come Dolomiti Ambiente, per visualizzare le spese correlate alla gestione dei rifiuti.</td><td id="@BVa" class="">L’utente accede alla zona “Dolomiti Ambiente” in cui verrà reindirizzato ad una pagina di accesso per collegare i propri account. Successivamente, potrà visualizzarne le informazione direttamente in applicazione</td><td id="Hx}D" class="">110</td></tr><tr id="e09bfd9e-b8d9-434c-8fa7-8f5d8f6729ee"><td id="q~&gt;~" class="">14</td><td id="UkJk" class="">Applicazione mobile</td><td id="]PFU" class="">Come utente, voglio poter utilizzare l&#x27;applicazione sia su dispositivi mobili che su desktop per accedere alle funzionalità ovunque mi trovi.</td><td id="@BVa" class="">L’applicazione potrà essere scaricata dagli store dedicati.</td><td id="Hx}D" class="">120</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Definition of Done</summary><div class="indented"><p id="59bb1b39-9d53-4a05-b96d-5d21b288ca96" class="">La Definition of Done per il nostro Sprint #2 implica che tutte le funzionalità previste per questo sprint siano state realizzate e testate. In particolare, il codice deve essere stato scritto secondo le linee guida di codifica concordate, è stato revisionato da almeno un altro membro del team, tutti i bug rilevati sono stati risolti, e tutte le funzioni implementate sono state testate e confermate per funzionare come previsto. Infine, il codice funzionante è stato integrato nel branch principale della repository, mantenendo la sua stabilità e funzionalità.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Goal Sprint #2 </summary><div class="indented"><p id="34a5dbd3-f2af-4232-8e98-fe40984f13c9" class="">L&#x27;obiettivo principale dello sprint #2 è implementare le funzionalità di logout, modifica delle informazioni degli utenti registrati, creazione di un area personale per gli utenti registrati, sistema di calendario e gestione di eventi, gestione dei gruppi, sistema di gestione notifiche e la creazione di una mappa interattiva per visualizzare i crm. Queste funzioni dovranno essere integrate attraverso la produzione di API e l’implementazione di una interfaccia grafica vue. Infine l’obbiettivo dello sprint #2 sarà quello di eseguire il deploy dell’applicazione su render.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Sprint Planning</summary><div class="indented"><div id="9cdb573e-fd8c-45f1-8ab8-883aa92bad4a" class="column-list"><div id="948a4344-7073-46ac-9000-2af6daaf3df7" style="width:43.75%" class="column"><table id="d13e3e5f-a80c-4bfb-8f07-5693a937feed" class="simple-table"><thead class="simple-table-header"><tr id="89d62397-19dc-4870-819f-803e0b53a431"><th id="RL\b" class="simple-table-header-color simple-table-header" style="width:110.5px">Nome</th><th id="yjuw" class="simple-table-header-color simple-table-header" style="width:124.5px">User story</th></tr></thead><tbody><tr id="62182a2c-3a6c-408b-b5f3-e198f59741ef"><td id="RL\b" class="" style="width:110.5px">Log out</td><td id="yjuw" class="" style="width:124.5px">Come utente, voglio essere in grado di disconnettermi dal mio account in modo da proteggere i miei dati personali.</td></tr></tbody></table><p id="faf0f98b-2e35-4307-adb2-e8a14bc18b04" class="">
+</p></div><div id="ccf07bec-0734-4d64-a476-28a5e32bf9c3" style="width:56.25%" class="column"><table id="85d9e55f-8230-4545-b208-6845da1fdaae" class="simple-table"><thead class="simple-table-header"><tr id="bfa04562-3c10-47f5-9242-e4d4cb54d1db"><th id="Ipva" class="simple-table-header-color simple-table-header" style="width:113px">Obiettivi</th><th id="sMxW" class="simple-table-header-color simple-table-header" style="width:137px">Utente</th><th id="n&lt;;J" class="simple-table-header-color simple-table-header" style="width:70px">Sforzo stimato</th></tr></thead><tbody><tr id="f4b652ee-c098-4def-a604-a4439ab74c20"><td id="Ipva" class="" style="width:113px">Progettazione e implementazione DB.</td><td id="sMxW" class="" style="width:137px">martinicomarco -andreapedrini01</td><td id="n&lt;;J" class="" style="width:70px">2</td></tr><tr id="612296cb-c8e8-4f06-b9b1-9d90510cd8c7"><td id="Ipva" class="" style="width:113px">Interfaccia utente</td><td id="sMxW" class="" style="width:137px">tommso00</td><td id="n&lt;;J" class="" style="width:70px">2</td></tr><tr id="1abb1761-c17c-4be4-aea5-c8f8fc4f2ce5"><td id="Ipva" class="" style="width:113px">Testing</td><td id="sMxW" class="" style="width:137px">martinicomarco - andreapedrini01-tommso00</td><td id="n&lt;;J" class="" style="width:70px">1</td></tr></tbody></table></div></div><div id="439a95d6-08ce-4c02-a15f-322b11a66a82" class="column-list"><div id="e8a0a4ce-b4aa-4fb1-8d98-38070ff1e103" style="width:43.75%" class="column"><table id="c1f52f9a-828b-4d2e-9ca3-e99fe0b5cff3" class="simple-table"><thead class="simple-table-header"><tr id="9d381900-73b2-4343-84ca-4abd30ade72f"><th id="d}yh" class="simple-table-header-color simple-table-header">Nome</th><th id="AQZ&lt;" class="simple-table-header-color simple-table-header" style="width:120.20000457763672px">User story</th></tr></thead><tbody><tr id="23dc2161-3aea-479d-b88e-dba6260987a4"><td id="d}yh" class="">Recupero password</td><td id="AQZ&lt;" class="" style="width:120.20000457763672px">Come utente, voglio recuperare la mia password perché non la ricordo più.</td></tr></tbody></table><p id="dce18616-6f88-4669-8eba-7ce49741865a" class="">
+</p></div><div id="cee2a7e3-ce93-495a-92a9-9197432e457b" style="width:56.25%" class="column"><table id="756c1c0a-2381-456f-aa4d-a4734936ad00" class="simple-table"><thead class="simple-table-header"><tr id="86657475-afb5-4b0c-95da-9858a8864600"><th id=";wQr" class="simple-table-header-color simple-table-header" style="width:125px">Obiettivi</th><th id="|?di" class="simple-table-header-color simple-table-header">Utente</th><th id="&lt;&gt;;C" class="simple-table-header-color simple-table-header" style="width:68px">Sforzo stimato</th></tr></thead><tbody><tr id="70fa30c4-8ae6-4158-8623-819061ce70ec"><td id=";wQr" class="" style="width:125px">Interfaccia utente</td><td id="|?di" class="">andreapedrini01 tommso00</td><td id="&lt;&gt;;C" class="" style="width:68px">2</td></tr><tr id="1835da23-a8e3-4676-b559-419b0e1dc95e"><td id=";wQr" class="" style="width:125px">implementazione mailing</td><td id="|?di" class="">andreapedrini01</td><td id="&lt;&gt;;C" class="" style="width:68px">3</td></tr><tr id="707d9e30-6a1f-4624-be0a-5cab9da43cec"><td id=";wQr" class="" style="width:125px">Testing</td><td id="|?di" class="">andreapedrini01</td><td id="&lt;&gt;;C" class="" style="width:68px">1</td></tr></tbody></table><p id="3926e3f1-1686-4ef7-9704-204c03112417" class="">
+</p></div></div><div id="a7b89a8b-71ef-4ee8-b1a1-423d4ffc3ef8" class="column-list"><div id="a90459d5-9eb4-436e-8ba7-9d7886c94c68" style="width:43.75%" class="column"><table id="947994fa-49db-4199-92bd-ec2fc1a46ab0" class="simple-table"><thead class="simple-table-header"><tr id="f06754cc-bdc9-4cc9-a6de-222ce363e4f8"><th id="u~M]" class="simple-table-header-color simple-table-header">Nome</th><th id="gmfy" class="simple-table-header-color simple-table-header">User story</th></tr></thead><tbody><tr id="811b73ca-c245-409b-941b-7515a24460eb"><td id="u~M]" class="">Gruppi</td><td id="gmfy" class="">Come utente, voglio poter creare e gestire gruppi all&#x27;interno dell&#x27;app per condividere informazioni sullo stato dei rifiuti.</td></tr></tbody></table><p id="b6a87513-2743-4a32-b886-a3ae8e536509" class="">
+</p></div><div id="a6b24fbf-e709-4105-b5f2-e6437063eae3" style="width:56.25%" class="column"><table id="18af4e72-a260-4d8d-959c-d7e8cf81d247" class="simple-table"><thead class="simple-table-header"><tr id="1d3e59eb-7d66-4085-962f-aec5516f3b6e"><th id="K`RW" class="simple-table-header-color simple-table-header" style="width:127px">Obiettivi</th><th id="h`y^" class="simple-table-header-color simple-table-header">Utente</th><th id="Wr?O" class="simple-table-header-color simple-table-header" style="width:67px">Sforzo stimato</th></tr></thead><tbody><tr id="382f27a0-099e-4c80-8124-5fdcd7fec6ee"><td id="K`RW" class="" style="width:127px">Implementazione DB</td><td id="h`y^" class="">martinicomarco</td><td id="Wr?O" class="" style="width:67px">2</td></tr><tr id="153fd042-06f4-49bd-87b3-4f2025018212"><td id="K`RW" class="" style="width:127px">Interfaccia utente</td><td id="h`y^" class="">tommso00</td><td id="Wr?O" class="" style="width:67px">4</td></tr><tr id="6ea18614-20d1-44e1-876b-e7b1f3f6935f"><td id="K`RW" class="" style="width:127px">creazione e documentazione API</td><td id="h`y^" class="">martinicomarco</td><td id="Wr?O" class="" style="width:67px">4</td></tr><tr id="6f946b76-e798-46b5-8d57-0b1bc847743e"><td id="K`RW" class="" style="width:127px">implementazione sistema di notifiche</td><td id="h`y^" class="">\</td><td id="Wr?O" class="" style="width:67px">2</td></tr><tr id="d6433859-71d0-4c70-a331-ef57333c7190"><td id="K`RW" class="" style="width:127px">Testing</td><td id="h`y^" class="">tommso00 martinicomarco</td><td id="Wr?O" class="" style="width:67px">1</td></tr></tbody></table><p id="60af92f7-aff3-4ac7-b8b1-f21e05083254" class="">
+</p></div></div><div id="a9939caf-2a6d-44cd-9508-52dd9d1a3dda" class="column-list"><div id="0957a8d4-fc2c-4297-ae6d-cbc81c375eae" style="width:43.75%" class="column"><table id="2710e0b7-5041-4a7b-bf42-95468c51d659" class="simple-table"><tbody><tr id="5facccf5-98a2-46c8-9bd5-5d83e2b05522"><td id="fpiJ" class="">Nome</td><td id="xgaD" class="" style="width:119px">User story</td></tr><tr id="4e8dc918-bc42-494f-9835-6405c21fb5fa"><td id="fpiJ" class="">Visualizzazione e personalizzazione calendari</td><td id="xgaD" class="" style="width:119px">Come utente, voglio poter visualizzare i calendari di raccolta dei rifiuti e personalizzarli secondo le mie preferenze.</td></tr></tbody></table><p id="42673dcf-919f-4071-a0cb-342880f70bcb" class="">
+</p></div><div id="c0a13d64-ba0c-4b95-9db6-fafc3074abe8" style="width:56.25%" class="column"><table id="a585971b-420c-489e-b464-15e53fd2eec2" class="simple-table"><tbody><tr id="a2a92d8e-73c3-4860-9938-4d1919d3aadb"><td id="`n;\" class="" style="width:128px">Obiettivi</td><td id="thyx" class="">Utente</td><td id="aN]:" class="" style="width:66px">Sforzo stimato</td></tr><tr id="4d4aeb3a-8edc-43ae-8e0d-2c624139be27"><td id="`n;\" class="" style="width:128px">Implementazione DB</td><td id="thyx" class="">martinicomarco andreapedrini01</td><td id="aN]:" class="" style="width:66px">2</td></tr><tr id="35d186a7-7409-4b94-a35f-cbcdde5d46ad"><td id="`n;\" class="" style="width:128px">creazione e documentazione API</td><td id="thyx" class="">martinicomarco andreapedrini01</td><td id="aN]:" class="" style="width:66px">4</td></tr><tr id="d06c57b9-67ca-44c4-969d-69303c4974b8"><td id="`n;\" class="" style="width:128px">Interfaccia invio notifiche</td><td id="thyx" class="">\</td><td id="aN]:" class="" style="width:66px">3</td></tr><tr id="e54ba0cc-41c9-4cee-8a9c-35c59118f6fa"><td id="`n;\" class="" style="width:128px">Interfaccia utente</td><td id="thyx" class="">tommso00 andreapedrini01</td><td id="aN]:" class="" style="width:66px">2</td></tr><tr id="622ff148-a3c7-4f5e-ad4d-d62242f67e77"><td id="`n;\" class="" style="width:128px">Testing</td><td id="thyx" class="">martinicomarco andreapedrini01</td><td id="aN]:" class="" style="width:66px">2</td></tr></tbody></table></div></div><div id="8007b391-bf48-4347-b319-b94034f3b554" class="column-list"><div id="de7a69c1-aa1a-452b-aea1-0de45ffdccc0" style="width:43.75%" class="column"><table id="b021c3a3-024b-4615-8852-4a545c1a1b87" class="simple-table"><tbody><tr id="e0bed58c-1356-434b-8421-be0b2285324e"><td id="fpiJ" class="">Nome</td><td id="xgaD" class="" style="width:119px">User story</td></tr><tr id="94034fab-53ca-4f63-a7d5-aa09914d5200"><td id="fpiJ" class="">visualizzazione mappa interattiva</td><td id="xgaD" class="" style="width:119px">Come utente, voglio poter visualizzare una mappa interattiva dove poter visualizzare la posizione dei centri di raccolta</td></tr></tbody></table><p id="784afce7-d7d9-4350-aef7-30c63a27857c" class="">
+</p></div><div id="df913187-498e-4f7f-bead-0de63170539b" style="width:56.25%" class="column"><table id="fe27c7c7-fe69-4a05-a511-74722a673e99" class="simple-table"><tbody><tr id="fd972a96-b829-495d-b049-979bc002f988"><td id="`n;\" class="" style="width:128px">Obiettivi</td><td id="thyx" class="">Utente</td><td id="aN]:" class="" style="width:66px">Sforzo stimato</td></tr><tr id="8c3ed412-e7d3-4b3f-8403-4a29ecd61ffd"><td id="`n;\" class="" style="width:128px">Implementazione DB</td><td id="thyx" class="">martinicomarco</td><td id="aN]:" class="" style="width:66px">3</td></tr><tr id="3ef837ec-8de0-41ee-9e10-afbae7cfb6f9"><td id="`n;\" class="" style="width:128px">creazone e documentazione API</td><td id="thyx" class="">martinicomarco</td><td id="aN]:" class="" style="width:66px">3</td></tr><tr id="5125bfb6-38f2-41ed-b83b-8aadef43b2c6"><td id="`n;\" class="" style="width:128px">Interfaccia utente</td><td id="thyx" class="">tommso00 martinicomarco</td><td id="aN]:" class="" style="width:66px">3</td></tr><tr id="de1dce46-d32c-4605-808c-c46fec552205"><td id="`n;\" class="" style="width:128px">Testing</td><td id="thyx" class="">tommso00 martinicomarco</td><td id="aN]:" class="" style="width:66px">1</td></tr></tbody></table></div></div><div id="c66b9a1f-d58c-40bf-9923-4eec3026bf83" class="column-list"><div id="a76a5f64-1e6f-4500-916a-6d31f1b10a29" style="width:43.75%" class="column"><table id="07b64afc-8e56-4568-81a5-a6dd04a77f68" class="simple-table"><tbody><tr id="40872077-0e83-43a6-9f07-686fef329d47"><td id="fpiJ" class="">Nome</td><td id="xgaD" class="" style="width:119px">User story</td></tr><tr id="ecc82474-635e-4f47-b766-2528d148bab7"><td id="fpiJ" class="">Deploy</td><td id="xgaD" class="" style="width:119px"></td></tr></tbody></table><p id="453644d6-1fa5-4703-833b-39689b904f2c" class="">
+</p></div><div id="cacc505e-a60c-4bd5-bfb2-b120b5d6f4fc" style="width:56.25%" class="column"><table id="7bfe47ce-6d8a-435c-a594-d3959f0c491a" class="simple-table"><tbody><tr id="fdff1215-09b9-4628-9959-311967ee8493"><td id="`n;\" class="" style="width:128px">Obiettivi</td><td id="thyx" class="">Utente</td><td id="aN]:" class="" style="width:66px">Sforzo stimato</td></tr><tr id="98094c75-920c-4a77-b82e-cb4d042f1394"><td id="`n;\" class="" style="width:128px">Deploy e modifica codice per funzionare su Render</td><td id="thyx" class="">andreapedrini01tommso00</td><td id="aN]:" class="" style="width:66px">6</td></tr></tbody></table></div></div></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Test Cases</summary><div class="indented"><figure id="adbafb48-9395-43d8-bbcf-e7973dda122f" class="image"><img style="width:680px" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/c402b163-8ce8-422c-af85-6d2a51454014/0491cc00-0ef3-4b8a-b5c0-db83ef9d4a48/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240612%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240612T082531Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=41c849440ef73dc2fc6cfa1975aa8496b495399593cd8b41b4cb5561507b7510&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject"/></figure><figure id="6e92d703-24d6-4ef3-83c0-1cafccb8a56f" class="image"><img style="width:747px" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/c402b163-8ce8-422c-af85-6d2a51454014/c9e68815-85de-4f89-b311-124ca38b807c/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240612%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240612T082531Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=9b52d11f4499e46e4d78fac70a626d799d58a8e9c18839389d3a8e72d94117be&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject"/></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Sprint Review</summary><div class="indented"><p id="4086035d-b5c6-4f30-8510-620cdb3e94a0" class="">Durante questo sprint, il team si è concentrato sull&#x27;implementazione di diverse funzionalità chiave, tra cui il logout, la modifica delle informazioni, la creazione di un&#x27;area personale per gli utenti autenticati, il sistema di calendario per la gestione delle attività, la gestione dei gruppi e il sistema di notifiche. Siamo soddisfatti del lavoro svolto, in quanto abbiamo raggiunto significativi progressi nello sviluppo del backend e nell&#x27;integrazione delle nuove funzionalità.</p><p id="16404573-8505-41f1-8d0f-0e9eaa0e35eb" class="">Abbiamo implementato con successo le funzionalità di logout e modifica delle informazioni. Gli utenti possono ora uscire dall&#x27;applicazione in modo sicuro e aggiornare la propria password. Inoltre, abbiamo creato un&#x27;area personale per gli utenti autenticati, dove possono gestire le loro informazioni e accedere rapidamente alle funzionalità chiave.<br/>Abbiamo fatto significativi progressi anche nella creazione e gestione dei gruppi. Gli utenti possono ora creare gruppi, unirsi a gruppi esistenti e visualizzare i gruppi a cui sono iscritti. Inoltre abbiamo creato una mappa interattiva accessibile anche da utenti non registrati.<br/></p><p id="c4d7bc65-c937-4c1f-b057-d83aa07c3722" class="">Tuttavia, nonostante i successi, non siamo riusciti a raffinare ed implementare tutte le funzionalità che ci eravamo prefissati nel goal. Alcuni dettagli del sistema di notifiche e la completa integrazione del calendario richiedono ancora un ulteriore lavoro. Continueremo a perfezionare queste funzionalità nei prossimi sprint per garantire un&#x27;esperienza utente ottimale.</p><p id="e7a32f15-1396-4615-bea8-c87e552fe982" class="">In conclusione, siamo molto soddisfatti dei progressi fatti in questo sprint. Il team ha lavorato diligentemente e ha compiuto notevoli passi avanti nel miglioramento dell&#x27;applicazione. Guardiamo con fiducia ai prossimi sprint per completare le funzionalità rimanenti e continuare a migliorare l&#x27;esperienza utente complessiva.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Product backlog Refinement</summary><div class="indented"><p id="5d3cd90c-92fd-47a1-8cd8-8f78a42b1509" class="">Durante la sessione di refinement del Product Backlog, dopo aver valutato le esigenze del progetto abbiamo definito nuove priorità da integrare in futuro</p><p id="04d9a4f7-8ab9-4e38-b907-05a8e895563b" class="">Queste includono:</p><ul id="cd170a21-0301-4d8a-aac1-83ce7da79551" class="bulleted-list"><li style="list-style-type:disc">Implementazione delle funzionalità di notifica per i gruppi e per il calendario</li></ul><ul id="36d1604e-6f87-465c-9059-58da36c19ed2" class="bulleted-list"><li style="list-style-type:disc">miglioramento dell’interfaccia del calendario e personalizzazione eventi</li></ul><ul id="7655aea1-00d6-49f7-97e7-8ffb2adb0f57" class="bulleted-list"><li style="list-style-type:disc">Implementazione di una chat di gruppo e un sistema di punti per i gruppi</li></ul><ul id="49e6081c-0929-4e7d-b6e0-cb655e9a5c33" class="bulleted-list"><li style="list-style-type:disc">miglioramento delle funzioni del calendario (ricerca crm specifico e crm vicino)</li></ul><p id="a60d4c53-0996-4d96-b546-8fc6aab6ac5c" class="">
+</p><p id="691f1d39-8224-467d-8b31-bdb120bd5174" class="">Per garantire una gestione efficace del backlog e un&#x27;implementazione efficiente delle nuove funzionalità, adotteremo un approccio iterativo e collaborativo. Ogni sprint sarà dedicato a soddisfare un insieme specifico di requisiti, con un focus particolare sulle funzionalità di maggior valore per gli utenti e per il successo complessivo del progetto.</p><p id="e5155fc7-8078-4eab-b368-6a6a5f4a31d7" class="">Con l&#x27;aggiunta delle nuove priorità al backlog, miriamo a migliorare significativamente l&#x27;utilità e l&#x27;attrattiva dell&#x27;applicazione di gestione dei rifiuti. Continueremo a lavorare in stretta collaborazione per garantire una pianificazione efficace e una realizzazione tempestiva delle funzionalità pianificate.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Sprint Retrospective</summary><div class="indented"><p id="b525f67e-3583-4496-b001-d3cd9df319bc" class=""><strong>Riassunto del Meeting:</strong></p><p id="ed8ef5af-84e6-48a4-bf51-073245434245" class="">Durante lo Sprint 2, abbiamo riflettuto sui successi e le sfide affrontate. Il team ha mostrato grande impegno e competenza tecnica, portando avanti il progetto con determinazione. Abbiamo raggiunto traguardi significativi, ma ci sono anche aree che richiedono miglioramenti.</p><p id="ebe34e50-0cbc-4189-858b-c975ae0a3828" class=""><strong>Aspetti Positivi:</strong><br/>Il team ha dimostrato un alto livello di impegno e competenza tecnica, affrontando con successo le sfide proposte dallo sprint. La collaborazione è stata un punto di forza, con i membri del team che hanno lavorato insieme in modo efficace per raggiungere gli obiettivi dello sprint. I traguardi raggiunti hanno contribuito in modo concreto all&#x27;avanzamento del progetto.<br/></p><p id="10764d07-4ec1-4181-8619-c6c6eda9e603" class=""><strong>Aspetti Critici:</strong><br/>La nostra branching strategy originale ha mostrato delle criticità che rendevano difficile lavorare contemporaneamente sulle stesse funzionalità in assenza di Andrea. Inoltre, abbiamo riscontrato alcuni problemi minori nella comunicazione interna, specialmente nello spiegare parti specifiche del codice, il che ha causato ritardi e fraintendimenti.<br/></p><p id="20f37efa-a6dd-4921-bc1d-80906a7007f6" class=""><strong>Adozione di Pratiche Agile e Design Thinking:</strong></p><p id="c51e4e98-cc43-468d-91dd-4dfa9cbafe40" class="">Abbiamo continuato ad adottare pratiche Agile e principi di Design Thinking per migliorare la nostra efficienza e innovazione. Questo approccio ha facilitato la gestione delle task e la risoluzione dei problemi, ma ci sono ancora margini di miglioramento per quanto riguarda l&#x27;integrazione di queste metodologie nel nostro flusso di lavoro quotidiano.</p><p id="426e13fd-e77e-42e6-a6b2-5da0cca8c019" class=""><strong>Dinamiche di Gruppo:</strong><br/>Le dinamiche di gruppo sono state generalmente positive, con un forte spirito di collaborazione e supporto reciproco. Tuttavia, abbiamo riscontrato alcuni problemi minori legati alla comunicazione e al trasferimento delle conoscenze tecniche. Questi problemi hanno evidenziato la necessità di migliorare la nostra capacità di spiegare concetti complessi e di garantire che tutti i membri del team siano allineati sugli obiettivi e sulle metodologie utilizzate.<br/></p><p id="0cfc1028-f883-45e1-9c18-cb278034a4ca" class=""><strong>Conclusione:</strong><br/>In conclusione, lo Sprint 2 ha evidenziato sia i nostri punti di forza che le aree in cui possiamo migliorare. Nonostante questo sia stato lo sprint finale del progetto, è utile considerare le lezioni apprese per progetti futuri. Continueremo a lavorare sulla nostra branching strategy e sulla comunicazione interna per garantire una maggiore efficienza e coesione del team. Siamo fiduciosi che, con le giuste modifiche, potremo affrontare con successo le sfide future e raggiungere i nostri obiettivi con ancora maggiore efficacia. Anche se questo sprint segna la conclusione del progetto attuale, le esperienze e le conoscenze acquisite saranno preziose per i nostri prossimi progetti.<br/></p><p id="30e79a14-d377-44b9-be16-05ad3c9578e6" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Diagramma Deploy</summary><div class="indented"><figure id="af767dba-d6ed-48ff-a167-bc9b4929f595" class="image"><img style="width:680px" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/c402b163-8ce8-422c-af85-6d2a51454014/d1706a60-a330-4835-b6f5-69aa16e89457/Diagramma_senza_titolo.drawio.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240612%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20240612T082531Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=043f3336fcff13ba6e13ca6cdef46dc05a197b7c9a0c4a65061ed7f833aabf0e&amp;X-Amz-SignedHeaders=host&amp;x-id=GetObject"/></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Stack tecnologico</summary><div class="indented"><p id="c1604019-0536-4530-8270-80d27a6d21c9" class="">Lo stack tecnologico che abbiamo deciso di utilizzare è lo stack MEVN. Questo stack è simile al più noto stack MEAN (che utilizza Angular invece di Vue.js). Ecco una panoramica dei componenti di questo stack:</p><ol type="1" id="82b85ad3-d761-4619-a7f2-2463a73ec67d" class="numbered-list" start="1"><li><strong>MongoDB</strong>: Un database NoSQL orientato ai documenti che memorizza i dati in formato JSON-like (BSON). È scelto per la sua flessibilità e scalabilità, ideale per applicazioni che richiedono rapidi cambiamenti e gestione di grandi volumi di dati.</li></ol><ol type="1" id="ff9b36f4-bc8f-4802-935d-2594591e6e4a" class="numbered-list" start="2"><li><strong>Express.js</strong>: Un framework per Node.js che facilita la creazione di applicazioni web e API. È minimalista e flessibile, consentendo di creare rapidamente server e gestire le richieste HTTP.</li></ol><ol type="1" id="f04ea740-50a9-4b35-838e-6b1f833c5e41" class="numbered-list" start="3"><li><strong>Vue.js</strong>: Un framework JavaScript progressivo per la creazione di interfacce utente. È noto per la sua facilità di integrazione e per essere leggero, reattivo e facile da apprendere.</li></ol><ol type="1" id="bc2ea2c8-7761-4db3-a0a5-ef407c6bab79" class="numbered-list" start="4"><li><strong>Node.js</strong>: Un ambiente di runtime JavaScript lato server. Utilizza il motore V8 di Chrome e consente di eseguire JavaScript sul server, offrendo una piattaforma per costruire applicazioni di rete veloci e scalabili.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Conclusioni</summary><div class="indented"><p id="e80a7695-921d-4c91-ad56-c615beec8edb" class="">Questa esperienza di sviluppo di un&#x27;applicazione web è stata la nostra prima avventura nel campo del web development. Grazie a questo corso, abbiamo avuto l&#x27;opportunità di utilizzare e familiarizzare con strumenti potenti come VUE, Express.js e Node.js. Questi strumenti ci hanno permesso di creare un&#x27;applicazione funzionale e complessa, affrontando e superando molte sfide tecniche.</p><p id="f6908b93-4585-4b98-b571-c778efa75b0c" class="">Durante il progetto, abbiamo imparato molto sia dal punto di vista tecnico che organizzativo. L&#x27;adozione di pratiche agile ci ha aiutato a gestire meglio il lavoro, mentre l&#x27;approccio di design thinking ci ha permesso di mantenere l&#x27;utente al centro delle nostre decisioni di sviluppo. Anche se ci sono certamente margini di miglioramento, soprattutto nella gestione del codice e nella comunicazione interna, siamo generalmente soddisfatti del nostro lavoro.</p><p id="b580f0a2-a25e-4e30-82ae-ec6cd91552f3" class="">Considerando il tempo a nostra disposizione e il livello di esperienza iniziale, i progressi fatti sono notevoli. Questa esperienza ci ha fornito una solida base di conoscenze e competenze su cui costruire in futuro. Siamo grati per le opportunità di apprendimento e crescita che questo progetto ci ha offerto e siamo fiduciosi che i miglioramenti che apporteremo nei prossimi progetti ci permetteranno di diventare sviluppatori ancora più competenti ed efficienti.</p><p id="e472f074-4031-4730-bc89-f0bb4640040e" class="">
+</p></div></details></div></article></body></html>
