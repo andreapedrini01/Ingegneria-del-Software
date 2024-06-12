@@ -119,6 +119,7 @@ export default {
     width: 500px;
     margin: 0 auto; /* Centra orizzontalmente */
     display: block; /* Assicurati che l'elemento sia un blocco per applicare il margine e la larghezza */
+    color: #cecece
   }
   
   .form-group {
